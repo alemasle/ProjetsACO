@@ -25,7 +25,7 @@ public class ClipboardImpl implements ClipBoard {
 	 * Permet de mettre a jour le contenu du presse-papier
 	 * 
 	 * @param clip
-	 *            le nouveau contenu a mettre dans le presse-papier
+	 *            le nouveau contenu a mettre dans le presse-papier.
 	 */
 	public void setClip(String clip) {
 		this.clip = clip;
