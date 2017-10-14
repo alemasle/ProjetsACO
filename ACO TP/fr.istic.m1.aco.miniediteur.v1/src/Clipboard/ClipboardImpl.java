@@ -17,7 +17,7 @@ public class ClipboardImpl implements ClipBoard {
 	 * 
 	 * @return clip le contenu du presse-papier
 	 */
-	public String getClip() { 
+	public String getClip() {
 		return clip;
 	}
 
