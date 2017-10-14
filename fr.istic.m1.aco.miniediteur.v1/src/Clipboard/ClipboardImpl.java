@@ -20,7 +20,7 @@ public class ClipboardImpl implements ClipBoard {
 	public String getClip() {
 		return clip;
 	}
-//Je Corrige le bug
+
 	/**
 	 * Permet de mettre a jour le contenu du presse-papier
 	 * 
