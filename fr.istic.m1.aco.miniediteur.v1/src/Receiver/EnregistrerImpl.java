@@ -17,7 +17,7 @@ public class EnregistrerImpl implements Enregistreur {
 	}
 
 	/**
-	 * Stoppe l'enregistrement
+	 * Stoppe l'enregistrement en cours
 	 */
 	public void stopper() {
 
