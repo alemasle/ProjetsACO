@@ -17,16 +17,31 @@ sujet returns [ASD.Document.Sujet out]
 	:	e=entite; lp=List<predicat> {$out = new ASD.Document.Sujet(e.$out, lp.$out);}
 	;
 
-predicat:	(entite objet *);
+predicat returns [ASD.Document.Predicat out]
+	: e=entite; lo=List<objet> {$out = new ASD.Document.Predicat(e.$out, lo.$out);} 
+	;
 
-objet:	objetTexte | objetEntite;
+objet returns [ASD.Document.Objet out]
+	:	ot=objetTexte {$out = new ASD.Document.Objet(ot.$out);}
+	|	oe=objetEntite {$out = new ASD.Document.Objet(oe.$out);}
+	;
 
-objetTexte:	texte;
+objetTexte returns [ASD.Document.ObjetTexte out]
+	:	t=texte {$out = new ASD.Document.ObjetTexte(t.$out);}
+	;
 
-objetEntite:	entite;
+objetEntite returns [ASD.Document.ObjetEntite out]
+	:	e=entite {$out = new ASD.Document.ObjetEntite(e.$out);}	
+	;
 
-texte: ident ;
+texte returns [ASD.Document.Texte out]
+	: id=ident  {$out = new ASD.Document.Texte(id.$out);}
+	;
 
-entite:	 ident ;
+entite returns [ASD.Document.Entite out]
+	:	 id=ident {$out = new ASD.Document.Entite(id.$out);} 
+	;
 
-ident : ID;
+ident returns [String out]
+	: ID {$out = $ID.text;}
+	;
