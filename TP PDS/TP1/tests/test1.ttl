@@ -1,0 +1,11 @@
+<COMP>	<titre>		"Cours de compilation" ;
+	<poly>		<poly117> ;
+	<enseignant>	<Ferre>, <Hardy>, <Chapuis> ;
+	<formation>	<m1info> .
+<poly117>	<type>		<poly> ;
+		<auteur>	<Ridoux>, <Ferre> ;
+		<titre>		"Cours de compilation" .
+<Ferre>		<type>		<enseignant-chercheur> ;
+		<prenom>	"Sebastien" ;
+		<nom>		"Ferre" ;
+		<affiliation>	<UnivRennes1>, <IRISA>, <ISTIC> .
