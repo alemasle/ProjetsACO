@@ -55,13 +55,13 @@ public class ASD {
 
 		}
 
-		abstract static class Objet {
+		interface Objet {
 
 			abstract String toNtriples(Entite e1);
 
 		}
 
-		public static class ObjetEntite extends Objet {
+		public static class ObjetEntite implements Objet {
 			Entite e;
 
 			public ObjetEntite(Entite e) {
@@ -74,7 +74,7 @@ public class ASD {
 
 		}
 
-		public static class ObjetTexte extends Objet {
+		public static class ObjetTexte implements Objet {
 			Texte t;
 
 			public ObjetTexte(Texte t) {

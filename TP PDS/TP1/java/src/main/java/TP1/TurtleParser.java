@@ -260,7 +260,7 @@ public class TurtleParser extends Parser {
 				{
 				setState(30);
 				((ObjetContext)_localctx).ot = objetTexte();
-				((ObjetContext)_localctx).out =  new ASD.Document.Objet(((ObjetContext)_localctx).ot.out);
+				((ObjetContext)_localctx).out =  ((ObjetContext)_localctx).ot.out;
 				}
 				break;
 			case 2:
@@ -268,7 +268,7 @@ public class TurtleParser extends Parser {
 				{
 				setState(33);
 				((ObjetContext)_localctx).oe = objetEntite();
-				((ObjetContext)_localctx).out =  new ASD.Document.Objet(((ObjetContext)_localctx).oe.out);
+				((ObjetContext)_localctx).out =  ((ObjetContext)_localctx).oe.out;
 				}
 				break;
 			}

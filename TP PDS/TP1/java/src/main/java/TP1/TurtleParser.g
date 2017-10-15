@@ -22,8 +22,8 @@ predicat returns [ASD.Document.Predicat out]
 	;
 
 objet returns [ASD.Document.Objet out]
-	:	ot=objetTexte {$out = new ASD.Document.Objet($ot.out);}
-	|	oe=objetEntite {$out = new ASD.Document.Objet($oe.out);}
+	:	ot=objetTexte {$out = $ot.out;}
+	|	oe=objetEntite {$out = $oe.out;}
 	;
 
 objetTexte returns [ASD.Document.ObjetTexte out]
