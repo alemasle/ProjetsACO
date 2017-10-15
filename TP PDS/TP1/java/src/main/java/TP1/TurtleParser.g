@@ -14,7 +14,7 @@ document returns [ASD.Document out]
   ;
 
 sujet returns [ASD.Document.Sujet out]
-	:	(entite predicat *)
+	:	e=entite; lp=List<predicat> {$out = new ASD.Document.Sujet(e.$out, lp.$out);}
 	;
 
 predicat:	(entite objet *);
