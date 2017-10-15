@@ -9,6 +9,8 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import TP1.ASD.Document.Sujet;
+
 public class Main {
 
 	public static String test() {

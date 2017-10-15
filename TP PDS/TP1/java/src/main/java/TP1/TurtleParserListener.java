@@ -10,15 +10,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface TurtleParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link TurtleParser#doc}.
+	 * Enter a parse tree produced by {@link TurtleParser#document}.
 	 * @param ctx the parse tree
 	 */
-	void enterDoc(TurtleParser.DocContext ctx);
+	void enterDocument(TurtleParser.DocumentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TurtleParser#doc}.
+	 * Exit a parse tree produced by {@link TurtleParser#document}.
 	 * @param ctx the parse tree
 	 */
-	void exitDoc(TurtleParser.DocContext ctx);
+	void exitDocument(TurtleParser.DocumentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TurtleParser#sujet}.
 	 * @param ctx the parse tree

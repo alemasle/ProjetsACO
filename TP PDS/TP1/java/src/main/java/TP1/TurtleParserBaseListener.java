@@ -18,13 +18,13 @@ public class TurtleParserBaseListener implements TurtleParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDoc(TurtleParser.DocContext ctx) { }
+	@Override public void enterDocument(TurtleParser.DocumentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDoc(TurtleParser.DocContext ctx) { }
+	@Override public void exitDocument(TurtleParser.DocumentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
