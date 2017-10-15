@@ -84,7 +84,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Use with a manually made AST
 
-		System.out.println(test());
+		//System.out.println(test());
 
 		// Use with lexer and parser
 
@@ -93,6 +93,7 @@ public class Main {
 			CharStream input;
 			if (args.length == 0) {
 				// From standard input
+				System.out.println("Veuillez entrer un ASD:\n");
 				input = CharStreams.fromStream(System.in);
 			} else {
 				// From file set in first argument
