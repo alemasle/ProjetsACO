@@ -84,7 +84,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Use with a manually made AST
 
-		//System.out.println(test());
+		// System.out.println(test());
 
 		// Use with lexer and parser
 
