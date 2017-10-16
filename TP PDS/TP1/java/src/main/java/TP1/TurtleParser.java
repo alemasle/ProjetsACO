@@ -1,4 +1,4 @@
-// Generated from TurtleParser.g by ANTLR 4.7
+// Generated from .\TurtleParser.g by ANTLR 4.7
 
   package TP1;
 
@@ -19,7 +19,8 @@ public class TurtleParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		WS=1, ID=2;
+		WS=1, ID=2, POINT=3, PTVIRGULE=4, VIRGULE=5, CHVGAUCHE=6, CHVDROITE=7, 
+		GUILLEMET=8;
 	public static final int
 		RULE_document = 0, RULE_sujet = 1, RULE_predicat = 2, RULE_objet = 3, 
 		RULE_objetTexte = 4, RULE_objetEntite = 5, RULE_texte = 6, RULE_entite = 7, 
@@ -30,9 +31,11 @@ public class TurtleParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
+		null, null, null, "'.'", "';'", "','", "'<'", "'>'", "'\"'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "WS", "ID"
+		null, "WS", "ID", "POINT", "PTVIRGULE", "VIRGULE", "CHVGAUCHE", "CHVDROITE", 
+		"GUILLEMET"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -87,8 +90,11 @@ public class TurtleParser extends Parser {
 		public ASD.Document out;
 		public SujetContext s;
 		public TerminalNode EOF() { return getToken(TurtleParser.EOF, 0); }
-		public SujetContext sujet() {
-			return getRuleContext(SujetContext.class,0);
+		public List<SujetContext> sujet() {
+			return getRuleContexts(SujetContext.class);
+		}
+		public SujetContext sujet(int i) {
+			return getRuleContext(SujetContext.class,i);
 		}
 		public DocumentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -107,14 +113,29 @@ public class TurtleParser extends Parser {
 	public final DocumentContext document() throws RecognitionException {
 		DocumentContext _localctx = new DocumentContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_document);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(18);
-			((DocumentContext)_localctx).s = sujet();
-			setState(19);
+			List<ASD.Document.Sujet> tl = new ArrayList<ASD.Document.Sujet>();
+			setState(24);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==CHVGAUCHE) {
+				{
+				{
+				setState(19);
+				((DocumentContext)_localctx).s = sujet();
+				tl.add(((DocumentContext)_localctx).s.out);
+				}
+				}
+				setState(26);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(27);
 			match(EOF);
-			List<ASD.Document.Sujet> tl = new ArrayList<ASD.Document.Sujet>(); tl.add(((DocumentContext)_localctx).s.out); ((DocumentContext)_localctx).out =  new ASD.Document(tl);
+			((DocumentContext)_localctx).out =  new ASD.Document(tl);
 			}
 		}
 		catch (RecognitionException re) {
@@ -132,11 +153,15 @@ public class TurtleParser extends Parser {
 		public ASD.Document.Sujet out;
 		public EntiteContext e;
 		public PredicatContext lp;
+		public TerminalNode POINT() { return getToken(TurtleParser.POINT, 0); }
 		public EntiteContext entite() {
 			return getRuleContext(EntiteContext.class,0);
 		}
-		public PredicatContext predicat() {
-			return getRuleContext(PredicatContext.class,0);
+		public List<PredicatContext> predicat() {
+			return getRuleContexts(PredicatContext.class);
+		}
+		public PredicatContext predicat(int i) {
+			return getRuleContext(PredicatContext.class,i);
 		}
 		public SujetContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -155,14 +180,31 @@ public class TurtleParser extends Parser {
 	public final SujetContext sujet() throws RecognitionException {
 		SujetContext _localctx = new SujetContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_sujet);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(22);
+			List<ASD.Document.Predicat> pred = new ArrayList<ASD.Document.Predicat>();
+			setState(31);
 			((SujetContext)_localctx).e = entite();
-			setState(23);
-			((SujetContext)_localctx).lp = predicat();
-			List<ASD.Document.Predicat> pred = new ArrayList<ASD.Document.Predicat>(); pred.add(((SujetContext)_localctx).lp.out); ((SujetContext)_localctx).out =  new ASD.Document.Sujet(((SujetContext)_localctx).e.out, pred);
+			setState(37);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==CHVGAUCHE) {
+				{
+				{
+				setState(32);
+				((SujetContext)_localctx).lp = predicat();
+				pred.add(((SujetContext)_localctx).lp.out);
+				}
+				}
+				setState(39);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(40);
+			match(POINT);
+			((SujetContext)_localctx).out =  new ASD.Document.Sujet(((SujetContext)_localctx).e.out, pred);
 			}
 		}
 		catch (RecognitionException re) {
@@ -183,8 +225,12 @@ public class TurtleParser extends Parser {
 		public EntiteContext entite() {
 			return getRuleContext(EntiteContext.class,0);
 		}
-		public ObjetContext objet() {
-			return getRuleContext(ObjetContext.class,0);
+		public TerminalNode PTVIRGULE() { return getToken(TurtleParser.PTVIRGULE, 0); }
+		public List<ObjetContext> objet() {
+			return getRuleContexts(ObjetContext.class);
+		}
+		public ObjetContext objet(int i) {
+			return getRuleContext(ObjetContext.class,i);
 		}
 		public PredicatContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -203,14 +249,42 @@ public class TurtleParser extends Parser {
 	public final PredicatContext predicat() throws RecognitionException {
 		PredicatContext _localctx = new PredicatContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_predicat);
+		int _la;
 		try {
+			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
+			List<ASD.Document.Objet> lobj = new ArrayList<ASD.Document.Objet>();
+			setState(44);
 			((PredicatContext)_localctx).e = entite();
-			setState(27);
-			((PredicatContext)_localctx).lo = objet();
-			List<ASD.Document.Objet> lobj = new ArrayList<ASD.Document.Objet>(); lobj.add(((PredicatContext)_localctx).lo.out); ((PredicatContext)_localctx).out =  new ASD.Document.Predicat(((PredicatContext)_localctx).e.out, lobj);
+			setState(50);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					{
+					{
+					setState(45);
+					((PredicatContext)_localctx).lo = objet();
+					lobj.add(((PredicatContext)_localctx).lo.out);
+					}
+					} 
+				}
+				setState(52);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			}
+			setState(54);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==PTVIRGULE) {
+				{
+				setState(53);
+				match(PTVIRGULE);
+				}
+			}
+
+			((PredicatContext)_localctx).out =  new ASD.Document.Predicat(((PredicatContext)_localctx).e.out, lobj);
 			}
 		}
 		catch (RecognitionException re) {
@@ -231,6 +305,7 @@ public class TurtleParser extends Parser {
 		public ObjetTexteContext objetTexte() {
 			return getRuleContext(ObjetTexteContext.class,0);
 		}
+		public TerminalNode VIRGULE() { return getToken(TurtleParser.VIRGULE, 0); }
 		public ObjetEntiteContext objetEntite() {
 			return getRuleContext(ObjetEntiteContext.class,0);
 		}
@@ -251,26 +326,49 @@ public class TurtleParser extends Parser {
 	public final ObjetContext objet() throws RecognitionException {
 		ObjetContext _localctx = new ObjetContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_objet);
+		int _la;
 		try {
-			setState(36);
+			setState(68);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case GUILLEMET:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(30);
+				setState(58);
 				((ObjetContext)_localctx).ot = objetTexte();
 				((ObjetContext)_localctx).out =  ((ObjetContext)_localctx).ot.out;
+				setState(61);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==VIRGULE) {
+					{
+					setState(60);
+					match(VIRGULE);
+					}
+				}
+
 				}
 				break;
-			case 2:
+			case CHVGAUCHE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(33);
+				setState(63);
 				((ObjetContext)_localctx).oe = objetEntite();
 				((ObjetContext)_localctx).out =  ((ObjetContext)_localctx).oe.out;
+				setState(66);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==VIRGULE) {
+					{
+					setState(65);
+					match(VIRGULE);
+					}
+				}
+
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -310,7 +408,7 @@ public class TurtleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38);
+			setState(70);
 			((ObjetTexteContext)_localctx).t = texte();
 			((ObjetTexteContext)_localctx).out =  new ASD.Document.ObjetTexte(((ObjetTexteContext)_localctx).t.out);
 			}
@@ -352,7 +450,7 @@ public class TurtleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41);
+			setState(73);
 			((ObjetEntiteContext)_localctx).e = entite();
 			((ObjetEntiteContext)_localctx).out =  new ASD.Document.ObjetEntite(((ObjetEntiteContext)_localctx).e.out);
 			}
@@ -371,6 +469,10 @@ public class TurtleParser extends Parser {
 	public static class TexteContext extends ParserRuleContext {
 		public ASD.Document.Texte out;
 		public IdentContext id;
+		public List<TerminalNode> GUILLEMET() { return getTokens(TurtleParser.GUILLEMET); }
+		public TerminalNode GUILLEMET(int i) {
+			return getToken(TurtleParser.GUILLEMET, i);
+		}
 		public IdentContext ident() {
 			return getRuleContext(IdentContext.class,0);
 		}
@@ -394,8 +496,12 @@ public class TurtleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			setState(76);
+			match(GUILLEMET);
+			setState(77);
 			((TexteContext)_localctx).id = ident();
+			setState(78);
+			match(GUILLEMET);
 			((TexteContext)_localctx).out =  new ASD.Document.Texte(((TexteContext)_localctx).id.out);
 			}
 		}
@@ -413,6 +519,8 @@ public class TurtleParser extends Parser {
 	public static class EntiteContext extends ParserRuleContext {
 		public ASD.Document.Entite out;
 		public IdentContext id;
+		public TerminalNode CHVGAUCHE() { return getToken(TurtleParser.CHVGAUCHE, 0); }
+		public TerminalNode CHVDROITE() { return getToken(TurtleParser.CHVDROITE, 0); }
 		public IdentContext ident() {
 			return getRuleContext(IdentContext.class,0);
 		}
@@ -436,8 +544,12 @@ public class TurtleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(47);
+			setState(81);
+			match(CHVGAUCHE);
+			setState(82);
 			((EntiteContext)_localctx).id = ident();
+			setState(83);
+			match(CHVDROITE);
 			((EntiteContext)_localctx).out =  new ASD.Document.Entite(((EntiteContext)_localctx).id.out);
 			}
 		}
@@ -476,7 +588,7 @@ public class TurtleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(50);
+			setState(86);
 			((IdentContext)_localctx).ID = match(ID);
 			((IdentContext)_localctx).out =  (((IdentContext)_localctx).ID!=null?((IdentContext)_localctx).ID.getText():null);
 			}
@@ -493,19 +605,28 @@ public class TurtleParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\48\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\\\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
-		"\3\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5\'\n\5"+
-		"\3\6\3\6\3\6\3\7\3\7\3\7\3\b\3\b\3\b\3\t\3\t\3\t\3\n\3\n\3\n\3\n\2\2\13"+
-		"\2\4\6\b\n\f\16\20\22\2\2\2/\2\24\3\2\2\2\4\30\3\2\2\2\6\34\3\2\2\2\b"+
-		"&\3\2\2\2\n(\3\2\2\2\f+\3\2\2\2\16.\3\2\2\2\20\61\3\2\2\2\22\64\3\2\2"+
-		"\2\24\25\5\4\3\2\25\26\7\2\2\3\26\27\b\2\1\2\27\3\3\2\2\2\30\31\5\20\t"+
-		"\2\31\32\5\6\4\2\32\33\b\3\1\2\33\5\3\2\2\2\34\35\5\20\t\2\35\36\5\b\5"+
-		"\2\36\37\b\4\1\2\37\7\3\2\2\2 !\5\n\6\2!\"\b\5\1\2\"\'\3\2\2\2#$\5\f\7"+
-		"\2$%\b\5\1\2%\'\3\2\2\2& \3\2\2\2&#\3\2\2\2\'\t\3\2\2\2()\5\16\b\2)*\b"+
-		"\6\1\2*\13\3\2\2\2+,\5\20\t\2,-\b\7\1\2-\r\3\2\2\2./\5\22\n\2/\60\b\b"+
-		"\1\2\60\17\3\2\2\2\61\62\5\22\n\2\62\63\b\t\1\2\63\21\3\2\2\2\64\65\7"+
-		"\4\2\2\65\66\b\n\1\2\66\23\3\2\2\2\3&";
+		"\3\2\7\2\31\n\2\f\2\16\2\34\13\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\7\3&"+
+		"\n\3\f\3\16\3)\13\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\7\4\63\n\4\f\4\16"+
+		"\4\66\13\4\3\4\5\49\n\4\3\4\3\4\3\5\3\5\3\5\5\5@\n\5\3\5\3\5\3\5\5\5E"+
+		"\n\5\5\5G\n\5\3\6\3\6\3\6\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t"+
+		"\3\t\3\t\3\n\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\2\2Y\2\24\3\2\2"+
+		"\2\4 \3\2\2\2\6-\3\2\2\2\bF\3\2\2\2\nH\3\2\2\2\fK\3\2\2\2\16N\3\2\2\2"+
+		"\20S\3\2\2\2\22X\3\2\2\2\24\32\b\2\1\2\25\26\5\4\3\2\26\27\b\2\1\2\27"+
+		"\31\3\2\2\2\30\25\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2\32\33\3\2\2\2\33"+
+		"\35\3\2\2\2\34\32\3\2\2\2\35\36\7\2\2\3\36\37\b\2\1\2\37\3\3\2\2\2 !\b"+
+		"\3\1\2!\'\5\20\t\2\"#\5\6\4\2#$\b\3\1\2$&\3\2\2\2%\"\3\2\2\2&)\3\2\2\2"+
+		"\'%\3\2\2\2\'(\3\2\2\2(*\3\2\2\2)\'\3\2\2\2*+\7\5\2\2+,\b\3\1\2,\5\3\2"+
+		"\2\2-.\b\4\1\2.\64\5\20\t\2/\60\5\b\5\2\60\61\b\4\1\2\61\63\3\2\2\2\62"+
+		"/\3\2\2\2\63\66\3\2\2\2\64\62\3\2\2\2\64\65\3\2\2\2\658\3\2\2\2\66\64"+
+		"\3\2\2\2\679\7\6\2\28\67\3\2\2\289\3\2\2\29:\3\2\2\2:;\b\4\1\2;\7\3\2"+
+		"\2\2<=\5\n\6\2=?\b\5\1\2>@\7\7\2\2?>\3\2\2\2?@\3\2\2\2@G\3\2\2\2AB\5\f"+
+		"\7\2BD\b\5\1\2CE\7\7\2\2DC\3\2\2\2DE\3\2\2\2EG\3\2\2\2F<\3\2\2\2FA\3\2"+
+		"\2\2G\t\3\2\2\2HI\5\16\b\2IJ\b\6\1\2J\13\3\2\2\2KL\5\20\t\2LM\b\7\1\2"+
+		"M\r\3\2\2\2NO\7\n\2\2OP\5\22\n\2PQ\7\n\2\2QR\b\b\1\2R\17\3\2\2\2ST\7\b"+
+		"\2\2TU\5\22\n\2UV\7\t\2\2VW\b\t\1\2W\21\3\2\2\2XY\7\4\2\2YZ\b\n\1\2Z\23"+
+		"\3\2\2\2\t\32\'\648?DF";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

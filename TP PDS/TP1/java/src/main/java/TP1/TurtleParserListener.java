@@ -1,4 +1,4 @@
-// Generated from TurtleParser.g by ANTLR 4.7
+// Generated from .\TurtleParser.g by ANTLR 4.7
 
   package TP1;
 

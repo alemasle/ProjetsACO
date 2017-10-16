@@ -15,5 +15,16 @@ WS : (' '|'\n'|'\t'|'\r'|'\u000C')+ -> skip
 fragment ASCII  : ~('\n'|'"'|'<'|'>');
 
 
-ID  :   ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
+ID  :   ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'&'|' '|'-')* ;
 
+POINT	:	'.' ;
+
+PTVIRGULE	:	';' ;
+
+VIRGULE	:	',';
+
+CHVGAUCHE	:	'<';
+
+CHVDROITE	:	'>';
+
+GUILLEMET	:	'"';

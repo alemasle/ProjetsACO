@@ -1,0 +1,12 @@
+<m1info>	<type>		<formation> ;
+		<intitule>	"Master 1 en informatique" ;
+		<niveau>	"M1" ;
+		<responsable>	<Derrien> ;
+		<parcours>	<m1infoGL>, <m1infoSR>, <m1infoRI> .
+<m1infoGL>	<type>		<parcours> ;
+		<intitule>	"GL", "Genie logiciel" .
+<m1infoSR>	<type>		<parcours> ;
+		<intitule>	"SR", "Systemes et reseaux" .
+<m1infoRI>	<type>		<parcours> ;
+		<intitule>	"R&I", "Recherche et innovation" .
+
