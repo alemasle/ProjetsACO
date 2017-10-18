@@ -1,0 +1,9 @@
+PROTO INT f()
+
+FUNC INT main() {
+  INT i
+  i := f()
+  PRINT i
+  RETURN 0
+}
+

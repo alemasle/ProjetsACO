@@ -1,0 +1,4 @@
+FUNC INT nomain() {
+	RETURN 0
+}
+
