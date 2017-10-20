@@ -5,6 +5,6 @@ package Memento;
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
-public interface Memento {
+public interface Memento<T> {
 
 }
