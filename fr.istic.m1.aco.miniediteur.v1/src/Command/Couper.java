@@ -1,6 +1,7 @@
 package Command;
 
 import Memento.Memento;
+import Receiver.Enregistreur;
 import Receiver.Moteur;
 import Receiver.MoteurImpl;
 
@@ -19,16 +20,19 @@ public class Couper implements Command {
 	 */
 	private Moteur moteur;
 
-	private CouperMemento memento;
+	private Enregistreur enregistreur;
+
+	private Memento<CouperMemento> memento;
 
 	/**
 	 * Constructeur de la classe Couper
 	 * 
 	 * @param moteur
 	 */
-	public Couper(Moteur moteur) {
+	public Couper(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.memento = null;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -55,7 +59,7 @@ public class Couper implements Command {
 	 * Met a jour le memento courant
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (CouperMemento) m;
+		this.memento = m;
 	}
 
 	/**

@@ -12,11 +12,12 @@ public class Jcoller {
 	@Test
 	public void testColler() {
 		Moteur moteur = new MoteurImpl();
-		
-		Command coller = new Coller(moteur);
-		
+		Enregistreur enregistreur = new EnregistrerImpl();
+
+		Command coller = new Coller(moteur, enregistreur);
+
 		assertTrue(true);
 		assertFalse(false);
 	}
-	
+
 }

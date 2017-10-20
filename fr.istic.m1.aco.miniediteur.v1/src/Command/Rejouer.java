@@ -21,7 +21,7 @@ public class Rejouer implements Command {
 	/**
 	 * Nouveau Memento
 	 */
-	private RejouerMemento memento;
+	private Memento<RejouerMemento> memento;
 
 	/**
 	 * Constructeur de la classe Rejouer
@@ -52,7 +52,7 @@ public class Rejouer implements Command {
 	 * Met a jour le memento courant
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (RejouerMemento) m;
+		this.memento = m;
 	}
 
 	/**

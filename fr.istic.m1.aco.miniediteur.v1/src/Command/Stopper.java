@@ -21,7 +21,7 @@ public class Stopper implements Command {
 	/**
 	 * Nouveau memento
 	 */
-	private StopperMemento memento;
+	private Memento<StopperMemento> memento;
 
 	/**
 	 * Constructeur de la classe Stopper
@@ -52,7 +52,7 @@ public class Stopper implements Command {
 	 * Met a jour le memento courant
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (StopperMemento) m;
+		this.memento = m;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package Command;
 
 import Memento.Memento;
+import Receiver.Enregistreur;
 import Receiver.Moteur;
 
 /**
@@ -18,14 +19,17 @@ public class Copier implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
 	/**
 	 * Nouveau Memento
 	 */
-	private CopierMemento memento;
+	private Memento<CopierMemento> memento;
 
-	public Copier(Moteur moteur) {
+	public Copier(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.memento = null;
+		this.setEnregistreur(enregistreur);
 	}
 	// Operations
 
@@ -61,7 +65,21 @@ public class Copier implements Command {
 	 * Met a jour le memento courant
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (CopierMemento) m;
+		this.memento = m;
+	}
+
+	/**
+	 * @return le enregistreur
+	 */
+	public Enregistreur getEnregistreur() {
+		return enregistreur;
+	}
+
+	/**
+	 * @param enregistreur le enregistreur à définir
+	 */
+	public void setEnregistreur(Enregistreur enregistreur) {
+		this.enregistreur = enregistreur;
 	}
 
 }

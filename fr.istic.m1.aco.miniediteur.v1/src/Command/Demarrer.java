@@ -13,8 +13,8 @@ import Receiver.Enregistreur;
 public class Demarrer implements Command {
 
 	/**
-	 * Nouvelle instance de l'interface Enregistreur permettant l'acces aux methodes
-	 * de l'enregistreur.
+	 * Nouvelle instance de l'interface Enregistreur permettant l'acces aux
+	 * methodes de l'enregistreur.
 	 * 
 	 * @see Enregistreur
 	 */
@@ -23,7 +23,7 @@ public class Demarrer implements Command {
 	/**
 	 * Instance de la classe privee DemarrerMemento
 	 */
-	private DemarrerMemento mem;
+	private Memento<DemarrerMemento> mem;
 
 	/**
 	 * Constructeur de la classe Demarrer initialisant les attributs
@@ -65,7 +65,7 @@ public class Demarrer implements Command {
 	 *            le nouveau Memento
 	 */
 	public void setMemento(Memento m) {
-		this.mem = (DemarrerMemento) m;
+		this.mem = m;
 
 	}
 

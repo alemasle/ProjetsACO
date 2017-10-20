@@ -1,6 +1,7 @@
 package Command;
 
 import Memento.Memento;
+import Receiver.Enregistreur;
 import Receiver.Moteur;
 import Receiver.MoteurImpl;
 
@@ -19,14 +20,16 @@ public class Selectionner implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
 	/**
 	 * Nouveau Memento
 	 */
-	private MementoSelectionner memento;
+	private Memento<MementoSelectionner> memento;
 
 	/**
-	 * Nouveaux entiers definissant une position de debut et une postion de fin en
-	 * Integer pour la selection.
+	 * Nouveaux entiers definissant une position de debut et une postion de fin
+	 * en Integer pour la selection.
 	 */
 	private int deb = 0;
 	private int fin = 0;
@@ -38,11 +41,12 @@ public class Selectionner implements Command {
 	 * @param deb
 	 * @param fin
 	 */
-	public Selectionner(Moteur moteur, int deb, int fin) {
+	public Selectionner(Moteur moteur, int deb, int fin, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.deb = deb;
 		this.fin = fin;
 		this.memento = null;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -72,7 +76,7 @@ public class Selectionner implements Command {
 	 *            le nouveau memento
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (MementoSelectionner) m;
+		this.memento = m;
 	}
 
 	/**

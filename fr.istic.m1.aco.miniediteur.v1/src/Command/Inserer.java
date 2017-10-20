@@ -1,6 +1,7 @@
 package Command;
 
 import Memento.Memento;
+import Receiver.Enregistreur;
 import Receiver.Moteur;
 import Receiver.MoteurImpl;
 
@@ -19,10 +20,12 @@ public class Inserer implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
 	/**
 	 * Nouveau memento
 	 */
-	private MementoInserer memento;
+	private Memento<MementoInserer> memento;
 
 	/**
 	 * Nouvelle String a inserer
@@ -35,10 +38,11 @@ public class Inserer implements Command {
 	 * @param moteur
 	 * @param str
 	 */
-	public Inserer(Moteur moteur, String str) {
+	public Inserer(Moteur moteur, String str, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.str = str;
 		this.memento = null;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -68,7 +72,7 @@ public class Inserer implements Command {
 	 *            le nouveau memento
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (MementoInserer) m;
+		this.memento = m;
 	}
 
 	/**

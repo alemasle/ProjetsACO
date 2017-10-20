@@ -1,6 +1,7 @@
 package Command;
 
 import Memento.Memento;
+import Receiver.Enregistreur;
 import Receiver.Moteur;
 import Receiver.MoteurImpl;
 
@@ -19,19 +20,22 @@ public class Coller implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
 	/**
 	 * Nouveau memento
 	 */
-	private CollerMemento memento;
+	private Memento<CollerMemento> memento;
 
 	/**
 	 * Constructeur de la classe Coller
 	 * 
 	 * @param moteur
 	 */
-	public Coller(Moteur moteur) {
+	public Coller(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.memento = null;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -58,7 +62,7 @@ public class Coller implements Command {
 	 * met a jour le Memento courant
 	 */
 	public void setMemento(Memento m) {
-		this.memento = (CollerMemento) m;
+		this.memento = m;
 	}
 
 	/**
