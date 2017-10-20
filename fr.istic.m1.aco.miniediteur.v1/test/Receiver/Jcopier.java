@@ -12,9 +12,9 @@ public class Jcopier {
 	@Test
 	public void testCopier() {
 		Moteur moteur = new MoteurImpl();
-		
+
 		Command copier = new Copier(moteur);
-		
+
 		assertTrue(true);
 		assertFalse(false);
 	}

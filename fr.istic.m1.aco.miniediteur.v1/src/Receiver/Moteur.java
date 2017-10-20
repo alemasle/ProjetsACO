@@ -1,13 +1,15 @@
 package Receiver;
 
+import State.*;
+
 /**
  * Interface Moteur comprenant les fonctions du mini editeur.
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
  */
-public interface Moteur {	
-	
+public interface Moteur {
+
 	public void copier();
 
 	public void couper();

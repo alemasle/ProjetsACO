@@ -10,12 +10,12 @@ import State.*;
  */
 public class MoteurImpl implements Moteur {
 
-	Buffer buffer = new Buffer();
+	private Buffer buffer;
 
-	ClipBoard clip = new ClipboardImpl();
+	private ClipBoard clip;
 
-	Selection select = new Selection();
-	
+	private Selection select;
+
 	public MoteurImpl() {
 
 	}
@@ -33,14 +33,15 @@ public class MoteurImpl implements Moteur {
 	 *            la fin de la selection
 	 */
 	public void selectionner(int debut, int fin) {
-		// TODO
+		select.setDebut(debut);
+		select.setFin(fin);
 	}
 
 	/**
 	 * Permet de copier la selection.
 	 */
 	public void copier() {
-		// TODO
+		clip.setClip(buffer.getBuffer().substring(select.getDebut(), select.getFin()));
 	}
 
 	/**
@@ -68,6 +69,51 @@ public class MoteurImpl implements Moteur {
 	 */
 	public void coller() {
 		// TODO
+	}
+
+	/**
+	 * @return le select
+	 */
+	public Selection getSelect() {
+		return select;
+	}
+
+	/**
+	 * @param select
+	 *            le select à définir
+	 */
+	public void setSelect(Selection select) {
+		this.select = select;
+	}
+
+	/**
+	 * @return le clip
+	 */
+	public ClipBoard getClip() {
+		return clip;
+	}
+
+	/**
+	 * @param clip
+	 *            le clip à définir
+	 */
+	public void setClip(ClipBoard clip) {
+		this.clip = clip;
+	}
+
+	/**
+	 * @return le buffer
+	 */
+	public Buffer getBuffer() {
+		return buffer;
+	}
+
+	/**
+	 * @param buffer
+	 *            le buffer à définir
+	 */
+	public void setBuffer(Buffer buffer) {
+		this.buffer = buffer;
 	}
 
 }

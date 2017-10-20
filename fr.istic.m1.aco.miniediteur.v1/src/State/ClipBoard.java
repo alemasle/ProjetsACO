@@ -7,4 +7,8 @@ package State;
  */
 public interface ClipBoard {
 
+	public String getClip();
+
+	public void setClip(String clip);
+
 }

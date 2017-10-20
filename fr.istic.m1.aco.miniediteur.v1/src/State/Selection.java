@@ -2,20 +2,43 @@ package State;
 
 public class Selection {
 
-	private String select = "";
-	
+	// private String select = "";
+
+	private int debut = 0;
+	private int fin = 0;
+
 	public Selection() {
-		
+
 	}
 
-	public String getSelect() {
-		return select;
+	/**
+	 * @return le debut
+	 */
+	public int getDebut() {
+		return debut;
 	}
 
-	public void setSelect(String select) {
-		this.select = select;
+	/**
+	 * @param debut
+	 *            le debut à définir
+	 */
+	public void setDebut(int debut) {
+		this.debut = debut;
 	}
-	
-	
-	
+
+	/**
+	 * @return le fin
+	 */
+	public int getFin() {
+		return fin;
+	}
+
+	/**
+	 * @param fin
+	 *            le fin à définir
+	 */
+	public void setFin(int fin) {
+		this.fin = fin;
+	}
+
 }
