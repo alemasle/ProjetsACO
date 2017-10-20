@@ -1,4 +1,4 @@
-package Clipboard;
+package State;
 
 /**
  * Classe ClipboardImpl qui implements l'interface Clipboard
@@ -11,6 +11,10 @@ public class ClipboardImpl implements ClipBoard {
 	 * String contenant le texte qui a ete copie
 	 */
 	private String clip;
+	
+	public ClipboardImpl() {
+			
+	}
 
 	/**
 	 * Permet de rendre le contenu du presse-papier

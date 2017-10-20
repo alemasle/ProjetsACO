@@ -1,5 +1,7 @@
 package Receiver;
 
+import State.*;
+
 /**
  * Class MoteurImpl comprennant la mise en oeuvre des chacunes des fonctions
  * 
@@ -8,14 +10,22 @@ package Receiver;
  */
 public class MoteurImpl implements Moteur {
 
+	Buffer buffer = new Buffer();
+
+	ClipBoard clip = new ClipboardImpl();
+
+	Selection select = new Selection();
+	
 	public MoteurImpl() {
+
 	}
 
 	// Operations
 
 	/**
-	 * Selectionne une partie du texte ayant comme debut le caracters a la position
-	 * debut et selectionnant tous les caracteres jusqu'a la position fin.
+	 * Selectionne une partie du texte ayant comme debut le caracters a la
+	 * position debut et selectionnant tous les caracteres jusqu'a la position
+	 * fin.
 	 * 
 	 * @param debut
 	 *            la position initiale
@@ -53,8 +63,8 @@ public class MoteurImpl implements Moteur {
 	}
 
 	/**
-	 * Colle le contenu du press-papier a la position actuelle en decalant le texte
-	 * existant apres la position courante.
+	 * Colle le contenu du press-papier a la position actuelle en decalant le
+	 * texte existant apres la position courante.
 	 */
 	public void coller() {
 		// TODO

@@ -6,8 +6,8 @@ package Receiver;
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
  */
-public interface Moteur {
-
+public interface Moteur {	
+	
 	public void copier();
 
 	public void couper();

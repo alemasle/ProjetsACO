@@ -1,4 +1,4 @@
-package Clipboard;
+package State;
 
 /**
  * Interface presse-papier
