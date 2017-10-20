@@ -12,8 +12,9 @@ public class Jcouper {
 	@Test
 	public void testCouper() {
 		Moteur moteur = new MoteurImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
 		
-		Command couper = new Couper(moteur);
+		Command couper = new Couper(moteur, enregistreur);
 		
 		assertTrue(true);
 		assertFalse(false);
