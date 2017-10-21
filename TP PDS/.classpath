@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry exported="true" kind="lib" path="TP1/antlr-4.7-complete.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry excluding="TP1/antlr/" kind="src" path="TP1/java/src/main/java"/>
-	<classpathentry kind="output" path="TP1/bin"/>
-</classpath>
