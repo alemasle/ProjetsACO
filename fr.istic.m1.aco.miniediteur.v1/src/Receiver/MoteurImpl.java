@@ -25,6 +25,7 @@ public class MoteurImpl implements Moteur {
      * Selectionne une partie du texte ayant comme debut le caracters a la
      * position debut et selectionnant tous les caracteres jusqu'a la position
      * fin.
+     * Si debut > fin alors on inverse les positions.
      *
      * @param debut la position initiale
      * @param fin   la fin de la selection
