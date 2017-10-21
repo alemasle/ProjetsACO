@@ -7,11 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="antlr-4.7-complete1" level="project" />
-    <orderEntry type="library" name="antlr-4.7-complete3" level="project" />
-    <orderEntry type="library" name="antlr-4.7-complete4" level="project" />
-    <orderEntry type="library" name="antlr-4.7-complete" level="project" />
     <orderEntry type="library" name="antlr-4.7-complete2" level="project" />
-    <orderEntry type="library" name="antlr-4.7-complete5" level="project" />
+    <orderEntry type="library" name="antlr-4.7-complete1" level="project" />
+    <orderEntry type="library" name="antlr-4.7-complete" level="project" />
+    <orderEntry type="library" name="antlr-4.7-complete3" level="project" />
   </component>
 </module>

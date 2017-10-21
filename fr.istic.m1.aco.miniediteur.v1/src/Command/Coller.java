@@ -1,9 +1,7 @@
 package Command;
 
 import Memento.Memento;
-import Receiver.Enregistreur;
-import Receiver.Moteur;
-import Receiver.MoteurImpl;
+import Receiver.*;
 
 /**
  * Concrete Command "Coller" implementant l'interface Command.
