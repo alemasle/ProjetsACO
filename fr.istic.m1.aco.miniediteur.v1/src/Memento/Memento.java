@@ -1,5 +1,7 @@
 package Memento;
 
+import Command.Command;
+
 /**
  * Interface Memento
  *
@@ -7,5 +9,6 @@ package Memento;
  */
 public interface Memento<T> {
 
+    Command getCommand();
 
 }

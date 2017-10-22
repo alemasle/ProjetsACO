@@ -2,7 +2,6 @@ package Receiver;
 
 import java.util.*;
 
-import Command.Command;
 import Memento.Memento;
 
 /**
@@ -17,7 +16,7 @@ public class EnregistrerImpl implements Enregistreur {
 
     private List<Memento> replay = new ArrayList<Memento>();
 
-    public EnregistrerImpl() {
+    EnregistrerImpl() {
 
     }
 
@@ -40,19 +39,23 @@ public class EnregistrerImpl implements Enregistreur {
      */
     public void rejouer() {
         for (Memento memento : replay) {
-
+            memento.getCommand().execute();
         }
+    }
+
+    public void addMemento(Memento m) {
+        replay.add(m);
     }
 
     /**
      * @return le record
      */
-    public Boolean getRecord() {
+    public boolean getRecord() {
         return record;
     }
 
     /**
-     * @param record le record à définir
+     * @param record le record à definir
      */
     public void setRecord(Boolean record) {
         this.record = record;
