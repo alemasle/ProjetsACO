@@ -82,6 +82,7 @@ public class Coller implements Command {
             return memCommand;
         }
 
+
     }
 
 }

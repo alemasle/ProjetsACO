@@ -11,4 +11,5 @@ public interface Memento<T> {
 
     Command getCommand();
 
+
 }
