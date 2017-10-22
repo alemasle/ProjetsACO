@@ -50,7 +50,7 @@ public class Copier implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	private class CopierMemento implements Memento {
+	public class CopierMemento implements Memento {
 
 	}
 
