@@ -68,7 +68,7 @@ public class Couper implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	private class CouperMemento implements Memento {
+	public class CouperMemento implements Memento {
 
 	}
 

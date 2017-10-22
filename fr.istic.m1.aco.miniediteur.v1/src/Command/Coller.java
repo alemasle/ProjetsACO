@@ -67,7 +67,7 @@ public class Coller implements Command, Memento {
      *
      * @author Alexis LE MASLE et Fanny PRIEUR
      */
-    private class CollerMemento implements Memento {
+    public class CollerMemento implements Memento {
 
         Command memCommand;
 

@@ -45,5 +45,19 @@ public class Jselectionner {
 		assertTrue(deb == fin);
 		assertTrue(deb >= fin);
 	}
+	
+	@Test
+	public void testGetValues() {
+		MoteurImpl moteur = new MoteurImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
+		int debut = 5, fin = 2;
+		Command selectionner = new Selectionner(moteur, debut, fin, enregistreur);
+		//TODO 
+		/*
+		selectionner.setDeb(debut);
+		selectionner.setFin(fin);
+		
+		assertEquals();*/
+	}
 
 }
