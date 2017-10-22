@@ -1,1 +1,0 @@
-/* Cette erreur est normalement detectee dans la phase d'edition de liens, mais si on veut la detecter dans notre compilateur, on peut ajouter un traitement particulier. */

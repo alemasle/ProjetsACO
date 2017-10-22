@@ -1,8 +1,0 @@
-FUNC INT main() {
-  INT i
-  INT t[2]
-  i := 1
-  t := i
-	RETURN 0
-}
-

@@ -1,3 +1,0 @@
-FUNC VOID main() { PRINT "toto" PRINT "titi" }
-
-

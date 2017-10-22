@@ -1,7 +1,0 @@
-PROTO VOID f(i)
-
-FUNC INT main() {
-  PRINT i
-  RETURN 0
-}
-
