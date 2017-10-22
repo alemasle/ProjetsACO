@@ -8,7 +8,7 @@ import Receiver.*;
  *
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
-public class Coller implements Command {
+public class Coller implements Command, Memento {
 
     /**
      * Nouvelle instance de l'interface Moteur declarant la methode coller
@@ -22,12 +22,13 @@ public class Coller implements Command {
     /**
      * Nouveau memento
      */
-    private Memento<CollerMemento> memento;
+    private Memento memento;
 
     /**
      * Constructeur de la classe Coller
      *
-     * @param moteur
+     * @param moteur       le moteur
+     * @param enregistreur l'enregistreur
      */
     public Coller(Moteur moteur, Enregistreur enregistreur) {
         this.moteur = moteur;
@@ -50,12 +51,12 @@ public class Coller implements Command {
     /**
      * @return memento le memento cournat
      */
-    public Memento getMemento() {
-        return memento;
+    public CollerMemento getMemento() {
+        return new CollerMemento();
     }
 
     /**
-     * met a jour le Memento courant
+     * Met a jour le Memento courant
      */
     public void setMemento(Memento m) {
         this.memento = m;
@@ -68,8 +69,11 @@ public class Coller implements Command {
      */
     private class CollerMemento implements Memento {
 
-        Command memCommand = new Coller(moteur, enregistreur);
+        Command memCommand;
 
+        private CollerMemento() {
+            this.memCommand = new Coller(moteur, enregistreur);
+        }
 
     }
 

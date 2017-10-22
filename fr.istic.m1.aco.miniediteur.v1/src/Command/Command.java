@@ -4,22 +4,19 @@ import Memento.Memento;
 
 /**
  * Interface Command
- * 
+ *
  * @author Alexis LE MASLE et Fanny PRIEUR
- * 
- * 
  */
 public interface Command {
-	/**
-	 * 
-	 * Methode commune a toutes les commandes implementant l'interface "Command"
-	 * 
-	 */
 
-	public void execute();
+    /**
+     * Methodes communes a toutes les commandes implementant l'interface "Command"
+     */
 
-	public Memento getMemento();
+    void execute();
 
-	public void setMemento(Memento m);
+    Memento getMemento();
+
+    void setMemento(Memento m);
 
 }
