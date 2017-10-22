@@ -11,44 +11,41 @@ import Memento.Memento;
 
 public class Jcoller {
 
-	@Test
-	public void testColler() {
-		Moteur moteur = new MoteurImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+    @Test
+    public void testColler() {
+        Moteur moteur = new MoteurImpl();
+        Enregistreur enregistreur = new EnregistrerImpl();
 
-		Command coller = new Coller(moteur, enregistreur);
+        Command coller = new Coller(moteur, enregistreur);
 
-		assertTrue(true);
-		assertFalse(false);
-	}
-	
-	@Test
-	public void testExecute() {
-		Moteur moteur = new MoteurImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+        assertTrue(true);
+        assertFalse(false);
+    }
 
-		Command coller = new Coller(moteur, enregistreur);
+    @Test
+    public void testExecute() {
+        Moteur moteur = new MoteurImpl();
+        Enregistreur enregistreur = new EnregistrerImpl();
 
-		coller.execute();
-		moteur.coller();
-		
-	}
-	
-	@Test
-	public void testSetMemento() {
-		//pas d'action
-	}
+        Command coller = new Coller(moteur, enregistreur);
 
-	@Test
-	public void testGetMementon() {
-		Moteur moteur = new MoteurImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+    }
 
-		Command coller = new Coller(moteur, enregistreur);
+    @Test
+    public void testSetMemento() {
+        //pas d'action
+    }
 
-		Memento memento= coller.getMemento();
-		
-		assertTrue(memento instanceof Coller.CollerMemento);
-		
-	}
+    @Test
+    public void testGetMementon() {
+        Moteur moteur = new MoteurImpl();
+        Enregistreur enregistreur = new EnregistrerImpl();
+
+        Command coller = new Coller(moteur, enregistreur);
+
+        Memento memento = coller.getMemento();
+
+        assertTrue(memento instanceof Coller.CollerMemento);
+
+    }
 }
