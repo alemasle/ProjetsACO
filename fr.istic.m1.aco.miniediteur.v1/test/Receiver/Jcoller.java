@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import Command.Coller;
+import Command.Coller.CollerMemento;
 import Command.Command;
 import Command.Copier;
 import Memento.Memento;
@@ -43,7 +44,7 @@ public class Jcoller {
 
         Command coller = new Coller(moteur, enregistreur);
 
-        Memento memento = coller.getMemento();
+        Memento<CollerMemento> memento = coller.getMemento();
 
         assertTrue(memento instanceof Coller.CollerMemento);
 

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import Command.Command;
 import Command.Copier;
+import Command.Copier.CopierMemento;
 
 public class Jcopier {
 
@@ -46,7 +47,7 @@ public class Jcopier {
 
         Command copier = new Copier(moteur, enregistreur);
 
-        Memento memento = copier.getMemento();
+        Memento<CopierMemento> memento = copier.getMemento();
 
         assertTrue(memento instanceof Copier.CopierMemento);
 

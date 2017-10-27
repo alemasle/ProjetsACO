@@ -7,6 +7,7 @@ import org.junit.Test;
 import Command.Coller;
 import Command.Command;
 import Command.Couper;
+import Command.Couper.CouperMemento;
 import Memento.Memento;
 
 public class Jcouper {
@@ -46,7 +47,7 @@ public class Jcouper {
 
 		Command couper = new Couper(moteur, enregistreur);
 
-		Memento memento= couper.getMemento();
+		Memento<CouperMemento> memento= couper.getMemento();
 		
 		assertTrue(memento instanceof Couper.CouperMemento);
 		
