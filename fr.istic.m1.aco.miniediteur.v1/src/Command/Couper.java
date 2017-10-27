@@ -1,5 +1,6 @@
 package Command;
 
+import Command.Copier.CopierMemento;
 import Memento.Memento;
 import Receiver.Enregistreur;
 import Receiver.Moteur;
@@ -50,6 +51,9 @@ public class Couper implements Command {
 	 * @return memento le memento courant
 	 */
 	public Memento<CouperMemento> getMemento() {
+		if (memento == null) {
+			setMemento(new CouperMemento());
+		}
 		return memento;
 	}
 

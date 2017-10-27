@@ -64,6 +64,42 @@ public class Selectionner implements Command {
 	}
 
 	/**
+	 * retourne la position de debut de la selection sauvegardee
+	 * 
+	 * @return deb
+	 */
+	public int getDeb() {
+		return deb;
+	}
+
+	/**
+	 * Met a jour la position de debut sauvegardee
+	 * 
+	 * @param deb
+	 */
+	public void setDeb(int deb) {
+		this.deb = deb;
+	}
+
+	/**
+	 * 
+	 * @return fin la position de fin de selection sauvegardee
+	 */
+	public int getFin() {
+		return fin;
+	}
+
+	/**
+	 * Met a jour le parametre fin sauvegarde
+	 * 
+	 * @param fin
+	 *            la nouvelle valeur
+	 */
+	public void setFin(int fin) {
+		this.fin = fin;
+	}
+
+	/**
 	 * @return memento le memento courant
 	 */
 	public Memento<MementoSelectionner> getMemento() {

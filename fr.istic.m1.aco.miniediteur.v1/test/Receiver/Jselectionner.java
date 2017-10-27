@@ -26,7 +26,7 @@ public class Jselectionner {
 		MoteurImpl moteur = new MoteurImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		int deb = 10;
-		int fin = 0; 
+		int fin = 0;
 		Command select = new Selectionner(moteur, deb, fin, enregistreur);
 
 		assertTrue(deb >= fin);
@@ -45,19 +45,15 @@ public class Jselectionner {
 		assertTrue(deb == fin);
 		assertTrue(deb >= fin);
 	}
-	
+
 	@Test
 	public void testGetValues() {
 		MoteurImpl moteur = new MoteurImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		int debut = 5, fin = 2;
-		Command selectionner = new Selectionner(moteur, debut, fin, enregistreur);
-		//TODO 
-		/*
-		selectionner.setDeb(debut);
-		selectionner.setFin(fin);
-		
-		assertEquals();*/
+		Selectionner selectionner = new Selectionner(moteur, debut, fin, enregistreur);
+
+		assertNotEquals(selectionner.getDeb(), selectionner.getFin());
 	}
 
 }

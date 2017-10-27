@@ -64,6 +64,10 @@ public class Copier implements Command {
 	 * @return memento le memento courant
 	 */
 	public Memento<CopierMemento> getMemento() {
+		if (memento == null) {
+			setMemento(new CopierMemento());
+		}
+
 		return memento;
 	}
 
