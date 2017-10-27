@@ -1,6 +1,5 @@
 package Command;
 
-import Command.Couper.CouperMemento;
 import Memento.Memento;
 import Receiver.Enregistreur;
 import Receiver.Moteur;
