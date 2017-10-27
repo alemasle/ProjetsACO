@@ -44,7 +44,7 @@ public class Demarrer implements Command {
 	 */
 	private class DemarrerMemento implements Memento<DemarrerMemento> {
 
-		Command command = new Demarrer(enregistreur);
+		private Command command = new Demarrer(enregistreur);
 
 		public Command getCommand() {
 			return command;

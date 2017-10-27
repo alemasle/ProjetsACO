@@ -1,6 +1,5 @@
 package Command;
 
-import Command.Copier.CopierMemento;
 import Memento.Memento;
 import Receiver.Enregistreur;
 import Receiver.Moteur;
@@ -53,7 +52,7 @@ public class Copier implements Command {
 	 */
 	public class CopierMemento implements Memento<CopierMemento> {
 
-		Command command = new Copier(moteur, enregistreur);
+		private Command command = new Copier(moteur, enregistreur);
 
 		public Command getCommand() {
 			return command;

@@ -1,6 +1,5 @@
 package Command;
 
-
 import Memento.Memento;
 import Receiver.Enregistreur;
 
@@ -64,7 +63,7 @@ public class Rejouer implements Command {
 	 */
 	public class RejouerMemento implements Memento<RejouerMemento> {
 
-		Command command = new Rejouer(enregistreur);
+		private Command command = new Rejouer(enregistreur);
 
 		public Command getCommand() {
 			return command;

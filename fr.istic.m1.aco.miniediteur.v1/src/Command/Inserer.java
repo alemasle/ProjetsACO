@@ -1,5 +1,6 @@
 package Command;
 
+import Command.Inserer.MementoInserer;
 import Memento.Memento;
 import Receiver.Enregistreur;
 import Receiver.Moteur;
@@ -61,7 +62,7 @@ public class Inserer implements Command {
 	/**
 	 * @return memento le memento courant
 	 */
-	public Memento getMemento() {
+	public Memento<MementoInserer> getMemento() {
 		return memento;
 	}
 
@@ -86,9 +87,9 @@ public class Inserer implements Command {
 		/**
 		 * Le contenu du memento courant
 		 */
-		String texte;
-		
-		Command command = new Inserer(moteur, str, enregistreur);
+		private String texte;
+
+		private Command command = new Inserer(moteur, str, enregistreur);
 
 		/**
 		 * Constructeur de la classe MementoInserer
@@ -116,10 +117,8 @@ public class Inserer implements Command {
 			this.texte = texte;
 		}
 
-		@Override
 		public Command getCommand() {
-			// TODO Stub de la méthode généré automatiquement
-			return null;
+			return command;
 		}
 
 	}
