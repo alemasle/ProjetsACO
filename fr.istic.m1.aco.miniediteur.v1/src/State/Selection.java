@@ -17,7 +17,7 @@ public class Selection {
 	public int getDebut() {
 		return debut;
 	}
-
+//KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
 	/**
 	 * @param debut
 	 *            le debut à définir
