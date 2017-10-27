@@ -9,14 +9,15 @@ import Memento.Memento;
  */
 public interface Command {
 
-    /**
-     * Methodes communes a toutes les commandes implementant l'interface "Command"
-     */
+	/**
+	 * Methodes communes a toutes les commandes implementant l'interface
+	 * "Command"
+	 */
 
-    void execute();
+	void execute();
 
-    Memento<?> getMemento();
+	Memento getMemento();
 
-    void setMemento(Memento<?> m);
+	void setMemento(Memento m);
 
 }
