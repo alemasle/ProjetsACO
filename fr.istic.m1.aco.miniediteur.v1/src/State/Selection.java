@@ -25,7 +25,7 @@ public class Selection {
 	public void setDebut(int debut) {
 		this.debut = debut;
 	}
-//TETETETETETETETETETETETETETETETETETETTETETETETETETETETET
+
 	/**
 	 * @return le fin
 	 */
