@@ -2,8 +2,6 @@ package State;
 
 public class Selection {
 
-	// private String select = "";
-
 	private int debut = 0;
 	private int fin = 0;
 

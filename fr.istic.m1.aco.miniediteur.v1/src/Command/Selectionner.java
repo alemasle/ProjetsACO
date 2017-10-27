@@ -44,8 +44,13 @@ public class Selectionner implements Command {
 	 */
 	public Selectionner(Moteur moteur, int deb, int fin, Enregistreur enregistreur) {
 		this.moteur = moteur;
-		this.deb = deb;
-		this.fin = fin;
+		if (deb > fin) {
+			this.deb = fin;
+			this.fin = deb;
+		} else {
+			this.deb = deb;
+			this.fin = fin;
+		}
 		this.memento = null;
 		this.setEnregistreur(enregistreur);
 	}

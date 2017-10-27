@@ -32,13 +32,8 @@ public class MoteurImpl implements Moteur {
 	 *            la fin de la selection
 	 */
 	public void selectionner(int debut, int fin) {
-		if (debut > fin) {
-			select.setDebut(fin);
-			select.setFin(debut);
-		} else {
-			select.setDebut(debut);
-			select.setFin(fin);
-		}
+		select.setDebut(debut);
+		select.setFin(fin);
 	}
 
 	/**
