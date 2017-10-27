@@ -81,12 +81,14 @@ public class Inserer implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	public class MementoInserer implements Memento {
+	public class MementoInserer implements Memento<MementoInserer> {
 
 		/**
 		 * Le contenu du memento courant
 		 */
 		String texte;
+		
+		Command command = new Inserer(moteur, str, enregistreur);
 
 		/**
 		 * Constructeur de la classe MementoInserer
@@ -112,6 +114,12 @@ public class Inserer implements Command {
 		 */
 		public void setTexte(String texte) {
 			this.texte = texte;
+		}
+
+		@Override
+		public Command getCommand() {
+			// TODO Stub de la méthode généré automatiquement
+			return null;
 		}
 
 	}

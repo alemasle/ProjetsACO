@@ -1,5 +1,6 @@
 package Command;
 
+
 import Memento.Memento;
 import Receiver.Enregistreur;
 
@@ -44,7 +45,7 @@ public class Rejouer implements Command {
 	/**
 	 * @return memento le memento courant
 	 */
-	public Memento getMemento() {
+	public Memento<RejouerMemento> getMemento() {
 		return memento;
 	}
 
@@ -61,7 +62,13 @@ public class Rejouer implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	private class RejouerMemento implements Memento {
+	public class RejouerMemento implements Memento<RejouerMemento> {
+
+		Command command = new Rejouer(enregistreur);
+
+		public Command getCommand() {
+			return command;
+		}
 
 	}
 

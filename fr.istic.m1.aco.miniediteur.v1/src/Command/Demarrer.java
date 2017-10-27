@@ -42,7 +42,13 @@ public class Demarrer implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	private class DemarrerMemento implements Memento {
+	private class DemarrerMemento implements Memento<DemarrerMemento> {
+
+		Command command = new Demarrer(enregistreur);
+
+		public Command getCommand() {
+			return command;
+		}
 
 	}
 
@@ -56,7 +62,7 @@ public class Demarrer implements Command {
 	/**
 	 * @return mem le memento courant
 	 */
-	public Memento getMemento() {
+	public Memento<DemarrerMemento> getMemento() {
 		return mem;
 	}
 

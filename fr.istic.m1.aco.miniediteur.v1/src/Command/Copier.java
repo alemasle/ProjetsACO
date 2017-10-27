@@ -1,5 +1,6 @@
 package Command;
 
+import Command.Copier.CopierMemento;
 import Memento.Memento;
 import Receiver.Enregistreur;
 import Receiver.Moteur;
@@ -50,14 +51,20 @@ public class Copier implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	public class CopierMemento implements Memento {
+	public class CopierMemento implements Memento<CopierMemento> {
+
+		Command command = new Copier(moteur, enregistreur);
+
+		public Command getCommand() {
+			return command;
+		}
 
 	}
 
 	/**
 	 * @return memento le memento courant
 	 */
-	public Memento getMemento() {
+	public Memento<CopierMemento> getMemento() {
 		return memento;
 	}
 
@@ -76,7 +83,8 @@ public class Copier implements Command {
 	}
 
 	/**
-	 * @param enregistreur le enregistreur à définir
+	 * @param enregistreur
+	 *            le enregistreur à définir
 	 */
 	public void setEnregistreur(Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;

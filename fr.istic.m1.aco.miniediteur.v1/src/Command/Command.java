@@ -15,8 +15,8 @@ public interface Command {
 
     void execute();
 
-    Memento getMemento();
+    Memento<?> getMemento();
 
-    void setMemento(Memento m);
+    void setMemento(Memento<?> m);
 
 }

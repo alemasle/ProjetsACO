@@ -44,8 +44,8 @@ public class Stopper implements Command {
 	/**
 	 * @return memento le memento courant
 	 */
-	public Memento getMemento() {
-		return null;
+	public Memento<StopperMemento> getMemento() {
+		return memento;
 	}
 
 	/**
@@ -61,7 +61,13 @@ public class Stopper implements Command {
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	private class StopperMemento implements Memento {
+	private class StopperMemento implements Memento<StopperMemento> {
+
+		private Command command = new Stopper(enregistreur);
+
+		public Command getCommand() {
+			return command;
+		}
 
 	}
 

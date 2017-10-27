@@ -1,5 +1,6 @@
 package Command;
 
+import Command.Selectionner.MementoSelectionner;
 import Memento.Memento;
 import Receiver.Enregistreur;
 import Receiver.Moteur;
@@ -23,16 +24,16 @@ public class Selectionner implements Command {
 	private Enregistreur enregistreur;
 
 	/**
-	 * Nouveau Memento
-	 */
-	private Memento<MementoSelectionner> memento;
-
-	/**
 	 * Nouveaux entiers definissant une position de debut et une postion de fin
 	 * en Integer pour la selection.
 	 */
 	private int deb = 0;
 	private int fin = 0;
+
+	/**
+	 * Nouveau Memento
+	 */
+	private Memento<MementoSelectionner> memento;
 
 	/**
 	 * Constructeur de la classe Selectionner
@@ -46,7 +47,7 @@ public class Selectionner implements Command {
 		this.deb = deb;
 		this.fin = fin;
 		this.memento = null;
-		this.enregistreur = enregistreur;
+		this.setEnregistreur(enregistreur);
 	}
 
 	// Operations
@@ -65,7 +66,7 @@ public class Selectionner implements Command {
 	/**
 	 * @return memento le memento courant
 	 */
-	public Memento getMemento() {
+	public Memento<MementoSelectionner> getMemento() {
 		return memento;
 	}
 
@@ -80,18 +81,37 @@ public class Selectionner implements Command {
 	}
 
 	/**
+	 * @return le enregistreur
+	 */
+	public Enregistreur getEnregistreur() {
+		return enregistreur;
+	}
+
+	/**
+	 * @param enregistreur
+	 *            le enregistreur à définir
+	 */
+	public void setEnregistreur(Enregistreur enregistreur) {
+		this.enregistreur = enregistreur;
+	}
+
+	/**
 	 * Classe privee {@link MementoSelectionner} implementant {@link Memento}
 	 * 
 	 * @author Alexis LE MASLE et Fanny PRIEUR
 	 *
 	 */
-	public class MementoSelectionner implements Memento {
+	public class MementoSelectionner implements Memento<MementoSelectionner> {
+
+		private Command command = new Selectionner(moteur, deb, fin, enregistreur);
 
 		/**
 		 * deb et fin sont les parametres de debut et de fin de la selection a
 		 * sauvegarder lors d'un enregistrement
 		 */
-		int deb, fin;
+
+		int debut;
+		int finale;
 
 		/**
 		 * Constructeur de la classe {@link MementoSelectionner}
@@ -99,9 +119,9 @@ public class Selectionner implements Command {
 		 * @param deb
 		 * @param fin
 		 */
-		public MementoSelectionner(int deb, int fin) {
-			this.deb = deb;
-			this.fin = fin;
+		public MementoSelectionner(int debut, int finale) {
+			this.debut = debut;
+			this.finale = finale;
 		}
 
 		/**
@@ -110,7 +130,7 @@ public class Selectionner implements Command {
 		 * @return deb
 		 */
 		public int getDeb() {
-			return deb;
+			return debut;
 		}
 
 		/**
@@ -119,7 +139,7 @@ public class Selectionner implements Command {
 		 * @param deb
 		 */
 		public void setDeb(int deb) {
-			this.deb = deb;
+			this.debut = deb;
 		}
 
 		/**
@@ -127,7 +147,7 @@ public class Selectionner implements Command {
 		 * @return fin la position de fin de selection sauvegardee
 		 */
 		public int getFin() {
-			return fin;
+			return finale;
 		}
 
 		/**
@@ -136,8 +156,12 @@ public class Selectionner implements Command {
 		 * @param fin
 		 *            la nouvelle valeur
 		 */
-		public void setFin(int fin) {
-			this.fin = fin;
+		public void setFin(int finale) {
+			this.finale = finale;
+		}
+
+		public Command getCommand() {
+			return command;
 		}
 
 	}
