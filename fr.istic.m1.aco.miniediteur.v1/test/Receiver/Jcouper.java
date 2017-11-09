@@ -6,32 +6,55 @@ import org.junit.Test;
 
 import Command.Coller;
 import Command.Command;
+import Command.Copier;
 import Command.Couper;
 import Command.Couper.CouperMemento;
 import Memento.Memento;
+import State.Buffer;
+import State.ClipBoard;
+import State.ClipboardImpl;
+import State.Selection;
 
 public class Jcouper {
 
 	@Test
 	public void testCouper() {
-		Moteur moteur = new MoteurImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
-		
-		Command couper = new Couper(moteur, enregistreur);
-		
-		assertTrue(true);
-		assertFalse(false);
+		StringBuffer stringBuffer= new StringBuffer("couper");
+    	Buffer buffer = new Buffer();
+    	Selection selection = new Selection();
+    	ClipBoard pressePapier= new ClipboardImpl();
+    	Enregistreur enregistreur = new EnregistrerImpl();
+    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+    	
+    	buffer.setBuffer(stringBuffer);
+    	enregistreur.stopper();
+    	selection.setDebut(3);
+    	selection.setFin(3);
+    	Command couper = new Couper(moteur, enregistreur);
+    	couper.execute();
+    	
+    	assertTrue(("").compareTo(pressePapier.getClip())==0);
+        assertTrue(("couper").compareTo(buffer.getBuffer().toString())==0);
 	}
 
 	@Test
-	public void testExecute() {
-		Moteur moteur = new MoteurImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
-
-		Command couper = new Couper(moteur, enregistreur);
-
-		couper.execute();
-		moteur.coller();
+	public void testCouper2() {
+		StringBuffer stringBuffer= new StringBuffer("couper");
+    	Buffer buffer = new Buffer();
+    	Selection selection = new Selection();
+    	ClipBoard pressePapier= new ClipboardImpl();
+    	Enregistreur enregistreur = new EnregistrerImpl();
+    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+    	
+    	buffer.setBuffer(stringBuffer);
+    	enregistreur.stopper();
+    	selection.setDebut(0);
+    	selection.setFin(6);
+    	Command couper = new Couper(moteur, enregistreur);
+    	couper.execute();
+    	
+    	assertTrue(("couper").compareTo(pressePapier.getClip())==0);
+        assertTrue(("").compareTo(buffer.getBuffer().toString())==0);
 		
 	}
 	
@@ -42,14 +65,39 @@ public class Jcouper {
 
 	@Test
 	public void testGetMementon() {
-		Moteur moteur = new MoteurImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
-
+		StringBuffer stringBuffer= new StringBuffer("couper");
+    	Buffer buffer = new Buffer();
+    	Selection selection = new Selection();
+    	ClipBoard pressePapier= new ClipboardImpl();
+    	Enregistreur enregistreur = new EnregistrerImpl();
+    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+    	
 		Command couper = new Couper(moteur, enregistreur);
 
 		Memento<CouperMemento> memento= couper.getMemento();
 		
 		assertTrue(memento instanceof Couper.CouperMemento);
+		
+	}
+	
+	@Test
+	public void testCouper3() {
+		StringBuffer stringBuffer= new StringBuffer("couper");
+    	Buffer buffer = new Buffer();
+    	Selection selection = new Selection();
+    	ClipBoard pressePapier= new ClipboardImpl();
+    	Enregistreur enregistreur = new EnregistrerImpl();
+    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+    	
+    	buffer.setBuffer(stringBuffer);
+    	enregistreur.stopper();
+    	selection.setDebut(2);
+    	selection.setFin(5);
+    	Command couper = new Couper(moteur, enregistreur);
+    	couper.execute();
+    	
+    	assertTrue(("upe").compareTo(pressePapier.getClip())==0);
+        assertTrue(("cor").compareTo(buffer.getBuffer().toString())==0);
 		
 	}
 }

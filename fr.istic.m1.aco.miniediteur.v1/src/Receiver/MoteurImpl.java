@@ -15,7 +15,10 @@ public class MoteurImpl implements Moteur {
 
 	private Selection select;
 
-	public MoteurImpl() {
+	public MoteurImpl(ClipBoard clip, Selection select, Buffer buffer) {
+		this.clip = clip;
+		this.select = select;
+		this.buffer = buffer;
 
 	}
 
@@ -58,7 +61,8 @@ public class MoteurImpl implements Moteur {
 	 * texte.
 	 */
 	public void couper() {
-		// TODO
+		clip.setClip(buffer.getBuffer().substring(select.getDebut(),select.getFin()));
+		buffer.getBuffer().delete(select.getDebut(),select.getFin());
 	}
 
 	/**
@@ -66,8 +70,8 @@ public class MoteurImpl implements Moteur {
 	 * texte existant apres la position courante.
 	 */
 	public void coller() {
-		// TODO
-	}
+		buffer.getBuffer().insert(select.getDebut(), clip.getClip());
+		}
 
 	/**
 	 * @return le select
