@@ -15,8 +15,17 @@ import State.ClipBoard;
 import State.ClipboardImpl;
 import State.Selection;
 
+/**
+ * Fichier Test Coller
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
+
 public class Jcoller {
 
+	
+	
 	@Test
 	public void testColler() {
 		Buffer buffer = new Buffer();
@@ -69,7 +78,11 @@ public class Jcoller {
 		assertTrue(("ABCDEFGHabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
-
+	
+	/**
+	 * Coller la chaine=abcdef et le stringBuffer=ABCDEFGH (concaténation donne abcdefABCDEFGH )
+	 * test en assertTrue
+	 */
 	@Test
 	public void testColler2() {
 		String chaine = "abcdef";
@@ -90,6 +103,13 @@ public class Jcoller {
 		assertTrue(("abcdefABCDEFGH").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
+	
+	
+	/**
+	 * selectionne le les 8 caractères de la stringBuffer
+	 * Coller  le stringBuffer=ABCDEFGH en premeier et la chaine=abcdef  (concaténation donne ABCDEFGHabcdef )
+	 * test en assertTrue
+	 */
 
 	@Test
 	public void testColler3() {
@@ -113,6 +133,12 @@ public class Jcoller {
 
 	}
 
+	
+	/**
+	 * selectionne le les 4 caractères de la stringBuffer
+	 * Coller  le stringBuffer=ABCD en premeier et la chaine=abcdef puis le reste de la stringBuffer=EFGH (concaténation donne ABCDabcdefEFGH )
+	 * test en assertTrue
+	 */
 	@Test
 	public void testColler4() {
 		String chaine = "abcdef";

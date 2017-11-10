@@ -4,9 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Command.Coller;
+
 import Command.Command;
-import Command.Copier;
 import Command.Couper;
 import Command.Couper.CouperMemento;
 import Memento.Memento;
@@ -14,6 +13,14 @@ import State.Buffer;
 import State.ClipBoard;
 import State.ClipboardImpl;
 import State.Selection;
+
+
+/**
+ * Fichier Test Couper
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
 
 public class Jcouper {
 

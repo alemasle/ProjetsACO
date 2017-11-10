@@ -4,6 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Fichier Test Selection
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
+
 public class JSelection {
 
 	@Test

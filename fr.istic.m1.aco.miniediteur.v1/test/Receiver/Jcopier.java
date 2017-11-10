@@ -14,8 +14,19 @@ import Command.Command;
 import Command.Copier;
 import Command.Copier.CopierMemento;
 
+/**
+ * Fichier Test Copier
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
+
 public class Jcopier {
 
+	/**
+	 * 
+	 *
+	 */
 	@Test
 	public void testCopier() {
 
@@ -37,6 +48,12 @@ public class Jcopier {
 
 	}
 
+	
+	/**
+	 * test le stringBuffer après sélection du caractère de 0 à 6 soit "copier"
+	 * test en assertTrue que "copier" est bien dans le presse papier
+	 *
+	 */
 	@Test
 	public void testCopie2() {
 		StringBuffer stringBuffer = new StringBuffer("copier");
@@ -62,7 +79,8 @@ public class Jcopier {
 		// pas d'action
 
 	}
-
+	
+	//TODO à revoir
 	@Test
 	public void testGetMemento() {
 		StringBuffer stringBuffer = new StringBuffer("copier");
@@ -79,7 +97,14 @@ public class Jcopier {
 		assertTrue(memento instanceof Copier.CopierMemento);
 
 	}
+	
+	
 
+	/**
+	 * test le stringBuffer après sélection du caractère de 4 à 6 soit "er"
+	 * test en assertTrue que "er" est bien dans le presse papier
+	 *
+	 */
 	@Test
 	public void testCopie3() {
 		StringBuffer stringBuffer = new StringBuffer("copier");
