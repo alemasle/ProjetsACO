@@ -34,7 +34,7 @@ public class JBuffer {
 		
 		buffer.setBuffer(stringBuffer);
 		
-		assertTrue((buffer.getBuffer().toString().compareTo("123 456      abcd    5485ret :!::: erer )()-_./__ ninja"))==0);
+		assertFalse((buffer.getBuffer().toString().compareTo("123 456      abcd    5485ret :!::: erer )()-_./__ ninja"))==0);
 	}
 
 }

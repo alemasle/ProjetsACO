@@ -16,81 +16,78 @@ public class Jinserer {
 	@Test
 	public void testInserer1() {
 		String str = new String("abcdef");
-		StringBuffer stringBuffer= new StringBuffer("insere");
-    	Buffer buffer = new Buffer();
-    	Selection selection = new Selection();
-    	ClipBoard pressePapier= new ClipboardImpl();
-    	Enregistreur enregistreur = new EnregistrerImpl();
-    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		
-    	buffer.setBuffer(stringBuffer);
-    	enregistreur.stopper();
-    	selection.setDebut(0);
+		StringBuffer stringBuffer = new StringBuffer("insere");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+
+		buffer.setBuffer(stringBuffer);
+		enregistreur.stopper();
+		selection.setDebut(0);
 		Command inserer = new Inserer(moteur, str, enregistreur);
 		inserer.execute();
-		
-		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString())==0);
-		
+
+		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString()) == 0);
+
 	}
 
 	@Test
 	public void testInserer2() {
 		String str = new String("abcdef");
-		StringBuffer stringBuffer= new StringBuffer("insere");
-    	Buffer buffer = new Buffer();
-    	Selection selection = new Selection();
-    	ClipBoard pressePapier= new ClipboardImpl();
-    	Enregistreur enregistreur = new EnregistrerImpl();
-    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		StringBuffer stringBuffer = new StringBuffer("insere");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
 
-		
 		Command inserer = new Inserer(moteur, str, enregistreur);
 		inserer.execute();
-		assertNotNull("La chaine n'est pas vide",str);
+		assertNotNull("La chaine n'est pas vide", str);
 	}
-	
+
 	@Test
 	public void testInserer3() {
-		
+
 		String str = new String("abcdef");
-		StringBuffer stringBuffer= new StringBuffer("insere");
-    	Buffer buffer = new Buffer();
-    	Selection selection = new Selection();
-    	ClipBoard pressePapier= new ClipboardImpl();
-    	Enregistreur enregistreur = new EnregistrerImpl();
-    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		
-    	buffer.setBuffer(stringBuffer);
-    	enregistreur.stopper();
-    	selection.setDebut(6);
+		StringBuffer stringBuffer = new StringBuffer("insere");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+
+		buffer.setBuffer(stringBuffer);
+		enregistreur.stopper();
+		selection.setDebut(6);
 		Command inserer = new Inserer(moteur, str, enregistreur);
 		inserer.execute();
-		
-		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString())==0);
-		
-		
+
+		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString()) == 0);
+
 	}
-	
+
 	@Test
 	public void testInserer4() {
-		
+
 		String str = new String("abcdef");
-		StringBuffer stringBuffer= new StringBuffer("insere");
-    	Buffer buffer = new Buffer();
-    	Selection selection = new Selection();
-    	ClipBoard pressePapier= new ClipboardImpl();
-    	Enregistreur enregistreur = new EnregistrerImpl();
-    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		
-    	buffer.setBuffer(stringBuffer);
-    	enregistreur.stopper();
-    	selection.setDebut(3);
+		StringBuffer stringBuffer = new StringBuffer("insere");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+
+		buffer.setBuffer(stringBuffer);
+		enregistreur.stopper();
+		selection.setDebut(3);
 		Command inserer = new Inserer(moteur, str, enregistreur);
 		inserer.execute();
-		
-		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString())==0);
-		
-		
+
+		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
+
 	}
 
 }
