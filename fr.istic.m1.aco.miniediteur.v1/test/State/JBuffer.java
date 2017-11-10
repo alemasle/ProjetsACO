@@ -4,6 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Fichier Test Buffer
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
+
 public class JBuffer {
 
 	@Test

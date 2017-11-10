@@ -11,6 +11,16 @@ import State.ClipBoard;
 import State.ClipboardImpl;
 import State.Selection;
 
+
+/**
+ * Fichier Test Inserer
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
+
+
+
 public class Jinserer {
 
 	@Test

@@ -11,6 +11,13 @@ import State.ClipBoard;
 import State.ClipboardImpl;
 import State.Selection;
 
+/**
+ * Fichier Test Selectionner
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ * 
+ */
+
 public class Jselectionner {
 
 	@Test
