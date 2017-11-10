@@ -7,8 +7,6 @@ import org.junit.Test;
 import Command.Coller;
 import Command.Coller.CollerMemento;
 import Command.Command;
-import Command.Copier;
-import Command.Selectionner;
 import Memento.Memento;
 import State.Buffer;
 import State.ClipBoard;
