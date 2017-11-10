@@ -50,7 +50,7 @@ public class Jcopier {
 
 	
 	/**
-	 * test le stringBuffer après sélection du caractère de 0 à 6 soit "copier"
+	 * test le stringBuffer après sélection des caractères de 0 à 6 soit "copier"
 	 * test en assertTrue que "copier" est bien dans le presse papier
 	 *
 	 */
@@ -101,7 +101,7 @@ public class Jcopier {
 	
 
 	/**
-	 * test le stringBuffer après sélection du caractère de 4 à 6 soit "er"
+	 * test le stringBuffer après sélection des caractères de 4 à 6 soit "er"
 	 * test en assertTrue que "er" est bien dans le presse papier
 	 *
 	 */

@@ -24,6 +24,13 @@ import State.Selection;
 
 public class Jcouper {
 
+	/**
+	 * 
+	 * 
+	 *
+	 */
+	
+	//TODO
 	@Test
 	public void testCouper() {
 		StringBuffer stringBuffer= new StringBuffer("couper");
@@ -44,6 +51,12 @@ public class Jcouper {
         assertTrue(("couper").compareTo(buffer.getBuffer().toString())==0);
 	}
 
+	
+	/**
+	 * test le stringBuffer après sélection des caractères de 0 à 6 soit "couper"
+	 * test en assertTrue que "couper" est bien dans le presse papier et est supprimé du buffer
+	 *
+	 */
 	@Test
 	public void testCouper2() {
 		StringBuffer stringBuffer= new StringBuffer("couper");
@@ -87,6 +100,12 @@ public class Jcouper {
 		
 	}
 	
+	
+	/**
+	 * test le stringBuffer après sélection des caractères de 2 à 5 soit "upe" que l'on coupe du pressepapier
+	 * et il reste donc les caractères "cor" dans le buffer
+	 *
+	 */
 	@Test
 	public void testCouper3() {
 		StringBuffer stringBuffer= new StringBuffer("couper");
