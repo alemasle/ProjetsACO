@@ -43,8 +43,7 @@ public class MoteurImpl implements Moteur {
 	 * Permet de copier la selection.
 	 */
 	public void copier() {
-		clip.setClip(buffer.getBuffer().substring(select.getDebut(),
-				select.getFin()));
+		clip.setClip(buffer.getBuffer().substring(select.getDebut(), select.getFin()));
 	}
 
 	/**
@@ -55,6 +54,7 @@ public class MoteurImpl implements Moteur {
 	 */
 	public void inserer(String str) {
 		// TODO
+		
 	}
 
 	/**
@@ -62,8 +62,7 @@ public class MoteurImpl implements Moteur {
 	 * texte.
 	 */
 	public void couper() {
-		clip.setClip(buffer.getBuffer().substring(select.getDebut(),
-				select.getFin()));
+		clip.setClip(buffer.getBuffer().substring(select.getDebut(), select.getFin()));
 		buffer.getBuffer().delete(select.getDebut(), select.getFin());
 	}
 
