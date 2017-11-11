@@ -1,6 +1,5 @@
-/Command/
-/Ihm/
-/Memento/
-/Receiver/
-/State/
-/Visitor/
+/main/
+/receiver/
+/receiverTest/
+/command/
+/ihm/
