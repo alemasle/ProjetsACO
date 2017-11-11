@@ -1,6 +1,5 @@
 package Command;
 
-import Memento.*;
 import Receiver.*;
 
 /**
@@ -17,13 +16,6 @@ public class Coller implements Command {
 	 */
 	private Moteur moteur;
 
-	private Enregistreur enregistreur;
-
-	/**
-	 * Nouveau memento
-	 */
-	private Memento<CollerMemento> memento;
-
 	/**
 	 * Constructeur de la classe Coller
 	 *
@@ -32,10 +24,8 @@ public class Coller implements Command {
 	 * @param enregistreur
 	 *            l'enregistreur
 	 */
-	public Coller(Moteur moteur, Enregistreur enregistreur) {
+	public Coller(Moteur moteur) {
 		this.moteur = moteur;
-		this.memento = null;
-		this.enregistreur = enregistreur;
 	}
 
 	/**
@@ -45,44 +35,7 @@ public class Coller implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
-		if (enregistreur.getRecord()) {
-			enregistreur.addMemento(getMemento());
-		}
 		moteur.coller();
-	}
-
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<CollerMemento> getMemento() {
-		setMemento(new CollerMemento());
-		return memento;
-	}
-
-	/**
-	 * Met a jour le Memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
-	}
-
-	/**
-	 * Classe privee CollerMemento implementant Memento
-	 *
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 */
-	public class CollerMemento implements Memento<CollerMemento> {
-
-		private Command memCommand;
-
-		private CollerMemento() {
-			this.memCommand = new Coller(moteur, enregistreur);
-		}
-
-		public Command getCommand() {
-			return memCommand;
-		}
-
 	}
 
 }

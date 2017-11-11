@@ -1,7 +1,5 @@
 package Command;
 
-import Memento.Memento;
-
 /**
  * Interface Command
  *
@@ -10,14 +8,9 @@ import Memento.Memento;
 public interface Command {
 
 	/**
-	 * Methodes communes a toutes les commandes implementant l'interface
-	 * "Command"
+	 * Methodes communes a toutes les commandes implementant l'interface "Command"
 	 */
 
 	void execute();
-
-	Memento getMemento();
-
-	void setMemento(Memento m);
 
 }

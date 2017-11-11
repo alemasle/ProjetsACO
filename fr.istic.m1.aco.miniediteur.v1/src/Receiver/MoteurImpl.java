@@ -25,9 +25,9 @@ public class MoteurImpl implements Moteur {
 	// Operations
 
 	/**
-	 * Selectionne une partie du texte ayant comme debut le caracters a la
-	 * position debut et selectionnant tous les caracteres jusqu'a la position
-	 * fin. Si debut > fin alors on inverse les positions.
+	 * Selectionne une partie du texte ayant comme debut le caracters a la position
+	 * debut et selectionnant tous les caracteres jusqu'a la position fin. Si debut
+	 * > fin alors on inverse les positions.
 	 *
 	 * @param debut
 	 *            la position initiale
@@ -54,7 +54,7 @@ public class MoteurImpl implements Moteur {
 	 */
 	public void inserer(String str) {
 		// TODO
-		
+
 	}
 
 	/**
@@ -67,8 +67,8 @@ public class MoteurImpl implements Moteur {
 	}
 
 	/**
-	 * Colle le contenu du press-papier a la position actuelle en decalant le
-	 * texte existant apres la position courante.
+	 * Colle le contenu du press-papier a la position actuelle en decalant le texte
+	 * existant apres la position courante.
 	 */
 	public void coller() {
 		buffer.getBuffer().insert(select.getDebut(), clip.getClip());

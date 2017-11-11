@@ -1,8 +1,5 @@
 package Command;
 
-import Command.Copier.CopierMemento;
-import Memento.Memento;
-import Receiver.Enregistreur;
 import Receiver.Moteur;
 import Receiver.MoteurImpl;
 
@@ -20,19 +17,13 @@ public class Couper implements Command {
 	 */
 	private Moteur moteur;
 
-	private Enregistreur enregistreur;
-
-	private Memento<CouperMemento> memento;
-
 	/**
 	 * Constructeur de la classe Couper
 	 *
 	 * @param moteur
 	 */
-	public Couper(Moteur moteur, Enregistreur enregistreur) {
+	public Couper(Moteur moteur) {
 		this.moteur = moteur;
-		this.memento = null;
-		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -45,49 +36,6 @@ public class Couper implements Command {
 	 */
 	public void execute() {
 		moteur.couper();
-	}
-
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<CouperMemento> getMemento() {
-		if (memento == null) {
-			setMemento(new CouperMemento());
-		}
-		return memento;
-	}
-
-	/**
-	 * Met a jour le memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
-	}
-
-	public Enregistreur getEnregistreur() {
-		return enregistreur;
-	}
-
-	public void setEnregistreur(Enregistreur enregistreur) {
-		this.enregistreur = enregistreur;
-	}
-
-	/**
-	 * Classe privee CouperMemento implementant Memento
-	 *
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 */
-	public class CouperMemento implements Memento<CouperMemento> {
-
-		private Command memCommand;
-
-		private CouperMemento() {
-			this.memCommand = new Couper(moteur, enregistreur);
-		}
-
-		public Command getCommand() {
-			return memCommand;
-		}
 	}
 
 }

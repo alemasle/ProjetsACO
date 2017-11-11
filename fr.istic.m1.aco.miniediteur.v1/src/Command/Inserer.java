@@ -1,10 +1,6 @@
 package Command;
 
-import Command.Inserer.MementoInserer;
-import Memento.Memento;
-import Receiver.Enregistreur;
 import Receiver.Moteur;
-import Receiver.MoteurImpl;
 
 /**
  * Concrete Command "Inserer" implementant l'interface Command
@@ -21,13 +17,6 @@ public class Inserer implements Command {
 	 */
 	private Moteur moteur;
 
-	private Enregistreur enregistreur;
-
-	/**
-	 * Nouveau memento
-	 */
-	private Memento<MementoInserer> memento;
-
 	/**
 	 * Nouvelle String a inserer
 	 */
@@ -39,11 +28,9 @@ public class Inserer implements Command {
 	 * @param moteur
 	 * @param str
 	 */
-	public Inserer(Moteur moteur, String str, Enregistreur enregistreur) {
+	public Inserer(Moteur moteur, String str) {
 		this.moteur = moteur;
 		this.str = str;
-		this.memento = null;
-		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -57,70 +44,6 @@ public class Inserer implements Command {
 	 */
 	public void execute() {
 		moteur.inserer(str);
-	}
-
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<MementoInserer> getMemento() {
-		return memento;
-	}
-
-	/**
-	 * Met a jour le memento courant
-	 * 
-	 * @param m
-	 *            le nouveau memento
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
-	}
-
-	/**
-	 * Classe privee MementoInserer implementant Memento
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	public class MementoInserer implements Memento<MementoInserer> {
-
-		/**
-		 * Le contenu du memento courant
-		 */
-		private String texte;
-
-		private Command command = new Inserer(moteur, str, enregistreur);
-
-		/**
-		 * Constructeur de la classe MementoInserer
-		 * 
-		 * @param texte
-		 */
-		public MementoInserer(String texte) {
-			this.texte = texte;
-		}
-
-		/**
-		 * 
-		 * @return texte le contenu du memento
-		 */
-		public String getTexte() {
-			return texte;
-		}
-
-		/**
-		 * met a jour le contenu du Memento
-		 * 
-		 * @param texte
-		 */
-		public void setTexte(String texte) {
-			this.texte = texte;
-		}
-
-		public Command getCommand() {
-			return command;
-		}
-
 	}
 
 }

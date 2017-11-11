@@ -1,7 +1,5 @@
 package Receiver;
 
-import State.*;
-
 /**
  * Interface Moteur comprenant les fonctions du mini editeur.
  * 

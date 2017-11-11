@@ -1,7 +1,5 @@
 package Command;
 
-import Memento.Memento;
-import Receiver.Enregistreur;
 import Receiver.Moteur;
 
 /**
@@ -19,17 +17,8 @@ public class Copier implements Command {
 	 */
 	private Moteur moteur;
 
-	private Enregistreur enregistreur;
-
-	/**
-	 * Nouveau Memento
-	 */
-	private Memento<CopierMemento> memento;
-
-	public Copier(Moteur moteur, Enregistreur enregistreur) {
+	public Copier(Moteur moteur) {
 		this.moteur = moteur;
-		this.memento = null;
-		this.setEnregistreur(enregistreur);
 	}
 	// Operations
 
@@ -42,55 +31,6 @@ public class Copier implements Command {
 	 */
 	public void execute() {
 		moteur.copier();
-	}
-
-	/**
-	 * Classe privee CopierMemento implementant Memento
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	public class CopierMemento implements Memento<CopierMemento> {
-
-		private Command command = new Copier(moteur, enregistreur);
-
-		public Command getCommand() {
-			return command;
-		}
-
-	}
-
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<CopierMemento> getMemento() {
-		if (memento == null) {
-			setMemento(new CopierMemento());
-		}
-
-		return memento;
-	}
-
-	/**
-	 * Met a jour le memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
-	}
-
-	/**
-	 * @return le enregistreur
-	 */
-	public Enregistreur getEnregistreur() {
-		return enregistreur;
-	}
-
-	/**
-	 * @param enregistreur
-	 *            le enregistreur à définir
-	 */
-	public void setEnregistreur(Enregistreur enregistreur) {
-		this.enregistreur = enregistreur;
 	}
 
 }
