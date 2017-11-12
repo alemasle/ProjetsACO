@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import state.ClipBoard;
+import state.ClipboardImpl;
+
 /**
  * Fichier Test ClipBoard
  * 

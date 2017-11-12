@@ -2,17 +2,20 @@ package Receiver;
 
 import static org.junit.Assert.*;
 
-import Memento.Memento;
-import State.Buffer;
-import State.ClipBoard;
-import State.ClipboardImpl;
-import State.Selection;
+import command.Command;
+import command.Copier;
+import command.Copier.CopierMemento;
+import memento.Memento;
+import receiver.EnregistrerImpl;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
+import state.Buffer;
+import state.ClipBoard;
+import state.ClipboardImpl;
+import state.Selection;
 
 import org.junit.Test;
-
-import Command.Command;
-import Command.Copier;
-import Command.Copier.CopierMemento;
 
 /**
  * Fichier Test Copier

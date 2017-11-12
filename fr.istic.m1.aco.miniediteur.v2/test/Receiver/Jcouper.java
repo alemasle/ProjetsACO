@@ -4,15 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
-import Command.Command;
-import Command.Couper;
-import Command.Couper.CouperMemento;
-import Memento.Memento;
-import State.Buffer;
-import State.ClipBoard;
-import State.ClipboardImpl;
-import State.Selection;
+import command.Command;
+import command.Couper;
+import command.Couper.CouperMemento;
+import memento.Memento;
+import receiver.EnregistrerImpl;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
+import state.Buffer;
+import state.ClipBoard;
+import state.ClipboardImpl;
+import state.Selection;
 
 
 /**

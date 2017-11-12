@@ -4,14 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Command.Coller;
-import Command.Coller.CollerMemento;
-import Command.Command;
-import Memento.Memento;
-import State.Buffer;
-import State.ClipBoard;
-import State.ClipboardImpl;
-import State.Selection;
+import command.Coller;
+import command.Command;
+import command.Coller.CollerMemento;
+import memento.Memento;
+import receiver.EnregistrerImpl;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
+import state.Buffer;
+import state.ClipBoard;
+import state.ClipboardImpl;
+import state.Selection;
 
 /**
  * Fichier Test Coller
