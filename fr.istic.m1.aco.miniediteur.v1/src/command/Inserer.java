@@ -22,7 +22,12 @@ public class Inserer implements Command {
 	 * Nouvelle String a inserer
 	 */
 	private Ihm ihm;
-
+	
+	/**
+	 * Nouvelle String a inserer
+	 */
+	private String str;
+	
 	/**
 	 * Constructeur de la classe Inserer
 	 * 
@@ -32,9 +37,26 @@ public class Inserer implements Command {
 	public Inserer(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
 		this.ihm = ihm;
+		this.str="";
 	}
 
 	// Operations
+	
+	/**
+	 *Setter
+	 *@param chaine est le texte à sauvegarder
+	 */
+	public void setTexte(String chaine) {
+		this.str=chaine;
+	}
+	
+	/**
+	 *Getter
+	 *@return met la chaine str dans la commande
+	 */
+	public String getTexte() {
+		return this.str;
+	}
 
 	/**
 	 * Appel de la mise en oeuvre de la fonction "inserer" dans l'implementation
@@ -52,6 +74,13 @@ public class Inserer implements Command {
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
+	}
+	/**
+	 *Met les valeurs dans la commande
+	 */
+	public void getValues() {
+		System.out.println("Entrez le texte:");
+		this.setTexte(this.ihm.getText());
 	}
 
 }
