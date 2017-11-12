@@ -39,7 +39,7 @@ public class Ihm {
 			buffer.getBuffer().insert(deb, '>');
 			buffer.getBuffer().insert(fin + 1, '<');
 		} else {
-			buffer.getBuffer().insert(deb, '|');
+			buffer.getBuffer().insert(deb, '>');
 		}
 
 		String str = buffer.getBuffer().toString();
@@ -79,9 +79,17 @@ public class Ihm {
 	public int getDebut() {
 
 		int len = buffer.getBuffer().length();
-
+		int deb = -1;
 		System.out.println("Selection from (index): ");
-		int deb = input.nextInt();
+
+		while (deb == -1) {
+			try {
+				deb = input.nextInt();
+			} catch (Exception e) {
+				System.out.println("Please, enter a integer. ");
+				deb = input.nextInt();
+			}
+		}
 
 		if (deb < 0) {
 			return 0;
@@ -137,9 +145,13 @@ public class Ihm {
 	public void executeCommand() {
 		Boolean quit = false;
 
-		while (!quit) {
+		clearScreen();
+		System.out.println("Welcome in our mini text editor");
+		System.out.println("v1.0 by Alexis LE MASLE & Fanny PRIEUR");
+		System.out.println("");
+		System.out.println("");
 
-			clearScreen();
+		while (!quit) {
 
 			System.out.println(printBuffer());
 			System.out.println("");
@@ -152,11 +164,6 @@ public class Ihm {
 
 			input.nextLine();
 
-			if (command.length() == 0) {
-				System.out.println("Please enter a non null option ");
-				executeCommand();
-			}
-
 			while (command.length() == 0) {
 				command = input.nextLine();
 			}
@@ -166,18 +173,33 @@ public class Ihm {
 
 			switch (cmd) {
 			case 'c':
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
 				copier.execute();
 				break;
 			case 'v':
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
 				coller.execute();
 				break;
 			case 'x':
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
 				couper.execute();
 				break;
 			case 'i':
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
 				inserer.execute();
 				break;
 			case 's':
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
 				selectionner.execute();
 				break;
 			case 'q':
@@ -192,6 +214,7 @@ public class Ihm {
 				System.out.println("");
 				break;
 			}
+			clearScreen();
 		}
 	}
 }
