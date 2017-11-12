@@ -6,6 +6,7 @@ import receiver.MoteurImpl;
 /**
  * Concrete Command "Delete" implementant l'interface Command
  *
+ * @since 1.1
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
 public class Delete implements Command {

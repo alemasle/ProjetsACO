@@ -1,10 +1,16 @@
 package ihm;
 
 import java.util.Scanner;
-
 import command.*;
 import state.*;
 
+/**
+ * 
+ * Interface Homme Machine
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ *
+ */
 public class Ihm {
 	private Command copier;
 	private Command coller;
@@ -17,9 +23,10 @@ public class Ihm {
 	private Command save;
 	private Command ajouter;
 	private Command delete;
+	private Command load;
 
-	public Ihm(Copier copier, Coller coller, Delete couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
-			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete) {
+	public Ihm(Copier copier, Coller coller, Couper couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
+			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete, Load load) {
 		this.copier = copier;
 		this.coller = coller;
 		this.couper = couper;
@@ -31,6 +38,7 @@ public class Ihm {
 		this.save = save;
 		this.ajouter = ajouter;
 		this.delete = delete;
+		this.load = load;
 	}
 
 	/**
@@ -144,7 +152,7 @@ public class Ihm {
 	 * @return Le nom de fichier de sauvegarde
 	 */
 	public String getFile() {
-		System.out.println("Enter the name of the save file: ");
+		System.out.println("Enter the name of the file: ");
 		String str = input.nextLine();
 		str += ".txt";
 		return str;
@@ -152,7 +160,7 @@ public class Ihm {
 
 	public String optionsCommand() {
 		return "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
-				+ " S : Select |" + " K : Save |" + " Q : Quit |";
+				+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |";
 	}
 
 	private void clearScreen() {
@@ -242,6 +250,16 @@ public class Ihm {
 				System.out.println("");
 				ajouter.execute();
 				clearScreen();
+				break;
+
+			case 'l': // Load the content of the given filename.txt
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				load.execute();
+				System.out.println("");
+				System.out.println("");
+				System.out.println("");
 				break;
 
 			case 's': // New selection

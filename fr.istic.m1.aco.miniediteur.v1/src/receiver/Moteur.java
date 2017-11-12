@@ -23,4 +23,6 @@ public interface Moteur {
 	public void ajouter(String str);
 
 	public void delete();
+
+	public void load(String filename) throws Exception;
 }
