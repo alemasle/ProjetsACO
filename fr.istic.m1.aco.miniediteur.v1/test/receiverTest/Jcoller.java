@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Memento.Memento;
+
 import command.Coller;
 import command.Command;
-import command.Coller.CollerMemento;
+
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -31,10 +31,9 @@ public class Jcoller {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
-		Command coller = new Coller(moteur, enregistreur);
+		Command coller = new Coller(moteur);
 
 		assertTrue(true);
 		assertFalse(false);
@@ -45,37 +44,10 @@ public class Jcoller {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
 
-		Command coller = new Coller(moteur, enregistreur);
-
-	}
-
-	@Test
-	public void testSetMemento() {
-		// pas d'action
-	}
-
-	// TODO à revoir
-	@Test
-	public void testGetMemento() {
-		StringBuffer stringBuffer = new StringBuffer("ABCDEFGHabcdef");
-		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Enregistreur enregistreur = new EnregistrerImpl();
-		enregistreur.demarrer();
-
-		Command coller = new Coller(moteur, enregistreur);
-
-		enregistreur.stopper();
-
-		Memento<CollerMemento> memento = coller.getMemento();
-
-		assertTrue(memento instanceof Coller.CollerMemento);
-		assertTrue(("ABCDEFGHabcdef").compareTo(buffer.getBuffer().toString()) == 0);
+		Command coller = new Coller(moteur);
 
 	}
 	
@@ -91,13 +63,12 @@ public class Jcoller {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
 
 		pressePapier.setClip(chaine);
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Command coller = new Coller(moteur, enregistreur);
+	
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Command coller = new Coller(moteur);
 		coller.execute();
 
 		assertTrue(("abcdefABCDEFGH").compareTo(buffer.getBuffer().toString()) == 0);
@@ -119,14 +90,14 @@ public class Jcoller {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+		
 
 		pressePapier.setClip(chaine);
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
+		
 		selection.setDebut(8);
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Command coller = new Coller(moteur, enregistreur);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Command coller = new Coller(moteur);
 		coller.execute();
 
 		assertTrue(("ABCDEFGHabcdef").compareTo(buffer.getBuffer().toString()) == 0);
@@ -147,14 +118,14 @@ public class Jcoller {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+		
 
 		pressePapier.setClip(chaine);
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
+	
 		selection.setDebut(4);
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Command coller = new Coller(moteur, enregistreur);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Command coller = new Coller(moteur);
 		coller.execute();
 
 		assertTrue(("ABCDabcdefEFGH").compareTo(buffer.getBuffer().toString()) == 0);
