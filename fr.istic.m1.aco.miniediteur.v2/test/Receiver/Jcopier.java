@@ -51,7 +51,6 @@ public class Jcopier {
 
 	}
 
-	
 	/**
 	 * test le stringBuffer après sélection des caractères de 0 à 6 soit "copier"
 	 * test en assertTrue que "copier" est bien dans le presse papier
@@ -82,8 +81,8 @@ public class Jcopier {
 		// pas d'action
 
 	}
-	
-	//TODO à revoir
+
+	// TODO à revoir
 	@Test
 	public void testGetMemento() {
 		StringBuffer stringBuffer = new StringBuffer("copier");
@@ -100,12 +99,10 @@ public class Jcopier {
 		assertTrue(memento instanceof Copier.CopierMemento);
 
 	}
-	
-	
 
 	/**
-	 * test le stringBuffer après sélection des caractères de 4 à 6 soit "er"
-	 * test en assertTrue que "er" est bien dans le presse papier
+	 * test le stringBuffer après sélection des caractères de 4 à 6 soit "er" test
+	 * en assertTrue que "er" est bien dans le presse papier
 	 *
 	 */
 	@Test

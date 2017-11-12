@@ -15,15 +15,12 @@ import state.ClipBoard;
 import state.ClipboardImpl;
 import state.Selection;
 
-
 /**
  * Fichier Test Inserer
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
  */
-
-
 
 public class Jinserer {
 

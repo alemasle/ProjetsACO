@@ -4,18 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import command.Coller;
-import command.Command;
-import command.Coller.CollerMemento;
-import memento.Memento;
-import receiver.EnregistrerImpl;
-import receiver.Enregistreur;
-import receiver.Moteur;
-import receiver.MoteurImpl;
-import state.Buffer;
-import state.ClipBoard;
-import state.ClipboardImpl;
-import state.Selection;
+import command.*;
+import receiver.*;
+import state.*;
 
 /**
  * Fichier Test Coller
@@ -26,14 +17,12 @@ import state.Selection;
 
 public class Jcoller {
 
-	
-	
 	@Test
 	public void testColler() {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 		Enregistreur enregistreur = new EnregistrerImpl();
 
 		Command coller = new Coller(moteur, enregistreur);
@@ -80,10 +69,10 @@ public class Jcoller {
 		assertTrue(("ABCDEFGHabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
-	
+
 	/**
-	 * Coller la chaine=abcdef et le stringBuffer=ABCDEFGH (concaténation donne abcdefABCDEFGH )
-	 * test en assertTrue
+	 * Coller la chaine=abcdef et le stringBuffer=ABCDEFGH (concaténation donne
+	 * abcdefABCDEFGH ) test en assertTrue
 	 */
 	@Test
 	public void testColler2() {
@@ -105,12 +94,11 @@ public class Jcoller {
 		assertTrue(("abcdefABCDEFGH").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
-	
-	
+
 	/**
-	 * selectionne le les 8 caractères de la stringBuffer
-	 * Coller  le stringBuffer=ABCDEFGH en premeier et la chaine=abcdef  (concaténation donne ABCDEFGHabcdef )
-	 * test en assertTrue
+	 * selectionne le les 8 caractères de la stringBuffer Coller le
+	 * stringBuffer=ABCDEFGH en premeier et la chaine=abcdef (concaténation donne
+	 * ABCDEFGHabcdef ) test en assertTrue
 	 */
 
 	@Test
@@ -135,11 +123,10 @@ public class Jcoller {
 
 	}
 
-	
 	/**
-	 * selectionne le les 4 caractères de la stringBuffer
-	 * Coller  le stringBuffer=ABCD en premeier et la chaine=abcdef puis le reste de la stringBuffer=EFGH (concaténation donne ABCDabcdefEFGH )
-	 * test en assertTrue
+	 * selectionne le les 4 caractères de la stringBuffer Coller le
+	 * stringBuffer=ABCD en premeier et la chaine=abcdef puis le reste de la
+	 * stringBuffer=EFGH (concaténation donne ABCDabcdefEFGH ) test en assertTrue
 	 */
 	@Test
 	public void testColler4() {
