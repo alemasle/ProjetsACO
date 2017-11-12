@@ -18,4 +18,9 @@ public interface Moteur {
 
 	public void selectionner(int deb, int fin);
 
+	public void save(String filename) throws Exception;
+
+	public void ajouter(String str);
+
+	public void delete();
 }

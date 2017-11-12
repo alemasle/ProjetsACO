@@ -14,9 +14,12 @@ public class Ihm {
 	private Buffer buffer;
 	private Selection selection;
 	private Scanner input;
+	private Command save;
+	private Command ajouter;
+	private Command delete;
 
-	public Ihm(Copier copier, Coller coller, Couper couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
-			Selection selection, Scanner scanner) {
+	public Ihm(Copier copier, Coller coller, Delete couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
+			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete) {
 		this.copier = copier;
 		this.coller = coller;
 		this.couper = couper;
@@ -25,9 +28,15 @@ public class Ihm {
 		this.buffer = buffer;
 		this.selection = selection;
 		this.input = scanner;
+		this.save = save;
+		this.ajouter = ajouter;
+		this.delete = delete;
 	}
 
 	/**
+	 * 
+	 * Si les marqueurs de debut et de fin de selection sont au meme endroit on
+	 * affiche '>' sinon on affiche '>' + text + '<'
 	 * 
 	 * @return Le buffer de texte avec les marqueurs de selection
 	 */
@@ -38,7 +47,9 @@ public class Ihm {
 		if (deb != fin) {
 			buffer.getBuffer().insert(deb, '>');
 			buffer.getBuffer().insert(fin + 1, '<');
-		} else {
+		}
+
+		else {
 			buffer.getBuffer().insert(deb, '>');
 		}
 
@@ -68,7 +79,6 @@ public class Ihm {
 	 * @return Le texte a inserer de l'utilisateur
 	 */
 	public String getText() {
-		System.out.println("> Inserer: ");
 		return input.nextLine();
 	}
 
@@ -87,7 +97,7 @@ public class Ihm {
 				deb = input.nextInt();
 			} catch (Exception e) {
 				System.out.println("Please, enter a integer. ");
-				deb = input.nextInt();
+				input.nextLine();
 			}
 		}
 
@@ -107,9 +117,18 @@ public class Ihm {
 	public int getFin() {
 
 		int len = buffer.getBuffer().length();
+		int fin = -1;
 
 		System.out.println("To (index): ");
-		int fin = input.nextInt();
+
+		while (fin == -1) {
+			try {
+				fin = input.nextInt();
+			} catch (Exception e) {
+				System.out.println("Please, enter a integer. ");
+				input.nextLine();
+			}
+		}
 
 		if (fin < 0) {
 			return 0;
@@ -120,9 +139,20 @@ public class Ihm {
 		return fin;
 	}
 
+	/**
+	 * 
+	 * @return Le nom de fichier de sauvegarde
+	 */
+	public String getFile() {
+		System.out.println("Enter the name of the save file: ");
+		String str = input.nextLine();
+		str += ".txt";
+		return str;
+	}
+
 	public String optionsCommand() {
-		return "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " I : Insert |" + " S : Select |"
-				+ " Q : Quit |";
+		return "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
+				+ " S : Select |" + " K : Save |" + " Q : Quit |";
 	}
 
 	private void clearScreen() {
@@ -146,7 +176,10 @@ public class Ihm {
 		Boolean quit = false;
 
 		clearScreen();
-		System.out.println("Welcome in our mini text editor");
+		System.out.println("_____________________________________");
+		System.out.println("--------- Mini Text Editor ----------");
+		System.out.println("_____________________________________");
+
 		System.out.println("v1.0 by Alexis LE MASLE & Fanny PRIEUR");
 		System.out.println("");
 		System.out.println("");
@@ -156,7 +189,6 @@ public class Ihm {
 			System.out.println(printBuffer());
 			System.out.println("");
 
-			// System.out.println("What do you want to do? ");
 			System.out.println(optionsCommand());
 			System.out.println("");
 
@@ -172,49 +204,86 @@ public class Ihm {
 			char cmd = command.charAt(0);
 
 			switch (cmd) {
-			case 'c':
+			case 'c': // Copy in the clipboard the current selection
 				clearScreen();
 				System.out.println(printBuffer());
 				System.out.println("");
 				copier.execute();
+				clearScreen();
 				break;
-			case 'v':
+
+			case 'v': // Paste the current clipboard
 				clearScreen();
 				System.out.println(printBuffer());
 				System.out.println("");
 				coller.execute();
+				clearScreen();
 				break;
-			case 'x':
+
+			case 'x': // Cut the selection
 				clearScreen();
 				System.out.println(printBuffer());
 				System.out.println("");
 				couper.execute();
+				clearScreen();
 				break;
-			case 'i':
+
+			case 'i': // Text to insert at the current selection
 				clearScreen();
 				System.out.println(printBuffer());
 				System.out.println("");
 				inserer.execute();
+				clearScreen();
 				break;
-			case 's':
+
+			case 'a': // Text to add at the current selection
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				ajouter.execute();
+				clearScreen();
+				break;
+
+			case 's': // New selection
 				clearScreen();
 				System.out.println(printBuffer());
 				System.out.println("");
 				selectionner.execute();
+				clearScreen();
 				break;
-			case 'q':
+
+			case 'd': // Delete the current selection
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				delete.execute();
+				clearScreen();
+				break;
+
+			case 'q': // Quit the mini text editor
 				clearScreen();
 				System.out.println("Goodbye ");
 				System.out.println("> Quit");
 				quit = true;
 				break;
+
+			case 'k': // Save the current buffer
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				save.execute();
+				clearScreen();
+				System.out.println("--- Save Done ---");
+				System.out.println("");
+				System.out.println("");
+				break;
+
 			default:
 				clearScreen();
 				System.out.println("Unknown Command: " + cmd);
 				System.out.println("");
 				break;
 			}
-			clearScreen();
 		}
 	}
 }

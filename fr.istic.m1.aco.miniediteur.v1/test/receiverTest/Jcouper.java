@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import Memento.Memento;
 import command.Command;
-import command.Couper;
-import command.Couper.CouperMemento;
+import command.Delete;
+import command.Delete.CouperMemento;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -45,7 +45,7 @@ public class Jcouper {
     	enregistreur.stopper();
     	selection.setDebut(3);
     	selection.setFin(3);
-    	Command couper = new Couper(moteur, enregistreur);
+    	Command couper = new Delete(moteur, enregistreur);
     	couper.execute();
     	
     	assertTrue(("").compareTo(pressePapier.getClip())==0);
@@ -71,7 +71,7 @@ public class Jcouper {
     	enregistreur.stopper();
     	selection.setDebut(0);
     	selection.setFin(6);
-    	Command couper = new Couper(moteur, enregistreur);
+    	Command couper = new Delete(moteur, enregistreur);
     	couper.execute();
     	
     	assertTrue(("couper").compareTo(pressePapier.getClip())==0);
@@ -93,11 +93,11 @@ public class Jcouper {
     	Enregistreur enregistreur = new EnregistrerImpl();
     	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
     	
-		Command couper = new Couper(moteur, enregistreur);
+		Command couper = new Delete(moteur, enregistreur);
 
 		Memento<CouperMemento> memento= couper.getMemento();
 		
-		assertTrue(memento instanceof Couper.CouperMemento);
+		assertTrue(memento instanceof Delete.CouperMemento);
 		
 	}
 	
@@ -120,7 +120,7 @@ public class Jcouper {
     	enregistreur.stopper();
     	selection.setDebut(2);
     	selection.setFin(5);
-    	Command couper = new Couper(moteur, enregistreur);
+    	Command couper = new Delete(moteur, enregistreur);
     	couper.execute();
     	
     	assertTrue(("upe").compareTo(pressePapier.getClip())==0);

@@ -1,6 +1,7 @@
 package receiver;
 
 import state.*;
+import java.io.*;
 
 /**
  * Class MoteurImpl comprennant la mise en oeuvre des chacunes des fonctions
@@ -53,13 +54,35 @@ public class MoteurImpl implements Moteur {
 	 */
 	public void inserer(String str) {
 		int deb = select.getDebut();
-		int fin = select.getFin();
 
 		removeSelect();
 
 		buffer.getBuffer().replace(deb, deb + str.length(), str);
 		select.setDebut(deb + str.length());
-		select.setFin(fin + str.length());
+		select.setFin(deb + str.length());
+	}
+
+	/**
+	 * Add the str String at the current position.
+	 *
+	 * @param str
+	 *            The String to add
+	 */
+	public void ajouter(String str) {
+		int deb = select.getDebut();
+
+		removeSelect();
+
+		buffer.getBuffer().insert(deb, str);
+		select.setDebut(deb + str.length());
+		select.setFin(deb + str.length());
+	}
+
+	/**
+	 * Remove the current selection
+	 */
+	public void delete() {
+
 	}
 
 	/**
@@ -67,9 +90,7 @@ public class MoteurImpl implements Moteur {
 	 * texte.
 	 */
 	public void couper() {
-		int deb = select.getDebut();
-		int fin = select.getFin();
-		clip.setClip(buffer.getBuffer().substring(deb, fin));
+		clip.setClip(buffer.getBuffer().substring(select.getDebut(), select.getFin()));
 		removeSelect();
 	}
 
@@ -91,13 +112,31 @@ public class MoteurImpl implements Moteur {
 	}
 
 	/**
+	 * Write the actual buffer in filename which is "filename.txt"
+	 * 
+	 * @since 1.1
+	 */
+	public void save(String filename) throws Exception {
+		try {
+			File file = new File(filename);
+			FileWriter fw = new FileWriter(file);
+			fw.write("");
+			fw.write(buffer.getBuffer().toString());
+			fw.close();
+		} catch (Exception e) {
+			throw new Exception("Error during file saving. ");
+		}
+
+	}
+
+	/**
 	 * Supprimer l'interieur de la selection actuelle
 	 */
 	private void removeSelect() {
 		int deb = select.getDebut();
 		int fin = select.getFin();
 		if (deb != fin) {
-			buffer.getBuffer().delete(deb, fin);
+			buffer.getBuffer().delete(deb, fin + 1);
 			select.setDebut(deb);
 			select.setFin(deb);
 		}
