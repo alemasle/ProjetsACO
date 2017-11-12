@@ -164,20 +164,9 @@ public class Ihm {
 	}
 
 	private void clearScreen() {
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
+		for (int i = 0; i < 10; i++) {
+			System.out.println("");
+		}
 	}
 
 	public void executeCommand() {
@@ -188,7 +177,7 @@ public class Ihm {
 		System.out.println("--------- Mini Text Editor ----------");
 		System.out.println("_____________________________________");
 
-		System.out.println("v1.0 by Alexis LE MASLE & Fanny PRIEUR");
+		System.out.println("v1.1 by Alexis LE MASLE & Fanny PRIEUR");
 		System.out.println("");
 		System.out.println("");
 
