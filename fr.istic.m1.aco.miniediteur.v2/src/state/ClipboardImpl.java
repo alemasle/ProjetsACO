@@ -11,9 +11,9 @@ public class ClipboardImpl implements ClipBoard {
 	 * String contenant le texte qui a ete copie
 	 */
 	private String clip;
-
+	
 	public ClipboardImpl() {
-
+			
 	}
 
 	/**
