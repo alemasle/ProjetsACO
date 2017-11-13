@@ -52,7 +52,7 @@ public class Jcoller {
 	}
 	
 	/**
-	 * Coller la chaine=abcdef et le stringBuffer=ABCDEFGH (concaténation donne abcdefABCDEFGH )
+	 * Coller la chaine=abcdef et le stringBuffer=ABCDEFGH (concatï¿½nation donne abcdefABCDEFGH )
 	 * test en assertTrue
 	 */
 	@Test
@@ -77,8 +77,8 @@ public class Jcoller {
 	
 	
 	/**
-	 * selectionne le les 8 caractères de la stringBuffer
-	 * Coller  le stringBuffer=ABCDEFGH en premeier et la chaine=abcdef  (concaténation donne ABCDEFGHabcdef )
+	 * selectionne le les 8 caractï¿½res de la stringBuffer
+	 * Coller  le stringBuffer=ABCDEFGH en premeier et la chaine=abcdef  (concatï¿½nation donne ABCDEFGHabcdef )
 	 * test en assertTrue
 	 */
 
@@ -96,6 +96,7 @@ public class Jcoller {
 		buffer.setBuffer(stringBuffer);
 		
 		selection.setDebut(8);
+		selection.setFin(8);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 		Command coller = new Coller(moteur);
 		coller.execute();
@@ -106,8 +107,8 @@ public class Jcoller {
 
 	
 	/**
-	 * selectionne le les 4 caractères de la stringBuffer
-	 * Coller  le stringBuffer=ABCD en premeier et la chaine=abcdef puis le reste de la stringBuffer=EFGH (concaténation donne ABCDabcdefEFGH )
+	 * selectionne le les 4 caractï¿½res de la stringBuffer
+	 * Coller  le stringBuffer=ABCD en premeier et la chaine=abcdef puis le reste de la stringBuffer=EFGH (concatï¿½nation donne ABCDabcdefEFGH )
 	 * test en assertTrue
 	 */
 	@Test
@@ -124,6 +125,7 @@ public class Jcoller {
 		buffer.setBuffer(stringBuffer);
 	
 		selection.setDebut(4);
+		selection.setFin(4);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 		Command coller = new Coller(moteur);
 		coller.execute();
