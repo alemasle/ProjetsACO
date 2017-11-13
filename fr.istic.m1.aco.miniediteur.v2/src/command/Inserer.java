@@ -1,7 +1,7 @@
 package command;
 
 import ihm.*;
-import receiver.Moteur;
+import receiver.*;
 
 /**
  * Concrete Command "Inserer" implementant l'interface Command
@@ -46,7 +46,7 @@ public class Inserer implements Command {
 	 * Setter
 	 * 
 	 * @param chaine
-	 *            est le texte ï¿½ sauvegarder
+	 *            est le texte à sauvegarder
 	 */
 	public void setTexte(String chaine) {
 		this.str = chaine;
@@ -77,6 +77,14 @@ public class Inserer implements Command {
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
+	}
+
+	/**
+	 * Met les valeurs dans la commande
+	 */
+	public void getValues() {
+		System.out.println("Entrez le texte:");
+		this.setTexte(this.ihm.getText());
 	}
 
 }

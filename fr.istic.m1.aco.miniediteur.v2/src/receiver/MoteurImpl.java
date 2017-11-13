@@ -164,8 +164,7 @@ public class MoteurImpl implements Moteur {
 				}
 
 				StringBuffer res = new StringBuffer(buf);
-				res.deleteCharAt(res.length() - 1);// Delete the last \n in the
-													// string
+				res.deleteCharAt(res.length() - 1);
 				buffer.setBuffer(res);
 				select.setDebut(res.length());
 				select.setFin(res.length());

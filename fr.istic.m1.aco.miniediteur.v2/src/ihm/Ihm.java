@@ -246,7 +246,8 @@ public class Ihm {
 				System.out.println(printBuffer());
 				System.out.println("");
 				load.execute();
-				System.out.println("");
+				clearScreen();
+				System.out.println("--- Load Done ---");
 				System.out.println("");
 				System.out.println("");
 				break;

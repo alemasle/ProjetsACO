@@ -1,8 +1,6 @@
 package command;
 
-import receiver.Moteur;
-import receiver.MoteurImpl;
-import receiverTest.*;
+import receiver.*;
 
 /**
  * Concrete Command "Coller" implementant l'interface Command.
