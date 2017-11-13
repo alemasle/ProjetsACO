@@ -1,4 +1,4 @@
-package State;
+package stateTest;
 
 import static org.junit.Assert.*;
 

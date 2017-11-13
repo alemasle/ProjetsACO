@@ -1,11 +1,11 @@
-package Receiver;
+package receiverTest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import command.Command;
-import command.Inserer;
+import command.Selectionner;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
 import receiver.Moteur;
@@ -16,89 +16,87 @@ import state.ClipboardImpl;
 import state.Selection;
 
 /**
- * Fichier Test Inserer
+ * Fichier Test Selectionner
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
  */
 
-public class Jinserer {
+public class Jselectionner {
 
 	@Test
-	public void testInserer1() {
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
+	public void testExecute1() {
+
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
 
-		buffer.setBuffer(stringBuffer);
+		int deb = 0;
+		int fin = 10;
 		enregistreur.stopper();
-		selection.setDebut(0);
-		Command inserer = new Inserer(moteur, str, enregistreur);
-		inserer.execute();
+		Command select = new Selectionner(moteur, deb, fin, enregistreur);
+		select.execute();
 
-		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString()) == 0);
-
+		assertTrue(selection.getDebut() <= selection.getFin());
+		assertFalse(selection.getDebut() >= selection.getFin());
 	}
 
 	@Test
-	public void testInserer2() {
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
+	public void testExecute2() {
+
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
 
-		Command inserer = new Inserer(moteur, str, enregistreur);
-		inserer.execute();
-		assertNotNull("La chaine n'est pas vide", str);
+		int deb = 10;
+		int fin = 0;
+		enregistreur.stopper();
+		Command select = new Selectionner(moteur, deb, fin, enregistreur);
+		select.execute();
+
+		assertFalse(selection.getDebut() >= selection.getFin());
+		assertTrue(selection.getDebut() <= selection.getFin());
 	}
 
 	@Test
-	public void testInserer3() {
+	public void testExecute3() {
 
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
 
-		buffer.setBuffer(stringBuffer);
+		int deb = 5;
+		int fin = 5;
 		enregistreur.stopper();
-		selection.setDebut(6);
-		Command inserer = new Inserer(moteur, str, enregistreur);
-		inserer.execute();
+		Command select = new Selectionner(moteur, deb, fin, enregistreur);
+		select.execute();
 
-		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString()) == 0);
-
+		assertTrue(selection.getDebut() <= selection.getFin());
+		assertTrue(selection.getDebut() == selection.getFin());
+		assertTrue(selection.getDebut() >= selection.getFin());
 	}
 
 	@Test
-	public void testInserer4() {
-
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
+	public void testGetValues() {
+		StringBuffer stringBuffer = new StringBuffer("couper");
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
 
-		buffer.setBuffer(stringBuffer);
+		int deb = 5, fin = 2;
 		enregistreur.stopper();
-		selection.setDebut(3);
-		Command inserer = new Inserer(moteur, str, enregistreur);
-		inserer.execute();
+		Command select = new Selectionner(moteur, deb, fin, enregistreur);
+		select.execute();
 
-		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
-
+		assertNotEquals(selection.getDebut(), selection.getFin());
 	}
 
 }
