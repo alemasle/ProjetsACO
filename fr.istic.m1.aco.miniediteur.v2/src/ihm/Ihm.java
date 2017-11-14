@@ -134,7 +134,7 @@ public class Ihm {
 			return 0;
 		}
 		if (deb > len) {
-			selDeb = len;
+			selDeb = deb;
 			return len;
 		}
 		selDeb = deb;
@@ -166,7 +166,7 @@ public class Ihm {
 			return 0;
 		}
 		if (fin > len) {
-			selFin = len;
+			selFin = fin;
 			return len;
 		}
 		selFin = fin;
@@ -185,11 +185,29 @@ public class Ihm {
 	}
 
 	public int getSelDeb() {
-		return selDeb;
+		int deb = selDeb;
+		int len = buffer.getBuffer().length();
+		if (deb < 0) {
+			selFin = 0;
+			return 0;
+		}
+		if (deb > len) {
+			return len;
+		}
+		return deb;
 	}
 
 	public int getSelFin() {
-		return selFin;
+		int fin = selFin;
+		int len = buffer.getBuffer().length();
+		if (fin < 0) {
+			selFin = 0;
+			return 0;
+		}
+		if (fin > len) {
+			return len;
+		}
+		return fin;
 	}
 
 	public String getLastInput() {

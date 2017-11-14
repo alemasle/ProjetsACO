@@ -56,8 +56,8 @@ public class Load implements Command {
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Load(moteur, ihm));
+	public LoadMemento getMemento() {
+		return new LoadMemento(new Load(moteur, ihm));
 	}
 
 	@Override
@@ -65,9 +65,19 @@ public class Load implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class LoadMemento implements Memento<LoadMemento> {
+
+		Load cmd;
+
+		public LoadMemento(Load cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

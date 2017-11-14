@@ -41,8 +41,8 @@ public class Stopper implements Command {
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Stopper(moteur, enregistreur));
+	public StopperMemento getMemento() {
+		return new StopperMemento(new Stopper(moteur, enregistreur));
 	}
 
 	@Override
@@ -50,9 +50,19 @@ public class Stopper implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class StopperMemento implements Memento<StopperMemento> {
+
+		Stopper cmd;
+
+		public StopperMemento(Stopper cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

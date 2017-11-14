@@ -59,8 +59,8 @@ public class Save implements Command {
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Save(moteur, ihm));
+	public SaveMemento getMemento() {
+		return new SaveMemento(new Save(moteur, ihm));
 	}
 
 	@Override
@@ -68,9 +68,19 @@ public class Save implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class SaveMemento implements Memento<SaveMemento> {
+
+		Save cmd;
+
+		public SaveMemento(Save cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

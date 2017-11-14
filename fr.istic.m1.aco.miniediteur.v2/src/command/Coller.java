@@ -43,16 +43,15 @@ public class Coller implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
-		enregistreur.setBuffer(moteur.getBuffer());
+		moteur.coller();
 		if (enregistreur.getRecord()) {
 			enregistreur.addMemento(getMemento());
 		}
-		moteur.coller();
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Coller(moteur, enregistreur));
+	public CollerMemento getMemento() {
+		return new CollerMemento(new Coller(moteur, enregistreur));
 	}
 
 	@Override
@@ -60,9 +59,19 @@ public class Coller implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class CollerMemento implements Memento<CollerMemento> {
+
+		Coller cmd;
+
+		public CollerMemento(Coller cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

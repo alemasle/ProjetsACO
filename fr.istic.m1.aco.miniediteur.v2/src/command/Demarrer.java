@@ -45,8 +45,8 @@ public class Demarrer implements Command {
 	/**
 	 * @return mem le memento courant
 	 */
-	public Memento getMemento() {
-		return new Memento(new Demarrer(moteur, enregistreur));
+	public DemarrerMemento getMemento() {
+		return new DemarrerMemento(new Demarrer(moteur, enregistreur));
 	}
 
 	@Override
@@ -54,9 +54,19 @@ public class Demarrer implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class DemarrerMemento implements Memento<DemarrerMemento> {
+
+		Demarrer cmd;
+
+		public DemarrerMemento(Demarrer cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

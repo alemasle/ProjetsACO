@@ -22,7 +22,7 @@ public class Main {
 		Ihm ihm = null;
 
 		Moteur moteur = new MoteurImpl(buffer, clip, selection);
-		Enregistreur enregistreur = new EnregistrerImpl(buffer);
+		Enregistreur enregistreur = new EnregistrerImpl();
 
 		Coller coller = new Coller(moteur, enregistreur);
 		Copier copier = new Copier(moteur, enregistreur);

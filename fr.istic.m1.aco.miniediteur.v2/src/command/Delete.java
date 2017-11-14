@@ -43,16 +43,15 @@ public class Delete implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
-		enregistreur.setBuffer(moteur.getBuffer());
+		moteur.delete();
 		if (enregistreur.getRecord()) {
 			enregistreur.addMemento(getMemento());
 		}
-		moteur.delete();
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Delete(moteur, enregistreur));
+	public DeleteMemento getMemento() {
+		return new DeleteMemento(new Delete(moteur, enregistreur));
 	}
 
 	@Override
@@ -60,9 +59,19 @@ public class Delete implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class DeleteMemento implements Memento<DeleteMemento> {
+
+		Delete cmd;
+
+		public DeleteMemento(Delete cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

@@ -42,16 +42,15 @@ public class Couper implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
-		enregistreur.setBuffer(moteur.getBuffer());
+		moteur.couper();
 		if (enregistreur.getRecord()) {
 			enregistreur.addMemento(getMemento());
 		}
-		moteur.couper();
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Couper(moteur, enregistreur));
+	public CouperMemento getMemento() {
+		return new CouperMemento(new Couper(moteur, enregistreur));
 	}
 
 	@Override
@@ -59,9 +58,19 @@ public class Couper implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class CouperMemento implements Memento<CouperMemento> {
+
+		Couper cmd;
+
+		public CouperMemento(Couper cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

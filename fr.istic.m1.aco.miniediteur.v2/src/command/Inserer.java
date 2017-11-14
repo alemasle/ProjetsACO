@@ -53,14 +53,14 @@ public class Inserer implements Command {
 		String str = "";
 		if (replay) {
 			str = ihm.getLastInput();
-			enregistreur.setBuffer(moteur.getBuffer());
+			moteur.inserer(str);
 		} else {
 			str = ihm.getText();
+			moteur.inserer(str);
 			if (enregistreur.getRecord()) {
 				enregistreur.addMemento(getMemento());
 			}
 		}
-		moteur.inserer(str);
 	}
 
 	public void setIhm(Ihm ihm) {
@@ -68,8 +68,8 @@ public class Inserer implements Command {
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Inserer(moteur, ihm, enregistreur));
+	public InsererMemento getMemento() {
+		return new InsererMemento(new Inserer(moteur, ihm, enregistreur));
 	}
 
 	@Override
@@ -77,9 +77,19 @@ public class Inserer implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class InsererMemento implements Memento<InsererMemento> {
+
+		Inserer cmd;
+
+		public InsererMemento(Inserer cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }
