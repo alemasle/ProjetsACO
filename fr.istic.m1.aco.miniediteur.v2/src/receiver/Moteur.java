@@ -1,5 +1,7 @@
 package receiver;
 
+import state.*;
+
 /**
  * Interface Moteur comprenant les fonctions du mini editeur.
  * 
@@ -25,4 +27,8 @@ public interface Moteur {
 	public void delete();
 
 	public void load(String filename) throws Exception;
+
+	public void setBuffer(Buffer buffer);
+
+	public Buffer getBuffer();
 }

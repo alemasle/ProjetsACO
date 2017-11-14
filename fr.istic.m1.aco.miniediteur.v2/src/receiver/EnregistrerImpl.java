@@ -1,8 +1,11 @@
 package receiver;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import command.Command;
 import memento.Memento;
+import state.Buffer;
 
 /**
  * Classe {@link EnregistrerImpl} implementant l'interface {@link Enregistreur}
@@ -16,11 +19,18 @@ public class EnregistrerImpl implements Enregistreur {
 
 	private List<Memento> replay = new ArrayList<Memento>();
 
+	private Buffer buffer;
+
+	public EnregistrerImpl(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
 	/**
 	 * Demarre l'enregistrement
 	 */
 	public void demarrer() {
 		setRecord(true);
+		replay = new ArrayList<Memento>();
 	}
 
 	/**
@@ -31,11 +41,16 @@ public class EnregistrerImpl implements Enregistreur {
 	}
 
 	/**
-	 * Rejoue le dernier enregistrement
+	 * Rejoue le dernier enregistrement en mettant a jour le buffer
 	 */
 	public void rejouer() {
 		for (Memento memento : replay) {
-			memento.getCommand().execute();
+			Command cmd = memento.getCommand();
+			cmd.setReplay(true);
+			cmd.getMoteur().setBuffer(buffer);
+			cmd.execute();
+			buffer.setBuffer(cmd.getMoteur().getBuffer().getBuffer());
+			cmd.setReplay(false);
 		}
 	}
 
@@ -56,6 +71,15 @@ public class EnregistrerImpl implements Enregistreur {
 	 */
 	public void setRecord(Boolean record) {
 		this.record = record;
+	}
+
+	public void setBuffer(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
+	@Override
+	public Buffer getBuffer() {
+		return buffer;
 	}
 
 }

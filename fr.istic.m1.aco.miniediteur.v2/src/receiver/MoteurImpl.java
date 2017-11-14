@@ -1,7 +1,13 @@
 package receiver;
 
-import state.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import state.Buffer;
+import state.ClipBoard;
+import state.Selection;
 
 /**
  * Class MoteurImpl comprennant la mise en oeuvre des chacunes des fonctions

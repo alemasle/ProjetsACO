@@ -1,8 +1,10 @@
 package ihm;
 
 import java.util.Scanner;
+
 import command.*;
-import state.*;
+import state.Buffer;
+import state.Selection;
 
 /**
  * 
@@ -24,9 +26,23 @@ public class Ihm {
 	private Command ajouter;
 	private Command delete;
 	private Command load;
+	private Command demarrer;
+	private Command stopper;
+	private Command rejouer;
+
+	// Last String input from user
+	private String lastInput;
+
+	// Last start and end of Selection
+	private int selDeb;
+	private int selFin;
+
+	// Is Recording;
+	private boolean record = false;
 
 	public Ihm(Copier copier, Coller coller, Couper couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
-			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete, Load load) {
+			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete, Load load,
+			Demarrer demarrer, Stopper stopper, Rejouer rejouer) {
 		this.copier = copier;
 		this.coller = coller;
 		this.couper = couper;
@@ -39,6 +55,9 @@ public class Ihm {
 		this.ajouter = ajouter;
 		this.delete = delete;
 		this.load = load;
+		this.demarrer = demarrer;
+		this.stopper = stopper;
+		this.rejouer = rejouer;
 	}
 
 	/**
@@ -58,7 +77,7 @@ public class Ihm {
 		}
 
 		else {
-			buffer.getBuffer().insert(deb, '>');
+			buffer.getBuffer().insert(deb, '|');
 		}
 
 		String str = buffer.getBuffer().toString();
@@ -87,7 +106,8 @@ public class Ihm {
 	 * @return Le texte a inserer de l'utilisateur
 	 */
 	public String getText() {
-		return input.nextLine();
+		lastInput = input.nextLine();
+		return lastInput;
 	}
 
 	/**
@@ -110,11 +130,14 @@ public class Ihm {
 		}
 
 		if (deb < 0) {
+			selDeb = 0;
 			return 0;
 		}
 		if (deb > len) {
+			selDeb = len;
 			return len;
 		}
+		selDeb = deb;
 		return deb;
 	}
 
@@ -139,11 +162,14 @@ public class Ihm {
 		}
 
 		if (fin < 0) {
+			selFin = 0;
 			return 0;
 		}
 		if (fin > len) {
+			selFin = len;
 			return len;
 		}
+		selFin = fin;
 		return fin;
 	}
 
@@ -158,9 +184,31 @@ public class Ihm {
 		return str;
 	}
 
+	public int getSelDeb() {
+		return selDeb;
+	}
+
+	public int getSelFin() {
+		return selFin;
+	}
+
+	public String getLastInput() {
+		return lastInput;
+	}
+
 	public String optionsCommand() {
-		return "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
-				+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |";
+		String str = "";
+		if (!record) {
+			str = "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
+					+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |"
+					+ " R : Record |" + " P : Replay |";
+		} else {
+			str = "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
+					+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |"
+					+ " R : StopRecord |" + " P : Replay |";
+		}
+
+		return str;
 	}
 
 	private void clearScreen() {
@@ -270,9 +318,18 @@ public class Ihm {
 
 			case 'q': // Quit the mini text editor
 				clearScreen();
-				System.out.println("Goodbye ");
-				System.out.println("> Quit");
-				quit = true;
+				System.out.println("Are you sure you want to quit ? All your unsaved data will be erased. (y/n)");
+				String res = input.nextLine();
+				res.toLowerCase();
+				if (res.charAt(0) == 'y' || res.charAt(0) == 'o') {
+					clearScreen();
+					System.out.println("Goodbye ");
+					System.out.println("> Quit");
+					quit = true;
+				} else {
+					clearScreen();
+					System.out.println("Quit canceled ");
+				}
 				break;
 
 			case 'k': // Save the current buffer
@@ -284,6 +341,32 @@ public class Ihm {
 				System.out.println("--- Save Done ---");
 				System.out.println("");
 				System.out.println("");
+				break;
+
+			case 'r': // Start or Stop the record
+				record = !record;
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				if (record) {
+					demarrer.execute();
+				} else {
+					stopper.execute();
+				}
+				clearScreen();
+				break;
+
+			case 'p': // Replay the record
+				if (!record) {
+					clearScreen();
+					System.out.println(printBuffer());
+					System.out.println("");
+					rejouer.execute();
+					clearScreen();
+				} else {
+					clearScreen();
+					System.out.println("You can not replay while recording. ");
+				}
 				break;
 
 			default:

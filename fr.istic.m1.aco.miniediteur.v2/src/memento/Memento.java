@@ -3,12 +3,20 @@ package memento;
 import command.Command;
 
 /**
- * Interface Memento
+ * Class Memento
  *
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
-public interface Memento<T> {
+public class Memento {
 
-	Command getCommand();
+	private Command cmd;
+
+	public Memento(Command cmd) {
+		this.cmd = cmd;
+	}
+
+	public Command getCommand() {
+		return cmd;
+	}
 
 }

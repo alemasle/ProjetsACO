@@ -1,5 +1,7 @@
 package command;
 
+import memento.Memento;
+import receiver.Enregistreur;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -18,13 +20,18 @@ public class Delete implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
+	private boolean replay = false;
+
 	/**
 	 * Constructeur de la classe Delete
 	 *
 	 * @param moteur
 	 */
-	public Delete(Moteur moteur) {
+	public Delete(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -36,7 +43,26 @@ public class Delete implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
+		enregistreur.setBuffer(moteur.getBuffer());
+		if (enregistreur.getRecord()) {
+			enregistreur.addMemento(getMemento());
+		}
 		moteur.delete();
+	}
+
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Delete(moteur, enregistreur));
+	}
+
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

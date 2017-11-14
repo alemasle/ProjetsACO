@@ -2,6 +2,7 @@ package command;
 
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Moteur;
 
 /**
  * 
@@ -20,36 +21,18 @@ public class Demarrer implements Command {
 	 */
 	private Enregistreur enregistreur;
 
-	/**
-	 * Instance de la classe privee DemarrerMemento
-	 */
-	private Memento<DemarrerMemento> mem;
+	private Moteur moteur;
+
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Demarrer initialisant les attributs
 	 * 
 	 * @param enregistreur
 	 */
-	public Demarrer(Enregistreur enregistreur) {
+	public Demarrer(Moteur moteur, Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;
-		this.mem = null;
-	}
-
-	/**
-	 * Classe privee implementant l'interface Memento
-	 * 
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	private class DemarrerMemento implements Memento<DemarrerMemento> {
-
-		private Command command = new Demarrer(enregistreur);
-
-		public Command getCommand() {
-			return command;
-		}
-
+		this.moteur = moteur;
 	}
 
 	/**
@@ -62,17 +45,18 @@ public class Demarrer implements Command {
 	/**
 	 * @return mem le memento courant
 	 */
-	public Memento<DemarrerMemento> getMemento() {
-		return mem;
+	public Memento getMemento() {
+		return new Memento(new Demarrer(moteur, enregistreur));
 	}
 
-	/**
-	 * @param m
-	 *            le nouveau Memento
-	 */
-	public void setMemento(Memento m) {
-		this.mem = m;
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
 
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

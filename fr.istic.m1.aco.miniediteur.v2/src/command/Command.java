@@ -1,5 +1,8 @@
 package command;
 
+import memento.Memento;
+import receiver.Moteur;
+
 /**
  * Interface Command
  *
@@ -12,5 +15,11 @@ public interface Command {
 	 */
 
 	void execute();
+
+	Memento getMemento();
+
+	void setReplay(boolean bool);
+
+	Moteur getMoteur();
 
 }

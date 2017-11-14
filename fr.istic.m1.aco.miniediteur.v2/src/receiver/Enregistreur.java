@@ -1,6 +1,7 @@
 package receiver;
 
 import memento.Memento;
+import state.Buffer;
 
 /**
  * Interface Enregistreur
@@ -28,5 +29,9 @@ public interface Enregistreur {
 	boolean getRecord();
 
 	void addMemento(Memento m);
+
+	Buffer getBuffer();
+
+	void setBuffer(Buffer buffer);
 
 }

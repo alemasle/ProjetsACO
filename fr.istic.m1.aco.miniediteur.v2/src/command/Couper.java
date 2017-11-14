@@ -1,5 +1,7 @@
 package command;
 
+import memento.Memento;
+import receiver.Enregistreur;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -17,13 +19,18 @@ public class Couper implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
+	private boolean replay = false;
+
 	/**
 	 * Constructeur de la classe Couper
 	 *
 	 * @param moteur
 	 */
-	public Couper(Moteur moteur) {
+	public Couper(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -35,7 +42,26 @@ public class Couper implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
+		enregistreur.setBuffer(moteur.getBuffer());
+		if (enregistreur.getRecord()) {
+			enregistreur.addMemento(getMemento());
+		}
 		moteur.couper();
+	}
+
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Couper(moteur, enregistreur));
+	}
+
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

@@ -1,6 +1,7 @@
 package command;
 
 import ihm.Ihm;
+import memento.Memento;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -20,6 +21,8 @@ public class Load implements Command {
 	private Moteur moteur;
 
 	private Ihm ihm;
+
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Load
@@ -50,6 +53,21 @@ public class Load implements Command {
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
+	}
+
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Load(moteur, ihm));
+	}
+
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

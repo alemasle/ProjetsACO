@@ -1,10 +1,17 @@
 package main;
 
-import command.*;
-import ihm.*;
-import receiver.*;
-import state.*;
 import java.util.Scanner;
+
+import command.*;
+import ihm.Ihm;
+import receiver.EnregistrerImpl;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
+import state.Buffer;
+import state.ClipBoard;
+import state.ClipboardImpl;
+import state.Selection;
 
 public class Main {
 
@@ -15,21 +22,25 @@ public class Main {
 		Ihm ihm = null;
 
 		Moteur moteur = new MoteurImpl(buffer, clip, selection);
+		Enregistreur enregistreur = new EnregistrerImpl(buffer);
 
-		Coller coller = new Coller(moteur);
-		Copier copier = new Copier(moteur);
-		Couper couper = new Couper(moteur);
-		Inserer inserer = new Inserer(moteur, ihm);
-		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Coller coller = new Coller(moteur, enregistreur);
+		Copier copier = new Copier(moteur, enregistreur);
+		Couper couper = new Couper(moteur, enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
 		Save save = new Save(moteur, ihm);
-		Ajouter ajouter = new Ajouter(moteur, ihm);
-		Delete delete = new Delete(moteur);
+		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
+		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
+		Demarrer demarrer = new Demarrer(moteur, enregistreur);
+		Stopper stopper = new Stopper(moteur, enregistreur);
+		Rejouer rejouer = new Rejouer(moteur, enregistreur);
 
 		Scanner input = new Scanner(System.in);
 
 		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
-				load);
+				load, demarrer, stopper, rejouer);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);

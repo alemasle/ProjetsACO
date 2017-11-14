@@ -1,7 +1,9 @@
 package command;
 
 import ihm.Ihm;
+import memento.Memento;
 import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Save" implementant l'interface Command
@@ -17,6 +19,8 @@ public class Save implements Command {
 	 * @see Moteur
 	 */
 	private Moteur moteur;
+
+	private boolean replay = false;
 
 	private Ihm ihm;
 
@@ -52,6 +56,21 @@ public class Save implements Command {
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
+	}
+
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Save(moteur, ihm));
+	}
+
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

@@ -1,7 +1,10 @@
 package command;
 
-import ihm.*;
+import ihm.Ihm;
+import memento.Memento;
+import receiver.Enregistreur;
 import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Inserer" implementant l'interface Command
@@ -23,15 +26,20 @@ public class Ajouter implements Command {
 	 */
 	private Ihm ihm;
 
+	private Enregistreur enregistreur;
+
+	private boolean replay = false;
+
 	/**
 	 * Constructeur de la classe Inserer
 	 * 
 	 * @param moteur
 	 * @param str
 	 */
-	public Ajouter(Moteur moteur, Ihm ihm) {
+	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.ihm = ihm;
+		this.enregistreur = enregistreur;
 	}
 
 	// Operations
@@ -44,14 +52,36 @@ public class Ajouter implements Command {
 	 * 
 	 */
 	public void execute() {
-
-		String str = ihm.getText();
-
+		String str = "";
+		if (replay) {
+			str = ihm.getLastInput();
+			enregistreur.setBuffer(moteur.getBuffer());
+		} else {
+			str = ihm.getText();
+			if (enregistreur.getRecord()) {
+				enregistreur.addMemento(getMemento());
+			}
+		}
 		moteur.ajouter(str);
 	}
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
+	}
+
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Ajouter(moteur, ihm, enregistreur));
+	}
+
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

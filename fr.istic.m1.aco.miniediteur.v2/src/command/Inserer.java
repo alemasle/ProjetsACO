@@ -1,7 +1,10 @@
 package command;
 
-import ihm.*;
-import receiver.*;
+import ihm.Ihm;
+import memento.Memento;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Inserer" implementant l'interface Command
@@ -18,15 +21,14 @@ public class Inserer implements Command {
 	 */
 	private Moteur moteur;
 
+	private Enregistreur enregistreur;
+
 	/**
 	 * Nouvelle String a inserer
 	 */
 	private Ihm ihm;
 
-	/**
-	 * Nouvelle String a inserer
-	 */
-	private String str;
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Inserer
@@ -34,31 +36,10 @@ public class Inserer implements Command {
 	 * @param moteur
 	 * @param str
 	 */
-	public Inserer(Moteur moteur, Ihm ihm) {
+	public Inserer(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.ihm = ihm;
-		this.str = "";
-	}
-
-	// Operations
-
-	/**
-	 * Setter
-	 * 
-	 * @param chaine
-	 *            est le texte à sauvegarder
-	 */
-	public void setTexte(String chaine) {
-		this.str = chaine;
-	}
-
-	/**
-	 * Getter
-	 * 
-	 * @return met la chaine str dans la commande
-	 */
-	public String getTexte() {
-		return this.str;
+		this.enregistreur = enregistreur;
 	}
 
 	/**
@@ -69,9 +50,16 @@ public class Inserer implements Command {
 	 * 
 	 */
 	public void execute() {
-
-		String str = ihm.getText();
-
+		String str = "";
+		if (replay) {
+			str = ihm.getLastInput();
+			enregistreur.setBuffer(moteur.getBuffer());
+		} else {
+			str = ihm.getText();
+			if (enregistreur.getRecord()) {
+				enregistreur.addMemento(getMemento());
+			}
+		}
 		moteur.inserer(str);
 	}
 
@@ -79,12 +67,19 @@ public class Inserer implements Command {
 		this.ihm = ihm;
 	}
 
-	/**
-	 * Met les valeurs dans la commande
-	 */
-	public void getValues() {
-		System.out.println("Entrez le texte:");
-		this.setTexte(this.ihm.getText());
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Inserer(moteur, ihm, enregistreur));
+	}
+
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

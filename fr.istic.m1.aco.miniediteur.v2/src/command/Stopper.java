@@ -2,6 +2,7 @@ package command;
 
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Moteur;
 
 /**
  * Concrete Command "Stopper" implementant Command
@@ -18,19 +19,18 @@ public class Stopper implements Command {
 	 */
 	private Enregistreur enregistreur;
 
-	/**
-	 * Nouveau memento
-	 */
-	private Memento<StopperMemento> memento;
+	private Moteur moteur;
+
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Stopper
 	 * 
 	 * @param enregistreur
 	 */
-	public Stopper(Enregistreur enregistreur) {
+	public Stopper(Moteur moteur, Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;
-		this.memento = null;
+		this.moteur = moteur;
 	}
 
 	/**
@@ -38,37 +38,21 @@ public class Stopper implements Command {
 	 */
 	public void execute() {
 		enregistreur.stopper();
-
 	}
 
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<StopperMemento> getMemento() {
-		return memento;
+	@Override
+	public Memento getMemento() {
+		return new Memento(new Stopper(moteur, enregistreur));
 	}
 
-	/**
-	 * Met a jour le memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
 	}
 
-	/**
-	 * Classe privee StopperMemento implementant Memento
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	private class StopperMemento implements Memento<StopperMemento> {
-
-		private Command command = new Stopper(enregistreur);
-
-		public Command getCommand() {
-			return command;
-		}
-
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }
