@@ -1,8 +1,9 @@
-package Command;
+package command;
 
-import Memento.Memento;
-import Receiver.Enregistreur;
-import Receiver.Moteur;
+import memento.Memento;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Copier" implementant l'interface Command
@@ -21,15 +22,11 @@ public class Copier implements Command {
 
 	private Enregistreur enregistreur;
 
-	/**
-	 * Nouveau Memento
-	 */
-	private Memento<CopierMemento> memento;
+	private boolean replay = false;
 
 	public Copier(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
-		this.memento = null;
-		this.setEnregistreur(enregistreur);
+		this.enregistreur = enregistreur;
 	}
 	// Operations
 
@@ -42,55 +39,33 @@ public class Copier implements Command {
 	 */
 	public void execute() {
 		moteur.copier();
+		if (enregistreur.getRecord()) {
+			enregistreur.addMemento(getMemento());
+		}
 	}
 
-	/**
-	 * Classe privee CopierMemento implementant Memento
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	public class CopierMemento implements Memento<CopierMemento> {
+	@Override
+	public CopierMemento getMemento() {
+		return new CopierMemento(new Copier(moteur, enregistreur));
+	}
 
-		private Command command = new Copier(moteur, enregistreur);
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
 
+	private class CopierMemento implements Memento<CopierMemento> {
+
+		Copier cmd;
+
+		public CopierMemento(Copier cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
 		public Command getCommand() {
-			return command;
+			return cmd;
 		}
 
 	}
-
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<CopierMemento> getMemento() {
-		if (memento == null) {
-			setMemento(new CopierMemento());
-		}
-
-		return memento;
-	}
-
-	/**
-	 * Met a jour le memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
-	}
-
-	/**
-	 * @return le enregistreur
-	 */
-	public Enregistreur getEnregistreur() {
-		return enregistreur;
-	}
-
-	/**
-	 * @param enregistreur
-	 *            le enregistreur à définir
-	 */
-	public void setEnregistreur(Enregistreur enregistreur) {
-		this.enregistreur = enregistreur;
-	}
-
 }

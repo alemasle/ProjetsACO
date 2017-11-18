@@ -6,12 +6,7 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import command.Coller;
-import command.Command;
-import command.Copier;
-import command.Couper;
-import command.Inserer;
-import command.Selectionner;
+import command.*;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -20,7 +15,6 @@ import state.ClipboardImpl;
 import state.Selection;
 import ihm.Ihm;
 
-
 /**
  * Fichier Test Inserer
  * 
@@ -28,48 +22,63 @@ import ihm.Ihm;
  * 
  */
 
-
-
 public class Jinserer {
 
-	
 	@Test
 	public void testGetInserer() {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		//TODO
-		/*Ihm ihm;
-		Inserer inserer = new Inserer(moteur, ihm);
-		
+
 		String str = "InsererTest";
-		inserer.setTexte(str);
-		assertEquals("Contenu different à l'appel de getTexte()", inserer.getTexte(), str);*/
+		moteur.inserer(str);
+		assertEquals("Contenu different ï¿½ l'appel de getTexte()", buffer.getBuffer().toString(), str);
 	}
-	
-	/*
+
 	@Test
 	public void testInserer1() {
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
 		Buffer buffer = new Buffer();
+		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-	
-		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Ihm ihm = null;
+
+		Moteur moteur = new MoteurImpl(buffer, clip, selection);
+
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+
+		StringBuffer stringBuffer = new StringBuffer("abcdef");
 
 		buffer.setBuffer(stringBuffer);
-	
-		selection.setDebut(0);
-		Command inserer = new Inserer(moteur, str);
+
+		selection.setDebut(6);
+		selection.setFin(6);
 		inserer.execute();
 
 		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
-	@Test
+	/*@Test
 	public void testInserer2() {
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
@@ -92,11 +101,11 @@ public class Jinserer {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		
+
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-	
+
 		selection.setDebut(6);
 		Command inserer = new Inserer(moteur, str);
 		inserer.execute();
@@ -113,17 +122,17 @@ public class Jinserer {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-	
+
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-		
+
 		selection.setDebut(3);
 		Command inserer = new Inserer(moteur, str);
 		inserer.execute();
 
 		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
 
-	}*/
+	} */
 
 }

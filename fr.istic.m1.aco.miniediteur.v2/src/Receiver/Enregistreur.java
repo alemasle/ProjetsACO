@@ -1,6 +1,7 @@
-package Receiver;
+package receiver;
 
-import Memento.Memento;
+import memento.Memento;
+import state.Buffer;
 
 /**
  * Interface Enregistreur
@@ -9,24 +10,24 @@ import Memento.Memento;
  */
 public interface Enregistreur {
 
-    /**
-     * Methode demarrer commune a tous les enregistreurs Permet de demarrer
-     * l'enregistrement.
-     */
-    void demarrer();
+	/**
+	 * Methode demarrer commune a tous les enregistreurs Permet de demarrer
+	 * l'enregistrement.
+	 */
+	void demarrer();
 
-    /**
-     * Methode permettant de stopper l'enregistrement en cours.
-     */
-    void stopper();
+	/**
+	 * Methode permettant de stopper l'enregistrement en cours.
+	 */
+	void stopper();
 
-    /**
-     * Metohde permettant de rejouer le dernier enregistrement.
-     */
-    void rejouer();
+	/**
+	 * Metohde permettant de rejouer le dernier enregistrement.
+	 */
+	void rejouer();
 
-    boolean getRecord();
+	boolean getRecord();
 
-    void addMemento(Memento m);
+	void addMemento(Memento<?> m);
 
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 
 import command.Command;
 <<<<<<< HEAD
@@ -15,11 +16,12 @@ import command.Couper;
 >>>>>>> 7906bc76829d657573f667474571022ba5e4a7e8
 import receiver.Moteur;
 import receiver.MoteurImpl;
+=======
+import command.*;
+import receiver.*;
+>>>>>>> 8cecf6f0c04c1e5a92401c55f666f28a0c140a02
 import state.Buffer;
-import state.ClipBoard;
-import state.ClipboardImpl;
-import state.Selection;
-
+import state.*;
 
 /**
  * Fichier Test Couper
@@ -35,10 +37,11 @@ public class Jcouper {
 	 * 
 	 *
 	 */
-	
-	//TODO
+
+	// TODO
 	@Test
 	public void testCouper() {
+<<<<<<< HEAD
 		StringBuffer stringBuffer= new StringBuffer("couper");
     	Buffer buffer = new Buffer();
     	Selection selection = new Selection();
@@ -59,16 +62,35 @@ public class Jcouper {
     	
     	assertTrue(("").compareTo(pressePapier.getClip())==0);
         assertTrue(("couper").compareTo(buffer.getBuffer().toString())==0);
+=======
+		StringBuffer stringBuffer = new StringBuffer("couper");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+
+		buffer.setBuffer(stringBuffer);
+
+		selection.setDebut(3);
+		selection.setFin(3);
+		Command couper = new Couper(moteur);
+		couper.execute();
+
+		assertTrue(("").compareTo(pressePapier.getClip()) == 0);
+		assertTrue(("couper").compareTo(buffer.getBuffer().toString()) == 0);
+>>>>>>> 8cecf6f0c04c1e5a92401c55f666f28a0c140a02
 	}
 
-	
 	/**
-	 * test le stringBuffer après sélection des caractères de 0 à 6 soit "couper"
-	 * test en assertTrue que "couper" est bien dans le presse papier et est supprimé du buffer
+	 * test le stringBuffer aprï¿½s sï¿½lection des caractï¿½res de 0 ï¿½ 6 soit
+	 * "couper" test en assertTrue que "couper" est bien dans le presse papier
+	 * et est supprimï¿½ du buffer
 	 *
 	 */
 	@Test
 	public void testCouper2() {
+<<<<<<< HEAD
 		StringBuffer stringBuffer= new StringBuffer("couper");
     	Buffer buffer = new Buffer();
     	Selection selection = new Selection();
@@ -97,34 +119,43 @@ public class Jcouper {
 	public void testSetMemento() {
 		//pas d'action
 	}
+=======
+		StringBuffer stringBuffer = new StringBuffer("couper");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
 
-	@Test
-	public void testGetMementon() {
-		StringBuffer stringBuffer= new StringBuffer("couper");
-    	Buffer buffer = new Buffer();
-    	Selection selection = new Selection();
-    	ClipBoard pressePapier= new ClipboardImpl();
-    	Enregistreur enregistreur = new EnregistrerImpl();
-    	Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-    	
-		Command couper = new Delete(moteur, enregistreur);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
-		Memento<CouperMemento> memento= couper.getMemento();
-		
-		assertTrue(memento instanceof Delete.CouperMemento);
-		
+		buffer.setBuffer(stringBuffer);
+
+		selection.setDebut(0);
+		selection.setFin(6);
+		Command couper = new Couper(moteur);
+		couper.execute();
+
+		assertTrue(("couper").compareTo(pressePapier.getClip()) == 0);
+		assertTrue(("").compareTo(buffer.getBuffer().toString()) == 0);
+>>>>>>> 8cecf6f0c04c1e5a92401c55f666f28a0c140a02
+
 	}
+<<<<<<< HEAD
 	
 =======
 >>>>>>> 7906bc76829d657573f667474571022ba5e4a7e8
 	
+=======
+
+>>>>>>> 8cecf6f0c04c1e5a92401c55f666f28a0c140a02
 	/**
-	 * test le stringBuffer après sélection des caractères de 2 à 5 soit "upe" que l'on coupe du pressepapier
-	 * et il reste donc les caractères "cor" dans le buffer
+	 * test le stringBuffer aprï¿½s sï¿½lection des caractï¿½res de 2 ï¿½ 5 soit "upe"
+	 * que l'on coupe du pressepapier et il reste donc les caractï¿½res "cor" dans
+	 * le buffer
 	 *
 	 */
 	@Test
 	public void testCouper3() {
+<<<<<<< HEAD
 		StringBuffer stringBuffer= new StringBuffer("couper");
     	Buffer buffer = new Buffer();
     	Selection selection = new Selection();
@@ -146,5 +177,24 @@ public class Jcouper {
     	assertTrue(("upe").compareTo(pressePapier.getClip())==0);
         assertTrue(("cor").compareTo(buffer.getBuffer().toString())==0);
 		
+=======
+		StringBuffer stringBuffer = new StringBuffer("couper");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+
+		buffer.setBuffer(stringBuffer);
+
+		selection.setDebut(2);
+		selection.setFin(5);
+		Command couper = new Couper(moteur);
+		couper.execute();
+
+		assertTrue(("upe").compareTo(pressePapier.getClip()) == 0);
+		assertTrue(("cor").compareTo(buffer.getBuffer().toString()) == 0);
+
+>>>>>>> 8cecf6f0c04c1e5a92401c55f666f28a0c140a02
 	}
 }

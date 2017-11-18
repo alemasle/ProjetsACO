@@ -1,7 +1,8 @@
-package Command;
+package command;
 
-import Memento.Memento;
-import Receiver.Enregistreur;
+import memento.Memento;
+import receiver.Enregistreur;
+import receiver.Moteur;
 
 /**
  * Concrete Command Rejouer implementant l'interface Command
@@ -18,19 +19,18 @@ public class Rejouer implements Command {
 	 */
 	private Enregistreur enregistreur;
 
-	/**
-	 * Nouveau Memento
-	 */
-	private Memento<RejouerMemento> memento;
+	private Moteur moteur;
+
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Rejouer
 	 * 
 	 * @param enregistreur
 	 */
-	public Rejouer(Enregistreur enregistreur) {
+	public Rejouer(Moteur moteur, Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;
-		this.memento = null;
+		this.moteur = moteur;
 	}
 
 	/**
@@ -41,32 +41,27 @@ public class Rejouer implements Command {
 
 	}
 
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<RejouerMemento> getMemento() {
-		return memento;
+	@Override
+	public RejouerMemento getMemento() {
+		return new RejouerMemento(new Rejouer(moteur, enregistreur));
 	}
 
-	/**
-	 * Met a jour le memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
 	}
 
-	/**
-	 * Classe privee RejouerMemento implementant Memento
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	public class RejouerMemento implements Memento<RejouerMemento> {
+	private class RejouerMemento implements Memento<RejouerMemento> {
 
-		private Command command = new Rejouer(enregistreur);
+		Rejouer cmd;
 
+		public RejouerMemento(Rejouer cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
 		public Command getCommand() {
-			return command;
+			return cmd;
 		}
 
 	}

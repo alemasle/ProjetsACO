@@ -1,10 +1,9 @@
-package Command;
+package command;
 
-import Command.Copier.CopierMemento;
-import Memento.Memento;
-import Receiver.Enregistreur;
-import Receiver.Moteur;
-import Receiver.MoteurImpl;
+import memento.Memento;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Couper" implementant l'interface Command
@@ -22,7 +21,7 @@ public class Couper implements Command {
 
 	private Enregistreur enregistreur;
 
-	private Memento<CouperMemento> memento;
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Couper
@@ -31,7 +30,6 @@ public class Couper implements Command {
 	 */
 	public Couper(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
-		this.memento = null;
 		this.enregistreur = enregistreur;
 	}
 
@@ -45,49 +43,34 @@ public class Couper implements Command {
 	 */
 	public void execute() {
 		moteur.couper();
-	}
-
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<CouperMemento> getMemento() {
-		if (memento == null) {
-			setMemento(new CouperMemento());
+		if (enregistreur.getRecord()) {
+			enregistreur.addMemento(getMemento());
 		}
-		return memento;
 	}
 
-	/**
-	 * Met a jour le memento courant
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
+	@Override
+	public CouperMemento getMemento() {
+		return new CouperMemento(new Couper(moteur, enregistreur));
 	}
 
-	public Enregistreur getEnregistreur() {
-		return enregistreur;
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
 	}
 
-	public void setEnregistreur(Enregistreur enregistreur) {
-		this.enregistreur = enregistreur;
-	}
+	private class CouperMemento implements Memento<CouperMemento> {
 
-	/**
-	 * Classe privee CouperMemento implementant Memento
-	 *
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 */
-	public class CouperMemento implements Memento<CouperMemento> {
+		Couper cmd;
 
-		private Command memCommand;
-
-		private CouperMemento() {
-			this.memCommand = new Couper(moteur, enregistreur);
+		public CouperMemento(Couper cmd) {
+			this.cmd = cmd;
 		}
 
+		@Override
 		public Command getCommand() {
-			return memCommand;
+			return cmd;
 		}
+
 	}
 
 }

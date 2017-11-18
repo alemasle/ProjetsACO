@@ -1,10 +1,10 @@
-package Command;
+package command;
 
-import Command.Inserer.MementoInserer;
-import Memento.Memento;
-import Receiver.Enregistreur;
-import Receiver.Moteur;
-import Receiver.MoteurImpl;
+import ihm.Ihm;
+import memento.Memento;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Inserer" implementant l'interface Command
@@ -24,14 +24,11 @@ public class Inserer implements Command {
 	private Enregistreur enregistreur;
 
 	/**
-	 * Nouveau memento
-	 */
-	private Memento<MementoInserer> memento;
-
-	/**
 	 * Nouvelle String a inserer
 	 */
-	private String str;
+	private Ihm ihm;
+
+	private boolean replay = false;
 
 	/**
 	 * Constructeur de la classe Inserer
@@ -39,14 +36,11 @@ public class Inserer implements Command {
 	 * @param moteur
 	 * @param str
 	 */
-	public Inserer(Moteur moteur, String str, Enregistreur enregistreur) {
+	public Inserer(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
-		this.str = str;
-		this.memento = null;
+		this.ihm = ihm;
 		this.enregistreur = enregistreur;
 	}
-
-	// Operations
 
 	/**
 	 * Appel de la mise en oeuvre de la fonction "inserer" dans l'implementation
@@ -56,69 +50,44 @@ public class Inserer implements Command {
 	 * 
 	 */
 	public void execute() {
-		moteur.inserer(str);
+		String str = "";
+		if (replay) {
+			str = ihm.getLastInput();
+			moteur.inserer(str);
+		} else {
+			str = ihm.getText();
+			moteur.inserer(str);
+			if (enregistreur.getRecord()) {
+				enregistreur.addMemento(getMemento());
+			}
+		}
 	}
 
-	/**
-	 * @return memento le memento courant
-	 */
-	public Memento<MementoInserer> getMemento() {
-		return memento;
+	public void setIhm(Ihm ihm) {
+		this.ihm = ihm;
 	}
 
-	/**
-	 * Met a jour le memento courant
-	 * 
-	 * @param m
-	 *            le nouveau memento
-	 */
-	public void setMemento(Memento m) {
-		this.memento = m;
+	@Override
+	public InsererMemento getMemento() {
+		return new InsererMemento(new Inserer(moteur, ihm, enregistreur));
 	}
 
-	/**
-	 * Classe privee MementoInserer implementant Memento
-	 * 
-	 * @author Alexis LE MASLE et Fanny PRIEUR
-	 *
-	 */
-	public class MementoInserer implements Memento<MementoInserer> {
+	@Override
+	public void setReplay(boolean bool) {
+		this.replay = bool;
+	}
 
-		/**
-		 * Le contenu du memento courant
-		 */
-		private String texte;
+	private class InsererMemento implements Memento<InsererMemento> {
 
-		private Command command = new Inserer(moteur, str, enregistreur);
+		Inserer cmd;
 
-		/**
-		 * Constructeur de la classe MementoInserer
-		 * 
-		 * @param texte
-		 */
-		public MementoInserer(String texte) {
-			this.texte = texte;
+		public InsererMemento(Inserer cmd) {
+			this.cmd = cmd;
 		}
 
-		/**
-		 * 
-		 * @return texte le contenu du memento
-		 */
-		public String getTexte() {
-			return texte;
-		}
-
-		/**
-		 * met a jour le contenu du Memento
-		 * 
-		 * @param texte
-		 */
-		public void setTexte(String texte) {
-			this.texte = texte;
-		}
-
+		@Override
 		public Command getCommand() {
-			return command;
+			return cmd;
 		}
 
 	}
