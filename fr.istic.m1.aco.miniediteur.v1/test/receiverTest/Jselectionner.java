@@ -6,12 +6,17 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+import command.Ajouter;
 import command.Coller;
 import command.Command;
 import command.Copier;
 import command.Couper;
+import command.Delete;
 import command.Inserer;
+import command.Load;
+import command.Save;
 import command.Selectionner;
+import ihm.Ihm;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -27,21 +32,44 @@ import state.Selection;
  */
 
 public class Jselectionner {
-	/*
+	
 	@Test
 	public void testExecute1() {
 
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+
+		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
 
 		int deb = 0;
 		int fin = 10;
-		enregistreur.stopper();
-		Command select = new Selectionner(moteur, deb, fin, enregistreur);
-		select.execute();
+		
+		selectionner.execute();
 
 		assertTrue(selection.getDebut() <= selection.getFin());
 		assertFalse(selection.getDebut() >= selection.getFin());
@@ -53,14 +81,37 @@ public class Jselectionner {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+
+		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
 
 		int deb = 10;
 		int fin = 0;
-		enregistreur.stopper();
-		Command select = new Selectionner(moteur, deb, fin, enregistreur);
-		select.execute();
+
+		selectionner.execute();
 
 		assertFalse(selection.getDebut() >= selection.getFin());
 		assertTrue(selection.getDebut() <= selection.getFin());
@@ -72,13 +123,38 @@ public class Jselectionner {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
+
+		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
 	
 		int deb = 5;
 		int fin = 5;
 		
-		Command select = new Selectionner(moteur, deb, fin);
-		select.execute();
+		
+		selectionner.execute();
 
 		assertTrue(selection.getDebut() <= selection.getFin());
 		assertTrue(selection.getDebut() == selection.getFin());
@@ -91,15 +167,39 @@ public class Jselectionner {
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
+
 		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
 
 		int deb = 5, fin = 2;
 	
-		Command select = new Selectionner(moteur, deb, fin);
-		select.execute();
+		
+		selectionner.execute();
 
 		assertNotEquals(selection.getDebut(), selection.getFin());
 	}
-	*/
+	
 }

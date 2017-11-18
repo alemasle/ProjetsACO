@@ -78,7 +78,7 @@ public class Jinserer {
 
 	}
 
-	/*@Test
+	@Test
 	public void testInserer2() {
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
@@ -86,9 +86,32 @@ public class Jinserer {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
+		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
 
-		Command inserer = new Inserer(moteur, str);
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+		
 		inserer.execute();
 		assertNotNull("La chaine n'est pas vide", str);
 	}
@@ -102,12 +125,36 @@ public class Jinserer {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
+		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
 
 		buffer.setBuffer(stringBuffer);
 
 		selection.setDebut(6);
-		Command inserer = new Inserer(moteur, str);
+		
 		inserer.execute();
 
 		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString()) == 0);
@@ -123,16 +170,39 @@ public class Jinserer {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
+		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
 
 		buffer.setBuffer(stringBuffer);
 
 		selection.setDebut(3);
-		Command inserer = new Inserer(moteur, str);
+		
 		inserer.execute();
 
 		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
 
-	} */
-
+	} 
 }
