@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="fr.istic.m1.aco.miniediteur.v1/src"/>
 	<classpathentry kind="src" path="fr.istic.m1.aco.miniediteur.v1/test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="fr.istic.m1.aco.miniediteur.v1/bin"/>
 </classpath>
