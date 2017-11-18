@@ -1,6 +1,6 @@
 package command;
 
-import ihm.Ihm;
+import Ihm.Ihm;
 import memento.Memento;
 import receiver.Moteur;
 import receiver.MoteurImpl;
