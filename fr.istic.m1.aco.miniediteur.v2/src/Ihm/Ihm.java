@@ -1,4 +1,4 @@
-package Ihm;
+package ihm;
 
 import java.util.Scanner;
 
