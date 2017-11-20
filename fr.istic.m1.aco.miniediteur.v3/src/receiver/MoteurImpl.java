@@ -31,7 +31,7 @@ public class MoteurImpl implements Moteur {
 	// Operations
 
 	/**
-	 * Selectionne une partie du texte ayant comme debut le caracters a la position
+	 * Selectionne une partie du texte ayant comme debut le caractere a la position
 	 * debut et selectionnant tous les caracteres jusqu'a la position fin. Si debut
 	 * > fin alors on inverse les positions.
 	 *
@@ -211,7 +211,7 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * @param select
-	 *            le select à définir
+	 *            le select a� definir
 	 */
 	public void setSelect(Selection select) {
 		this.select = select;
@@ -249,7 +249,7 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * 
-	 * Permet de passer a la ligne.
+	 * Permet de faire un saut a la ligne.
 	 * 
 	 * @since v3
 	 */
