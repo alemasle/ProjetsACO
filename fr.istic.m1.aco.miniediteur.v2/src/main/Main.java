@@ -3,7 +3,7 @@ package main;
 import java.util.Scanner;
 
 import command.*;
-import Ihm.Ihm;
+import ihm.Ihm;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
 import receiver.Moteur;
