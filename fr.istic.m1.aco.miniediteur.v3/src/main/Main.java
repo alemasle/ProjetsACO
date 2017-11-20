@@ -33,6 +33,7 @@ public class Main {
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
 		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
+		NewLine newLine = new NewLine(moteur, enregistreur);
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
@@ -40,7 +41,7 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 
 		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
-				load, demarrer, stopper, rejouer);
+				load, demarrer, stopper, rejouer, newLine);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);

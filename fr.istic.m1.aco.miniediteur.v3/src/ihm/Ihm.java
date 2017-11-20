@@ -29,13 +29,14 @@ public class Ihm {
 	private CommandGeneral demarrer;
 	private CommandGeneral stopper;
 	private CommandGeneral rejouer;
+	private Command newLine;
 
 	// Is Recording;
 	private boolean record = false;
 
 	public Ihm(Copier copier, Coller coller, Couper couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
 			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete, Load load,
-			Demarrer demarrer, Stopper stopper, Rejouer rejouer) {
+			Demarrer demarrer, Stopper stopper, Rejouer rejouer, NewLine newLine) {
 		this.copier = copier;
 		this.coller = coller;
 		this.couper = couper;
@@ -51,6 +52,7 @@ public class Ihm {
 		this.demarrer = demarrer;
 		this.stopper = stopper;
 		this.rejouer = rejouer;
+		this.newLine = newLine;
 	}
 
 	/**
@@ -174,11 +176,11 @@ public class Ihm {
 		if (!record) {
 			str = "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
 					+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |"
-					+ " R : Record |" + " P : Replay |";
+					+ " R : Record |" + " P : Replay |" + " N : NewLine |";
 		} else {
 			str = "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
 					+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |"
-					+ " R : StopRecord |" + " P : Replay |";
+					+ " R : StopRecord |" + " P : Replay |" + " N : NewLine |";
 		}
 
 		return str;
@@ -340,6 +342,14 @@ public class Ihm {
 					clearScreen();
 					System.out.println("You can not replay while recording. ");
 				}
+				break;
+
+			case 'n': // Insert a '\n' char a the select position
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				newLine.execute();
+				clearScreen();
 				break;
 
 			default:

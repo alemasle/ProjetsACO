@@ -241,10 +241,25 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * @param buffer
-	 *            le buffer à définir
+	 *            le buffer a� definir
 	 */
 	public void setBuffer(Buffer buffer) {
 		this.buffer = buffer;
+	}
+
+	/**
+	 * 
+	 * Permet de passer a la ligne.
+	 * 
+	 * @since v3
+	 */
+	@Override
+	public void newLine() {
+		removeSelect();
+		int pos = select.getDebut();
+		buffer.getBuffer().insert(pos, "\n");
+		selectionner(pos + 1, pos + 1);
+
 	}
 
 }

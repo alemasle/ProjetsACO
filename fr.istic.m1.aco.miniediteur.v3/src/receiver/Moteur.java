@@ -31,4 +31,6 @@ public interface Moteur {
 	public void setBuffer(Buffer buffer);
 
 	public Buffer getBuffer();
+	
+	public void newLine();
 }
