@@ -2,7 +2,6 @@ package command;
 
 import memento.Memento;
 import receiver.Enregistreur;
-import receiver.Moteur;
 
 /**
  * Concrete Command Rejouer implementant l'interface Command
@@ -19,10 +18,6 @@ public class Rejouer implements Command {
 	 */
 	private Enregistreur enregistreur;
 
-	private Moteur moteur;
-
-	private boolean replay = false;
-
 	private RejouerMemento memento;
 
 	/**
@@ -30,9 +25,8 @@ public class Rejouer implements Command {
 	 * 
 	 * @param enregistreur
 	 */
-	public Rejouer(Moteur moteur, Enregistreur enregistreur) {
+	public Rejouer(Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;
-		this.moteur = moteur;
 	}
 
 	/**
@@ -46,11 +40,6 @@ public class Rejouer implements Command {
 	@Override
 	public RejouerMemento getMemento() {
 		return new RejouerMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class RejouerMemento implements Memento<RejouerMemento> {

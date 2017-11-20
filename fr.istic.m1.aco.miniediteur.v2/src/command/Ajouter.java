@@ -28,8 +28,6 @@ public class Ajouter implements Command {
 
 	private Enregistreur enregistreur;
 
-	private boolean replay = false;
-
 	private AjouterMemento memento;
 
 	/**
@@ -55,7 +53,7 @@ public class Ajouter implements Command {
 	 */
 	public void execute() {
 		String str = "";
-		if (replay) {
+		if (enregistreur.getPlay()) {
 			str = memento.getTexte();
 			moteur.ajouter(str);
 		} else {
@@ -77,11 +75,6 @@ public class Ajouter implements Command {
 	@Override
 	public AjouterMemento getMemento() {
 		return new AjouterMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class AjouterMemento implements Memento<AjouterMemento> {

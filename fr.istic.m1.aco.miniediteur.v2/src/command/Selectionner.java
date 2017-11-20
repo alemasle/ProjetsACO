@@ -31,8 +31,6 @@ public class Selectionner implements Command {
 
 	private SelectionnerMemento memento;
 
-	private boolean replay = false;
-
 	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.ihm = ihm;
@@ -51,7 +49,7 @@ public class Selectionner implements Command {
 	 * 
 	 */
 	public void execute() {
-		if (replay) {
+		if (enregistreur.getPlay()) {
 			deb = memento.getDeb();
 			fin = memento.getFin();
 			moteur.selectionner(deb, fin);
@@ -81,11 +79,6 @@ public class Selectionner implements Command {
 	@Override
 	public SelectionnerMemento getMemento() {
 		return new SelectionnerMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class SelectionnerMemento implements Memento<SelectionnerMemento> {

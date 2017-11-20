@@ -16,6 +16,8 @@ public class EnregistrerImpl implements Enregistreur {
 
 	private Boolean record = false;
 
+	private Boolean play = false;
+
 	private List<Memento<?>> replay = new ArrayList<Memento<?>>();
 
 	private List<Command> lcmd = new ArrayList<Command>();
@@ -41,14 +43,15 @@ public class EnregistrerImpl implements Enregistreur {
 	 */
 	public void rejouer() {
 		Command cmdCurrent = null;
+		setPlay(true);
 
 		for (int i = 0; i < lcmd.size(); i++) {
 			cmdCurrent = lcmd.get(i);
-			cmdCurrent.setReplay(true);
 			cmdCurrent.setMemento(replay.get(i));
 			cmdCurrent.execute();
-			cmdCurrent.setReplay(false);
 		}
+
+		setPlay(false);
 	}
 
 	/**
@@ -84,5 +87,13 @@ public class EnregistrerImpl implements Enregistreur {
 	 */
 	public void setRecord(Boolean record) {
 		this.record = record;
+	}
+
+	public boolean getPlay() {
+		return play;
+	}
+
+	public void setPlay(boolean play) {
+		this.play = play;
 	}
 }

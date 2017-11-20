@@ -22,8 +22,6 @@ public class Load implements Command {
 
 	private Ihm ihm;
 
-	private boolean replay = false;
-
 	private LoadMemento memento;
 
 	/**
@@ -60,11 +58,6 @@ public class Load implements Command {
 	@Override
 	public LoadMemento getMemento() {
 		return new LoadMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class LoadMemento implements Memento<LoadMemento> {

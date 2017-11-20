@@ -2,7 +2,6 @@ package command;
 
 import memento.Memento;
 import receiver.Enregistreur;
-import receiver.Moteur;
 
 /**
  * Concrete Command "Stopper" implementant Command
@@ -19,10 +18,6 @@ public class Stopper implements Command {
 	 */
 	private Enregistreur enregistreur;
 
-	private Moteur moteur;
-
-	private boolean replay = false;
-
 	private StopperMemento memento;
 
 	/**
@@ -30,9 +25,8 @@ public class Stopper implements Command {
 	 * 
 	 * @param enregistreur
 	 */
-	public Stopper(Moteur moteur, Enregistreur enregistreur) {
+	public Stopper(Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;
-		this.moteur = moteur;
 	}
 
 	/**
@@ -45,11 +39,6 @@ public class Stopper implements Command {
 	@Override
 	public StopperMemento getMemento() {
 		return new StopperMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class StopperMemento implements Memento<StopperMemento> {

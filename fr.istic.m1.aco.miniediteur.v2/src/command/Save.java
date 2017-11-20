@@ -20,8 +20,6 @@ public class Save implements Command {
 	 */
 	private Moteur moteur;
 
-	private boolean replay = false;
-
 	private SaveMemento memento;
 
 	private Ihm ihm;
@@ -63,11 +61,6 @@ public class Save implements Command {
 	@Override
 	public SaveMemento getMemento() {
 		return new SaveMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class SaveMemento implements Memento<SaveMemento> {

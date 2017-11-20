@@ -30,8 +30,6 @@ public class Inserer implements Command {
 	 */
 	private Ihm ihm;
 
-	private boolean replay = false;
-
 	/**
 	 * Constructeur de la classe Inserer
 	 * 
@@ -53,7 +51,7 @@ public class Inserer implements Command {
 	 */
 	public void execute() {
 		String str = "";
-		if (replay) {
+		if (enregistreur.getPlay()) {
 			str = memento.getTexte();
 			moteur.inserer(str);
 		} else {
@@ -75,11 +73,6 @@ public class Inserer implements Command {
 	@Override
 	public InsererMemento getMemento() {
 		return new InsererMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class InsererMemento implements Memento<InsererMemento> {

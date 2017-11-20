@@ -22,8 +22,6 @@ public class Copier implements Command {
 
 	private Enregistreur enregistreur;
 
-	private boolean replay = false;
-
 	private CopierMemento memento;
 
 	public Copier(Moteur moteur, Enregistreur enregistreur) {
@@ -50,11 +48,6 @@ public class Copier implements Command {
 	@Override
 	public CopierMemento getMemento() {
 		return new CopierMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class CopierMemento implements Memento<CopierMemento> {

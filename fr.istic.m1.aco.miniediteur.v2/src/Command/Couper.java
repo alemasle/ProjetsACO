@@ -21,8 +21,6 @@ public class Couper implements Command {
 
 	private Enregistreur enregistreur;
 
-	private boolean replay = false;
-
 	private CouperMemento memento;
 
 	/**
@@ -54,11 +52,6 @@ public class Couper implements Command {
 	@Override
 	public CouperMemento getMemento() {
 		return new CouperMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class CouperMemento implements Memento<CouperMemento> {

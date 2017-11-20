@@ -33,9 +33,9 @@ public class Main {
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
 		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
-		Demarrer demarrer = new Demarrer(moteur, enregistreur);
-		Stopper stopper = new Stopper(moteur, enregistreur);
-		Rejouer rejouer = new Rejouer(moteur, enregistreur);
+		Demarrer demarrer = new Demarrer(enregistreur);
+		Stopper stopper = new Stopper(enregistreur);
+		Rejouer rejouer = new Rejouer(enregistreur);
 
 		Scanner input = new Scanner(System.in);
 

@@ -2,7 +2,6 @@ package command;
 
 import memento.Memento;
 import receiver.Enregistreur;
-import receiver.Moteur;
 
 /**
  * 
@@ -21,10 +20,6 @@ public class Demarrer implements Command {
 	 */
 	private Enregistreur enregistreur;
 
-	private Moteur moteur;
-
-	private boolean replay = false;
-
 	private DemarrerMemento memento;
 
 	/**
@@ -32,9 +27,8 @@ public class Demarrer implements Command {
 	 * 
 	 * @param enregistreur
 	 */
-	public Demarrer(Moteur moteur, Enregistreur enregistreur) {
+	public Demarrer(Enregistreur enregistreur) {
 		this.enregistreur = enregistreur;
-		this.moteur = moteur;
 	}
 
 	/**
@@ -49,11 +43,6 @@ public class Demarrer implements Command {
 	 */
 	public DemarrerMemento getMemento() {
 		return new DemarrerMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class DemarrerMemento implements Memento<DemarrerMemento> {

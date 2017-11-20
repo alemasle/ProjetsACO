@@ -21,8 +21,6 @@ public class Coller implements Command {
 
 	private Enregistreur enregistreur;
 
-	private boolean replay = false;
-
 	private CollerMemento memento;
 
 	/**
@@ -55,11 +53,6 @@ public class Coller implements Command {
 	@Override
 	public CollerMemento getMemento() {
 		return new CollerMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class CollerMemento implements Memento<CollerMemento> {

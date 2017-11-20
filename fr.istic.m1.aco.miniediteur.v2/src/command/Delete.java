@@ -22,8 +22,6 @@ public class Delete implements Command {
 
 	private Enregistreur enregistreur;
 
-	private boolean replay = false;
-
 	private DeleteMemento memento;
 
 	/**
@@ -55,11 +53,6 @@ public class Delete implements Command {
 	@Override
 	public DeleteMemento getMemento() {
 		return new DeleteMemento();
-	}
-
-	@Override
-	public void setReplay(boolean bool) {
-		this.replay = bool;
 	}
 
 	private class DeleteMemento implements Memento<DeleteMemento> {

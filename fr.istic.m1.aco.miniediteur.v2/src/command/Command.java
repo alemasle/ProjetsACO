@@ -19,6 +19,4 @@ public interface Command {
 
 	void setMemento(Memento<?> mem);
 
-	void setReplay(boolean bool);
-
 }

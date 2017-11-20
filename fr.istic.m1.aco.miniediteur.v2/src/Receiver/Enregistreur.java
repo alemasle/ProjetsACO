@@ -2,7 +2,6 @@ package receiver;
 
 import command.Command;
 import memento.Memento;
-import state.Buffer;
 
 /**
  * Interface Enregistreur
@@ -30,7 +29,11 @@ public interface Enregistreur {
 	boolean getRecord();
 
 	void addMemento(Memento<?> m);
-	
-	public void addCommand(Command cmd);
+
+	void addCommand(Command cmd);
+
+	boolean getPlay();
+
+	void setPlay(boolean play);
 
 }
