@@ -60,7 +60,15 @@ public class Couper implements Command {
 
 	@Override
 	public void setMemento(Memento<?> mem) {
-		this.memento = (CouperMemento) mem;
+		this.setCouperMemento((CouperMemento) mem);
+	}
+
+	public CouperMemento getCouperMemento() {
+		return memento;
+	}
+
+	public void setCouperMemento(CouperMemento memento) {
+		this.memento = memento;
 	}
 
 }

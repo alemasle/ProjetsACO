@@ -1,6 +1,5 @@
 package command;
 
-import memento.Memento;
 import receiver.Enregistreur;
 
 /**
@@ -9,7 +8,7 @@ import receiver.Enregistreur;
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
  */
-public class Rejouer implements Command {
+public class Rejouer implements CommandGeneral {
 
 	/**
 	 * Nouvelle instance de l'enregistreur
@@ -17,8 +16,6 @@ public class Rejouer implements Command {
 	 * @see Enregistreur
 	 */
 	private Enregistreur enregistreur;
-
-	private RejouerMemento memento;
 
 	/**
 	 * Constructeur de la classe Rejouer
@@ -35,20 +32,6 @@ public class Rejouer implements Command {
 	public void execute() {
 		enregistreur.rejouer();
 
-	}
-
-	@Override
-	public RejouerMemento getMemento() {
-		return new RejouerMemento();
-	}
-
-	private class RejouerMemento implements Memento<RejouerMemento> {
-
-	}
-
-	@Override
-	public void setMemento(Memento<?> mem) {
-		this.memento = (RejouerMemento) mem;
 	}
 
 }

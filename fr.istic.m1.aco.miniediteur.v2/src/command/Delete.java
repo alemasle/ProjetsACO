@@ -61,7 +61,15 @@ public class Delete implements Command {
 
 	@Override
 	public void setMemento(Memento<?> mem) {
-		this.memento = (DeleteMemento) mem;
+		this.setDeleteMemento((DeleteMemento) mem);
+	}
+
+	public DeleteMemento getDeleteMemento() {
+		return memento;
+	}
+
+	public void setDeleteMemento(DeleteMemento memento) {
+		this.memento = memento;
 	}
 
 }

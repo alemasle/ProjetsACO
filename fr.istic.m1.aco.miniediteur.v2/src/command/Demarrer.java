@@ -1,6 +1,5 @@
 package command;
 
-import memento.Memento;
 import receiver.Enregistreur;
 
 /**
@@ -10,7 +9,7 @@ import receiver.Enregistreur;
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
  */
-public class Demarrer implements Command {
+public class Demarrer implements CommandGeneral {
 
 	/**
 	 * Nouvelle instance de l'interface Enregistreur permettant l'acces aux methodes
@@ -19,8 +18,6 @@ public class Demarrer implements Command {
 	 * @see Enregistreur
 	 */
 	private Enregistreur enregistreur;
-
-	private DemarrerMemento memento;
 
 	/**
 	 * Constructeur de la classe Demarrer initialisant les attributs
@@ -37,21 +34,4 @@ public class Demarrer implements Command {
 	public void execute() {
 		enregistreur.demarrer();
 	}
-
-	/**
-	 * @return mem le memento courant
-	 */
-	public DemarrerMemento getMemento() {
-		return new DemarrerMemento();
-	}
-
-	private class DemarrerMemento implements Memento<DemarrerMemento> {
-
-	}
-
-	@Override
-	public void setMemento(Memento<?> mem) {
-		this.memento = (DemarrerMemento) mem;
-	}
-
 }

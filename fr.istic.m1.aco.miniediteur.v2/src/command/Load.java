@@ -1,7 +1,6 @@
 package command;
 
 import ihm.Ihm;
-import memento.Memento;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -11,7 +10,7 @@ import receiver.MoteurImpl;
  * @since 1.1
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
-public class Load implements Command {
+public class Load implements CommandGeneral {
 
 	/**
 	 * Nouvelle instance de l'interface Moteur declarant la methode load
@@ -21,8 +20,6 @@ public class Load implements Command {
 	private Moteur moteur;
 
 	private Ihm ihm;
-
-	private LoadMemento memento;
 
 	/**
 	 * Constructeur de la classe Load
@@ -53,20 +50,6 @@ public class Load implements Command {
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
-	}
-
-	@Override
-	public LoadMemento getMemento() {
-		return new LoadMemento();
-	}
-
-	private class LoadMemento implements Memento<LoadMemento> {
-
-	}
-
-	@Override
-	public void setMemento(Memento<?> mem) {
-		this.memento = (LoadMemento) mem;
 	}
 
 }

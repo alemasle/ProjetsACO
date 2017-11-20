@@ -22,13 +22,13 @@ public class Ihm {
 	private Buffer buffer;
 	private Selection selection;
 	private Scanner input;
-	private Command save;
+	private CommandGeneral save;
 	private Command ajouter;
 	private Command delete;
-	private Command load;
-	private Command demarrer;
-	private Command stopper;
-	private Command rejouer;
+	private CommandGeneral load;
+	private CommandGeneral demarrer;
+	private CommandGeneral stopper;
+	private CommandGeneral rejouer;
 
 	// Is Recording;
 	private boolean record = false;

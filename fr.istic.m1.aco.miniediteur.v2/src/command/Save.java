@@ -1,7 +1,6 @@
 package command;
 
 import ihm.Ihm;
-import memento.Memento;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -11,7 +10,7 @@ import receiver.MoteurImpl;
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
  */
-public class Save implements Command {
+public class Save implements CommandGeneral {
 
 	/**
 	 * Nouvelle instance de l'interface Moteur declarant la methode selectionner
@@ -19,8 +18,6 @@ public class Save implements Command {
 	 * @see Moteur
 	 */
 	private Moteur moteur;
-
-	private SaveMemento memento;
 
 	private Ihm ihm;
 
@@ -56,20 +53,6 @@ public class Save implements Command {
 
 	public void setIhm(Ihm ihm) {
 		this.ihm = ihm;
-	}
-
-	@Override
-	public SaveMemento getMemento() {
-		return new SaveMemento();
-	}
-
-	private class SaveMemento implements Memento<SaveMemento> {
-
-	}
-
-	@Override
-	public void setMemento(Memento<?> mem) {
-		this.memento = (SaveMemento) mem;
 	}
 
 }

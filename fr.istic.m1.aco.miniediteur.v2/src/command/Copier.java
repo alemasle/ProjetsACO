@@ -56,6 +56,14 @@ public class Copier implements Command {
 
 	@Override
 	public void setMemento(Memento<?> mem) {
-		this.memento = (CopierMemento) mem;
+		this.setCopierMemento((CopierMemento) mem);
+	}
+
+	public CopierMemento getCopierMemento() {
+		return memento;
+	}
+
+	public void setCopierMemento(CopierMemento memento) {
+		this.memento = memento;
 	}
 }
