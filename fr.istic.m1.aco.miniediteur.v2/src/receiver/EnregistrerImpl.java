@@ -10,6 +10,7 @@ import memento.Memento;
  * Classe {@link EnregistrerImpl} implementant l'interface {@link Enregistreur}
  * contenant une implementation des methodes abstraite de l'interface
  *
+ * @since v2
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
 public class EnregistrerImpl implements Enregistreur {

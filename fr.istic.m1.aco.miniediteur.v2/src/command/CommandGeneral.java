@@ -4,6 +4,7 @@ package command;
  * 
  * Interface CommandGeneral
  * 
+ * @since v2
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
  */
