@@ -6,6 +6,7 @@ import memento.Memento;
 /**
  * Interface Enregistreur
  *
+ * @since v2
  * @author Alexis LE MASLE et Fanny PRIEUR
  */
 public interface Enregistreur {
