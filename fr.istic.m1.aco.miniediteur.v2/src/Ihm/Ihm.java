@@ -30,13 +30,6 @@ public class Ihm {
 	private Command stopper;
 	private Command rejouer;
 
-	// Last String input from user
-	private String lastInput;
-
-	// Last start and end of Selection
-	private int selDeb;
-	private int selFin;
-
 	// Is Recording;
 	private boolean record = false;
 
@@ -106,8 +99,7 @@ public class Ihm {
 	 * @return Le texte a inserer de l'utilisateur
 	 */
 	public String getText() {
-		lastInput = input.nextLine();
-		return lastInput;
+		return input.nextLine();
 	}
 
 	/**
@@ -128,16 +120,12 @@ public class Ihm {
 				input.nextLine();
 			}
 		}
-
 		if (deb < 0) {
-			selDeb = 0;
 			return 0;
 		}
 		if (deb > len) {
-			selDeb = deb;
 			return len;
 		}
-		selDeb = deb;
 		return deb;
 	}
 
@@ -162,14 +150,11 @@ public class Ihm {
 		}
 
 		if (fin < 0) {
-			selFin = 0;
 			return 0;
 		}
 		if (fin > len) {
-			selFin = fin;
 			return len;
 		}
-		selFin = fin;
 		return fin;
 	}
 
@@ -182,36 +167,6 @@ public class Ihm {
 		String str = input.nextLine();
 		str += ".txt";
 		return str;
-	}
-
-	public int getSelDeb() {
-		int deb = selDeb;
-		int len = buffer.getBuffer().length();
-		if (deb < 0) {
-			selFin = 0;
-			return 0;
-		}
-		if (deb > len) {
-			return len;
-		}
-		return deb;
-	}
-
-	public int getSelFin() {
-		int fin = selFin;
-		int len = buffer.getBuffer().length();
-		if (fin < 0) {
-			selFin = 0;
-			return 0;
-		}
-		if (fin > len) {
-			return len;
-		}
-		return fin;
-	}
-
-	public String getLastInput() {
-		return lastInput;
 	}
 
 	public String optionsCommand() {

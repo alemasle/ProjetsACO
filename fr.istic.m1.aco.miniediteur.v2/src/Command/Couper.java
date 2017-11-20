@@ -23,6 +23,8 @@ public class Couper implements Command {
 
 	private boolean replay = false;
 
+	private CouperMemento memento;
+
 	/**
 	 * Constructeur de la classe Couper
 	 *
@@ -45,12 +47,13 @@ public class Couper implements Command {
 		moteur.couper();
 		if (enregistreur.getRecord()) {
 			enregistreur.addMemento(getMemento());
+			enregistreur.addCommand(this);
 		}
 	}
 
 	@Override
 	public CouperMemento getMemento() {
-		return new CouperMemento(new Couper(moteur, enregistreur));
+		return new CouperMemento();
 	}
 
 	@Override
@@ -60,17 +63,11 @@ public class Couper implements Command {
 
 	private class CouperMemento implements Memento<CouperMemento> {
 
-		Couper cmd;
+	}
 
-		public CouperMemento(Couper cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (CouperMemento) mem;
 	}
 
 }

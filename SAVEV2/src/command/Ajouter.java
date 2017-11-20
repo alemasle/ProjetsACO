@@ -55,14 +55,14 @@ public class Ajouter implements Command {
 		String str = "";
 		if (replay) {
 			str = ihm.getLastInput();
-			enregistreur.setBuffer(moteur.getBuffer());
+			moteur.ajouter(str);
 		} else {
 			str = ihm.getText();
+			moteur.ajouter(str);
 			if (enregistreur.getRecord()) {
 				enregistreur.addMemento(getMemento());
 			}
 		}
-		moteur.ajouter(str);
 	}
 
 	public void setIhm(Ihm ihm) {
@@ -70,8 +70,8 @@ public class Ajouter implements Command {
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Ajouter(moteur, ihm, enregistreur));
+	public AjouterMemento getMemento() {
+		return new AjouterMemento(new Ajouter(moteur, ihm, enregistreur));
 	}
 
 	@Override
@@ -79,9 +79,19 @@ public class Ajouter implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class AjouterMemento implements Memento<AjouterMemento> {
+
+		Ajouter cmd;
+
+		public AjouterMemento(Ajouter cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

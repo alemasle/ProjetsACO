@@ -30,6 +30,8 @@ public class Ajouter implements Command {
 
 	private boolean replay = false;
 
+	private AjouterMemento memento;
+
 	/**
 	 * Constructeur de la classe Inserer
 	 * 
@@ -54,13 +56,16 @@ public class Ajouter implements Command {
 	public void execute() {
 		String str = "";
 		if (replay) {
-			str = ihm.getLastInput();
+			str = memento.getTexte();
 			moteur.ajouter(str);
 		} else {
 			str = ihm.getText();
 			moteur.ajouter(str);
 			if (enregistreur.getRecord()) {
-				enregistreur.addMemento(getMemento());
+				AjouterMemento m = getMemento();
+				m.setTexte(str);
+				enregistreur.addMemento(m);
+				enregistreur.addCommand(this);
 			}
 		}
 	}
@@ -71,7 +76,7 @@ public class Ajouter implements Command {
 
 	@Override
 	public AjouterMemento getMemento() {
-		return new AjouterMemento(new Ajouter(moteur, ihm, enregistreur));
+		return new AjouterMemento();
 	}
 
 	@Override
@@ -81,17 +86,21 @@ public class Ajouter implements Command {
 
 	private class AjouterMemento implements Memento<AjouterMemento> {
 
-		Ajouter cmd;
+		String texte;
 
-		public AjouterMemento(Ajouter cmd) {
-			this.cmd = cmd;
+		public String getTexte() {
+			return texte;
 		}
 
-		@Override
-		public Command getCommand() {
-			return cmd;
+		public void setTexte(String texte) {
+			this.texte = texte;
 		}
 
+	}
+
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (AjouterMemento) mem;
 	}
 
 }

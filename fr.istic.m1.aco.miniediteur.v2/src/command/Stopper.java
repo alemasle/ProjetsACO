@@ -23,6 +23,8 @@ public class Stopper implements Command {
 
 	private boolean replay = false;
 
+	private StopperMemento memento;
+
 	/**
 	 * Constructeur de la classe Stopper
 	 * 
@@ -42,7 +44,7 @@ public class Stopper implements Command {
 
 	@Override
 	public StopperMemento getMemento() {
-		return new StopperMemento(new Stopper(moteur, enregistreur));
+		return new StopperMemento();
 	}
 
 	@Override
@@ -52,17 +54,11 @@ public class Stopper implements Command {
 
 	private class StopperMemento implements Memento<StopperMemento> {
 
-		Stopper cmd;
+	}
 
-		public StopperMemento(Stopper cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (StopperMemento) mem;
 	}
 
 }

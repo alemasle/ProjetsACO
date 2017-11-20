@@ -24,6 +24,8 @@ public class Copier implements Command {
 
 	private boolean replay = false;
 
+	private CopierMemento memento;
+
 	public Copier(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
@@ -41,12 +43,13 @@ public class Copier implements Command {
 		moteur.copier();
 		if (enregistreur.getRecord()) {
 			enregistreur.addMemento(getMemento());
+			enregistreur.addCommand(this);
 		}
 	}
 
 	@Override
 	public CopierMemento getMemento() {
-		return new CopierMemento(new Copier(moteur, enregistreur));
+		return new CopierMemento();
 	}
 
 	@Override
@@ -56,16 +59,10 @@ public class Copier implements Command {
 
 	private class CopierMemento implements Memento<CopierMemento> {
 
-		Copier cmd;
+	}
 
-		public CopierMemento(Copier cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (CopierMemento) mem;
 	}
 }

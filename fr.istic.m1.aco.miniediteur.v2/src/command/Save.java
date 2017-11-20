@@ -22,6 +22,8 @@ public class Save implements Command {
 
 	private boolean replay = false;
 
+	private SaveMemento memento;
+
 	private Ihm ihm;
 
 	/**
@@ -60,7 +62,7 @@ public class Save implements Command {
 
 	@Override
 	public SaveMemento getMemento() {
-		return new SaveMemento(new Save(moteur, ihm));
+		return new SaveMemento();
 	}
 
 	@Override
@@ -70,17 +72,11 @@ public class Save implements Command {
 
 	private class SaveMemento implements Memento<SaveMemento> {
 
-		Save cmd;
+	}
 
-		public SaveMemento(Save cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (SaveMemento) mem;
 	}
 
 }

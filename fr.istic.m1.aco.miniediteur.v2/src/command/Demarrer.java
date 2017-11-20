@@ -25,6 +25,8 @@ public class Demarrer implements Command {
 
 	private boolean replay = false;
 
+	private DemarrerMemento memento;
+
 	/**
 	 * Constructeur de la classe Demarrer initialisant les attributs
 	 * 
@@ -46,7 +48,7 @@ public class Demarrer implements Command {
 	 * @return mem le memento courant
 	 */
 	public DemarrerMemento getMemento() {
-		return new DemarrerMemento(new Demarrer(moteur, enregistreur));
+		return new DemarrerMemento();
 	}
 
 	@Override
@@ -56,17 +58,11 @@ public class Demarrer implements Command {
 
 	private class DemarrerMemento implements Memento<DemarrerMemento> {
 
-		Demarrer cmd;
+	}
 
-		public DemarrerMemento(Demarrer cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (DemarrerMemento) mem;
 	}
 
 }

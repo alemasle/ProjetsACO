@@ -24,6 +24,8 @@ public class Load implements Command {
 
 	private boolean replay = false;
 
+	private LoadMemento memento;
+
 	/**
 	 * Constructeur de la classe Load
 	 *
@@ -57,7 +59,7 @@ public class Load implements Command {
 
 	@Override
 	public LoadMemento getMemento() {
-		return new LoadMemento(new Load(moteur, ihm));
+		return new LoadMemento();
 	}
 
 	@Override
@@ -67,17 +69,11 @@ public class Load implements Command {
 
 	private class LoadMemento implements Memento<LoadMemento> {
 
-		Load cmd;
+	}
 
-		public LoadMemento(Load cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (LoadMemento) mem;
 	}
 
 }

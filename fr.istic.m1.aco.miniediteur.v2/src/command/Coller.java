@@ -23,6 +23,8 @@ public class Coller implements Command {
 
 	private boolean replay = false;
 
+	private CollerMemento memento;
+
 	/**
 	 * Constructeur de la classe Coller
 	 *
@@ -46,12 +48,13 @@ public class Coller implements Command {
 		moteur.coller();
 		if (enregistreur.getRecord()) {
 			enregistreur.addMemento(getMemento());
+			enregistreur.addCommand(this);
 		}
 	}
 
 	@Override
 	public CollerMemento getMemento() {
-		return new CollerMemento(new Coller(moteur, enregistreur));
+		return new CollerMemento();
 	}
 
 	@Override
@@ -61,17 +64,19 @@ public class Coller implements Command {
 
 	private class CollerMemento implements Memento<CollerMemento> {
 
-		Coller cmd;
+	}
 
-		public CollerMemento(Coller cmd) {
-			this.cmd = cmd;
-		}
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.setColerMemento((CollerMemento) mem);
+	}
 
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
+	public CollerMemento getCollerMemento() {
+		return memento;
+	}
 
+	public void setColerMemento(CollerMemento memento) {
+		this.memento = memento;
 	}
 
 }

@@ -28,10 +28,6 @@ public interface Enregistreur {
 
 	boolean getRecord();
 
-	void addMemento(Memento m);
-
-	Buffer getBuffer();
-
-	void setBuffer(Buffer buffer);
+	void addMemento(Memento<?> m);
 
 }

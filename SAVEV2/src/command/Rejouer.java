@@ -42,8 +42,8 @@ public class Rejouer implements Command {
 	}
 
 	@Override
-	public Memento getMemento() {
-		return new Memento(new Rejouer(moteur, enregistreur));
+	public RejouerMemento getMemento() {
+		return new RejouerMemento(new Rejouer(moteur, enregistreur));
 	}
 
 	@Override
@@ -51,9 +51,19 @@ public class Rejouer implements Command {
 		this.replay = bool;
 	}
 
-	@Override
-	public Moteur getMoteur() {
-		return moteur;
+	private class RejouerMemento implements Memento<RejouerMemento> {
+
+		Rejouer cmd;
+
+		public RejouerMemento(Rejouer cmd) {
+			this.cmd = cmd;
+		}
+
+		@Override
+		public Command getCommand() {
+			return cmd;
+		}
+
 	}
 
 }

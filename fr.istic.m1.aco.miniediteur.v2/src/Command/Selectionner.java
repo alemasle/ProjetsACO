@@ -29,6 +29,8 @@ public class Selectionner implements Command {
 
 	int fin;
 
+	private SelectionnerMemento memento;
+
 	private boolean replay = false;
 
 	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
@@ -50,13 +52,8 @@ public class Selectionner implements Command {
 	 */
 	public void execute() {
 		if (replay) {
-			deb = ihm.getSelDeb();
-			fin = ihm.getSelFin();
-			if (deb > fin) {
-				int tmp = fin;
-				fin = deb;
-				deb = tmp;
-			}
+			deb = memento.getDeb();
+			fin = memento.getFin();
 			moteur.selectionner(deb, fin);
 		} else {
 			deb = ihm.getDebut();
@@ -68,7 +65,11 @@ public class Selectionner implements Command {
 			}
 			moteur.selectionner(deb, fin);
 			if (enregistreur.getRecord()) {
-				enregistreur.addMemento(getMemento());
+				SelectionnerMemento m = getMemento();
+				m.setDeb(deb);
+				m.setFin(fin);
+				enregistreur.addMemento(m);
+				enregistreur.addCommand(this);
 			}
 		}
 	}
@@ -79,7 +80,7 @@ public class Selectionner implements Command {
 
 	@Override
 	public SelectionnerMemento getMemento() {
-		return new SelectionnerMemento(new Selectionner(moteur, ihm, enregistreur));
+		return new SelectionnerMemento();
 	}
 
 	@Override
@@ -89,17 +90,30 @@ public class Selectionner implements Command {
 
 	private class SelectionnerMemento implements Memento<SelectionnerMemento> {
 
-		Selectionner cmd;
+		int deb;
+		int fin;
 
-		public SelectionnerMemento(Selectionner cmd) {
-			this.cmd = cmd;
+		public int getDeb() {
+			return deb;
 		}
 
-		@Override
-		public Command getCommand() {
-			return cmd;
+		public void setDeb(int deb) {
+			this.deb = deb;
 		}
 
+		public int getFin() {
+			return fin;
+		}
+
+		public void setFin(int fin) {
+			this.fin = fin;
+		}
+
+	}
+
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (SelectionnerMemento) mem;
 	}
 
 }

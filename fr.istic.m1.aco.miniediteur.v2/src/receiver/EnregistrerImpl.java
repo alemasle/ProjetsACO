@@ -18,12 +18,15 @@ public class EnregistrerImpl implements Enregistreur {
 
 	private List<Memento<?>> replay = new ArrayList<Memento<?>>();
 
+	private List<Command> lcmd = new ArrayList<Command>();
+
 	/**
 	 * Demarre l'enregistrement
 	 */
 	public void demarrer() {
 		setRecord(true);
 		replay = new ArrayList<Memento<?>>();
+		lcmd = new ArrayList<Command>();
 	}
 
 	/**
@@ -34,20 +37,38 @@ public class EnregistrerImpl implements Enregistreur {
 	}
 
 	/**
-	 * Rejoue le dernier enregistrement en mettant a jour le buffer
+	 * Rejoue les commandes enregistrées dans le macro
 	 */
 	public void rejouer() {
-		System.out.println("Size of the list of Memento: " + replay.size());
-		for (Memento<?> memento : replay) {
-			Command cmd = memento.getCommand();
-			cmd.setReplay(true);
-			cmd.execute();
-			cmd.setReplay(false);
+		Command cmdCurrent = null;
+
+		for (int i = 0; i < lcmd.size(); i++) {
+			cmdCurrent = lcmd.get(i);
+			cmdCurrent.setReplay(true);
+			cmdCurrent.setMemento(replay.get(i));
+			cmdCurrent.execute();
+			cmdCurrent.setReplay(false);
 		}
 	}
 
+	/**
+	 * Ajout un memento dans la liste de memento
+	 * 
+	 * @param m
+	 *            Le memento a ajouter dans la liste
+	 */
 	public void addMemento(Memento<?> m) {
 		replay.add(m);
+	}
+
+	/**
+	 * Ajout un commandes dans la liste de commandes
+	 * 
+	 * @param cmd
+	 *            La commande a ajouter dans la liste
+	 */
+	public void addCommand(Command cmd) {
+		lcmd.add(cmd);
 	}
 
 	/**

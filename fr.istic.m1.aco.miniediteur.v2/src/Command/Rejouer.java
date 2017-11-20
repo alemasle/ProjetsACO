@@ -23,6 +23,8 @@ public class Rejouer implements Command {
 
 	private boolean replay = false;
 
+	private RejouerMemento memento;
+
 	/**
 	 * Constructeur de la classe Rejouer
 	 * 
@@ -43,7 +45,7 @@ public class Rejouer implements Command {
 
 	@Override
 	public RejouerMemento getMemento() {
-		return new RejouerMemento(new Rejouer(moteur, enregistreur));
+		return new RejouerMemento();
 	}
 
 	@Override
@@ -53,17 +55,11 @@ public class Rejouer implements Command {
 
 	private class RejouerMemento implements Memento<RejouerMemento> {
 
-		Rejouer cmd;
+	}
 
-		public RejouerMemento(Rejouer cmd) {
-			this.cmd = cmd;
-		}
-
-		@Override
-		public Command getCommand() {
-			return cmd;
-		}
-
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.memento = (RejouerMemento) mem;
 	}
 
 }
