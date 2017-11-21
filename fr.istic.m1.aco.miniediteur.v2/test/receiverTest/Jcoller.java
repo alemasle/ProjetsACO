@@ -26,31 +26,7 @@ import state.Selection;
 
 public class Jcoller {
 
-	@Test
-	public void testColler() {
-		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Enregistreur enregistreur = new EnregistrerImpl();
-
-		Command coller = new Coller(moteur, enregistreur);
-
-		assertTrue(true);
-		assertFalse(false);
-	}
-
-	@Test
-	public void testExecute() {
-		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-		Enregistreur enregistreur = new EnregistrerImpl();
-
-		Command coller = new Coller(moteur, enregistreur);
-
-	}
+	
 
 	@Test
 	public void testSetMemento() {
