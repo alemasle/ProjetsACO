@@ -217,7 +217,7 @@ public class Ihm {
 		System.out.println("--------- Mini Text Editor ----------");
 		System.out.println("_____________________________________");
 
-		System.out.println("v2.1 by Alexis LE MASLE & Fanny PRIEUR");
+		System.out.println("v3.1 by Alexis LE MASLE & Fanny PRIEUR");
 		System.out.println("");
 		System.out.println("");
 

@@ -1,6 +1,7 @@
 package receiver;
 
 import state.Buffer;
+import state.Selection;
 
 /**
  * Interface Moteur comprenant les fonctions du mini editeur.
@@ -31,6 +32,10 @@ public interface Moteur {
 	public void setBuffer(Buffer buffer);
 
 	public Buffer getBuffer();
-	
+
+	public Selection getSelect();
+
+	public void setSelect(Selection select);
+
 	public void newLine();
 }
