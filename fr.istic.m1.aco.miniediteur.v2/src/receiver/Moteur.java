@@ -1,6 +1,6 @@
 package receiver;
 
-import state.*;
+import state.Buffer;
 
 /**
  * Interface Moteur comprenant les fonctions du mini editeur.

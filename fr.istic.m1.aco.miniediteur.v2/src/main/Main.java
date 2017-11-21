@@ -2,7 +2,18 @@ package main;
 
 import java.util.Scanner;
 
-import command.*;
+import command.Ajouter;
+import command.Coller;
+import command.Copier;
+import command.Couper;
+import command.Delete;
+import command.Demarrer;
+import command.Inserer;
+import command.Load;
+import command.Rejouer;
+import command.Save;
+import command.Selectionner;
+import command.Stopper;
 import ihm.Ihm;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;

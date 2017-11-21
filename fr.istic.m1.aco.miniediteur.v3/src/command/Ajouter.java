@@ -1,5 +1,6 @@
 package command;
 
+import etats.State;
 import ihm.Ihm;
 import memento.Memento;
 import receiver.Enregistreur;
@@ -30,16 +31,19 @@ public class Ajouter implements Command {
 
 	private AjouterMemento memento;
 
+	private State state;
+
 	/**
 	 * Constructeur de la classe Inserer
 	 * 
 	 * @param moteur
 	 * @param str
 	 */
-	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
+	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur, State state) {
 		this.moteur = moteur;
 		this.ihm = ihm;
 		this.enregistreur = enregistreur;
+		this.state = state;
 	}
 
 	// Operations
@@ -66,6 +70,8 @@ public class Ajouter implements Command {
 				enregistreur.addCommand(this);
 			}
 		}
+		state.addMemento(getMemento());
+		state.addCmd(this);
 	}
 
 	public void setIhm(Ihm ihm) {

@@ -2,7 +2,23 @@ package ihm;
 
 import java.util.Scanner;
 
-import command.*;
+import command.Ajouter;
+import command.Coller;
+import command.Command;
+import command.CommandGeneral;
+import command.Copier;
+import command.Couper;
+import command.Defaire;
+import command.Delete;
+import command.Demarrer;
+import command.Inserer;
+import command.Load;
+import command.NewLine;
+import command.Refaire;
+import command.Rejouer;
+import command.Save;
+import command.Selectionner;
+import command.Stopper;
 import state.Buffer;
 import state.Selection;
 
@@ -29,6 +45,8 @@ public class Ihm {
 	private CommandGeneral demarrer;
 	private CommandGeneral stopper;
 	private CommandGeneral rejouer;
+	private CommandGeneral defaire;
+	private CommandGeneral refaire;
 	private Command newLine;
 
 	// Is Recording;
@@ -36,7 +54,7 @@ public class Ihm {
 
 	public Ihm(Copier copier, Coller coller, Couper couper, Inserer inserer, Selectionner selectionner, Buffer buffer,
 			Selection selection, Scanner scanner, Save save, Ajouter ajouter, Delete delete, Load load,
-			Demarrer demarrer, Stopper stopper, Rejouer rejouer, NewLine newLine) {
+			Demarrer demarrer, Stopper stopper, Rejouer rejouer, NewLine newLine, Defaire defaire, Refaire refaire) {
 		this.copier = copier;
 		this.coller = coller;
 		this.couper = couper;
@@ -53,6 +71,8 @@ public class Ihm {
 		this.stopper = stopper;
 		this.rejouer = rejouer;
 		this.newLine = newLine;
+		this.defaire = defaire;
+		this.refaire = refaire;
 	}
 
 	/**
@@ -172,18 +192,15 @@ public class Ihm {
 	}
 
 	public String optionsCommand() {
-		String str = "";
-		if (!record) {
-			str = "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
-					+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |"
-					+ " R : Record |" + " P : Replay |" + " N : NewLine |";
+		String rec = "";
+		if (record) {
+			rec = " R : StopRecord |";
 		} else {
-			str = "Options: " + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
-					+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |"
-					+ " R : StopRecord |" + " P : Replay |" + " N : NewLine |";
+			rec = " R : Record |";
 		}
-
-		return str;
+		return "Options: " + "\n" + "| C : Copy |" + " V : Paste |" + " X : Cut |" + " A : Add |" + " I : Insert |"
+				+ " S : Select |" + " K : Save |" + " Q : Quit |" + " D : Delete |" + " L : Load |" + rec
+				+ " P : Replay |" + " N : NewLine" + "\n" + "| Z : Undo |" + " Y : Redo |";
 	}
 
 	private void clearScreen() {
@@ -349,6 +366,22 @@ public class Ihm {
 				System.out.println(printBuffer());
 				System.out.println("");
 				newLine.execute();
+				clearScreen();
+				break;
+
+			case 'z': // Return to the previous state, undo action
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				defaire.execute();
+				clearScreen();
+				break;
+
+			case 'y': // Return to the previous state, redo action
+				clearScreen();
+				System.out.println(printBuffer());
+				System.out.println("");
+				refaire.execute();
 				clearScreen();
 				break;
 

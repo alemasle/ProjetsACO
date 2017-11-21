@@ -1,11 +1,11 @@
 package receiverTest;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import command.Coller;
+import command.Coller.CollerMemento;
 import command.Command;
 import memento.Memento;
 import receiver.EnregistrerImpl;

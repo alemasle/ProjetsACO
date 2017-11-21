@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import command.Command;
 import command.Copier;
-import command.Copier.CopierMemento;
 import memento.Memento;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;

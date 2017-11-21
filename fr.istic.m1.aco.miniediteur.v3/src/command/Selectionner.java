@@ -1,5 +1,6 @@
 package command;
 
+import etats.State;
 import ihm.Ihm;
 import memento.Memento;
 import receiver.Enregistreur;
@@ -31,10 +32,13 @@ public class Selectionner implements Command {
 
 	private SelectionnerMemento memento;
 
-	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
+	private State state;
+
+	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur, State state) {
 		this.moteur = moteur;
 		this.ihm = ihm;
 		this.enregistreur = enregistreur;
+		this.state = state;
 	}
 
 	// Operations
@@ -70,6 +74,8 @@ public class Selectionner implements Command {
 				enregistreur.addCommand(this);
 			}
 		}
+		state.addMemento(getMemento());
+		state.addCmd(this);
 	}
 
 	public void setIhm(Ihm ihm) {

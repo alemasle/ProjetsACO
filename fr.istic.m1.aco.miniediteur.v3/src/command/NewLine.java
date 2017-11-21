@@ -1,5 +1,6 @@
 package command;
 
+import etats.State;
 import memento.Memento;
 import receiver.Enregistreur;
 import receiver.Moteur;
@@ -24,9 +25,12 @@ public class NewLine implements Command {
 
 	private NewLineMemento memento;
 
-	public NewLine(Moteur moteur, Enregistreur enregistreur) {
+	private State state;
+
+	public NewLine(Moteur moteur, Enregistreur enregistreur, State state) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
+		this.state = state;
 	}
 	// Operations
 
@@ -43,6 +47,8 @@ public class NewLine implements Command {
 			enregistreur.addMemento(getMemento());
 			enregistreur.addCommand(this);
 		}
+		state.addMemento(getMemento());
+		state.addCmd(this);
 	}
 
 	@Override

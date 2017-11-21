@@ -1,5 +1,7 @@
 package receiver;
 
+import etats.State;
+
 /**
  * 
  * Interface du manager Defaire/Refaire
@@ -9,5 +11,13 @@ package receiver;
  *
  */
 public interface Manager {
+
+	void defaire();
+
+	void refaire();
+
+	void setStateCourant(State s);
+
+	State getStateCourant();
 
 }

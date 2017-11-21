@@ -1,5 +1,6 @@
 package command;
 
+import etats.State;
 import memento.Memento;
 import receiver.Enregistreur;
 import receiver.Moteur;
@@ -23,17 +24,19 @@ public class Coller implements Command {
 
 	private CollerMemento memento;
 
+	private State state;
+
 	/**
-	 * Constructeur de la classe Coller
-	 *
+	 * Constructeur de la classe Copier
+	 * 
 	 * @param moteur
-	 *            le moteur
 	 * @param enregistreur
-	 *            l'enregistreur
+	 * @param state
 	 */
-	public Coller(Moteur moteur, Enregistreur enregistreur) {
+	public Coller(Moteur moteur, Enregistreur enregistreur, State state) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
+		this.state = state;
 	}
 
 	/**
@@ -48,6 +51,8 @@ public class Coller implements Command {
 			enregistreur.addMemento(getMemento());
 			enregistreur.addCommand(this);
 		}
+		state.addMemento(getMemento());
+		state.addCmd(this);
 	}
 
 	@Override
@@ -70,6 +75,14 @@ public class Coller implements Command {
 
 	public void setColerMemento(CollerMemento memento) {
 		this.memento = memento;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 }

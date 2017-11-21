@@ -1,5 +1,6 @@
 package command;
 
+import etats.State;
 import memento.Memento;
 import receiver.Enregistreur;
 import receiver.Moteur;
@@ -23,14 +24,17 @@ public class Couper implements Command {
 
 	private CouperMemento memento;
 
+	private State state;
+
 	/**
 	 * Constructeur de la classe Couper
 	 *
 	 * @param moteur
 	 */
-	public Couper(Moteur moteur, Enregistreur enregistreur) {
+	public Couper(Moteur moteur, Enregistreur enregistreur, State state) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
+		this.state = state;
 	}
 
 	// Operations
@@ -47,6 +51,8 @@ public class Couper implements Command {
 			enregistreur.addMemento(getMemento());
 			enregistreur.addCommand(this);
 		}
+		state.addMemento(getMemento());
+		state.addCmd(this);
 	}
 
 	@Override

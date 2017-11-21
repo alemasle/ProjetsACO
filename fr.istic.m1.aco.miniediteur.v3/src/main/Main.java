@@ -2,10 +2,27 @@ package main;
 
 import java.util.Scanner;
 
-import command.*;
+import command.Ajouter;
+import command.Coller;
+import command.Copier;
+import command.Couper;
+import command.Defaire;
+import command.Delete;
+import command.Demarrer;
+import command.Inserer;
+import command.Load;
+import command.NewLine;
+import command.Refaire;
+import command.Rejouer;
+import command.Save;
+import command.Selectionner;
+import command.Stopper;
+import etats.State;
 import ihm.Ihm;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
+import receiver.Manager;
+import receiver.ManagerImpl;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -23,25 +40,29 @@ public class Main {
 
 		Moteur moteur = new MoteurImpl(buffer, clip, selection);
 		Enregistreur enregistreur = new EnregistrerImpl();
+		Manager manager = new ManagerImpl(moteur);
+		State state = new State(manager);
 
-		Coller coller = new Coller(moteur, enregistreur);
-		Copier copier = new Copier(moteur, enregistreur);
-		Couper couper = new Couper(moteur, enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
+		Coller coller = new Coller(moteur, enregistreur, state);
+		Copier copier = new Copier(moteur, enregistreur, state);
+		Couper couper = new Couper(moteur, enregistreur, state);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur, state);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur, state);
 		Save save = new Save(moteur, ihm);
-		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur, enregistreur);
+		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur, state);
+		Delete delete = new Delete(moteur, enregistreur, state);
 		Load load = new Load(moteur, ihm);
-		NewLine newLine = new NewLine(moteur, enregistreur);
+		NewLine newLine = new NewLine(moteur, enregistreur, state);
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
+		Defaire defaire = new Defaire(manager);
+		Refaire refaire = new Refaire(manager);
 
 		Scanner input = new Scanner(System.in);
 
 		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
-				load, demarrer, stopper, rejouer, newLine);
+				load, demarrer, stopper, rejouer, newLine, defaire, refaire);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
