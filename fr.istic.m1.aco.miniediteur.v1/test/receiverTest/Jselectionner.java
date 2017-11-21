@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import command.Ajouter;
 import command.Coller;
-import command.Command;
 import command.Copier;
 import command.Couper;
 import command.Delete;
@@ -32,7 +31,7 @@ import state.Selection;
  */
 
 public class Jselectionner {
-	
+
 	@Test
 	public void testExecute1() {
 
@@ -40,11 +39,10 @@ public class Jselectionner {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
-		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		
+
 		Ihm ihm = null;
-		
+
 		Coller coller = new Coller(moteur);
 		Copier copier = new Copier(moteur);
 		Couper couper = new Couper(moteur);
@@ -65,7 +63,7 @@ public class Jselectionner {
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-		
+
 		selectionner.execute();
 
 		assertTrue(selection.getDebut() <= selection.getFin());
@@ -79,11 +77,10 @@ public class Jselectionner {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
-		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		
+
 		Ihm ihm = null;
-		
+
 		Coller coller = new Coller(moteur);
 		Copier copier = new Copier(moteur);
 		Couper couper = new Couper(moteur);
@@ -104,7 +101,6 @@ public class Jselectionner {
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-
 
 		selectionner.execute();
 
@@ -119,11 +115,10 @@ public class Jselectionner {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
-		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		
+
 		Ihm ihm = null;
-		
+
 		Coller coller = new Coller(moteur);
 		Copier copier = new Copier(moteur);
 		Couper couper = new Couper(moteur);
@@ -144,26 +139,23 @@ public class Jselectionner {
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-	
-		
+
 		selectionner.execute();
 
 		assertTrue(selection.getDebut() == selection.getFin());
-	
+
 	}
 
 	@Test
 	public void testGetValues() {
-		StringBuffer stringBuffer = new StringBuffer("couper");
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 
-		
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		
+
 		Ihm ihm = null;
-		
+
 		Coller coller = new Coller(moteur);
 		Copier copier = new Copier(moteur);
 		Couper couper = new Couper(moteur);
@@ -187,9 +179,9 @@ public class Jselectionner {
 
 		selectionner.execute();
 
-		if(selection.getDebut() > buffer.getBuffer().length()) {
+		if (selection.getDebut() > buffer.getBuffer().length()) {
 			assertNotEquals(selection.getDebut(), selection.getFin());
 		}
 	}
-	
+
 }
