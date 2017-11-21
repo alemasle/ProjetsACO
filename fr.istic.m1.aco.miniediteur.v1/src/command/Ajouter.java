@@ -1,7 +1,8 @@
 package command;
 
-import ihm.*;
+import ihm.Ihm;
 import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Inserer" implementant l'interface Command

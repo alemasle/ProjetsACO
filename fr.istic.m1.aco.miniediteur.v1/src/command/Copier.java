@@ -1,6 +1,7 @@
 package command;
 
 import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Copier" implementant l'interface Command

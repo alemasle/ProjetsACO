@@ -1,21 +1,17 @@
 package receiverTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
-
 import command.Command;
-import command.Delete;
 import command.Couper;
-
 import receiver.Moteur;
 import receiver.MoteurImpl;
-import command.*;
-import receiver.*;
 import state.Buffer;
-import state.*;
+import state.ClipBoard;
+import state.ClipboardImpl;
+import state.Selection;
 
 /**
  * Fichier Test Couper

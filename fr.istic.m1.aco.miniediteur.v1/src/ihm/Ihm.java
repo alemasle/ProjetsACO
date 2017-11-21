@@ -1,8 +1,19 @@
 package ihm;
 
 import java.util.Scanner;
-import command.*;
-import state.*;
+
+import command.Ajouter;
+import command.Coller;
+import command.Command;
+import command.Copier;
+import command.Couper;
+import command.Delete;
+import command.Inserer;
+import command.Load;
+import command.Save;
+import command.Selectionner;
+import state.Buffer;
+import state.Selection;
 
 /**
  * 

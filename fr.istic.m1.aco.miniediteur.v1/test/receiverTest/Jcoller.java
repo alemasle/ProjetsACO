@@ -1,13 +1,11 @@
 package receiverTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-
 import command.Coller;
 import command.Command;
-
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;

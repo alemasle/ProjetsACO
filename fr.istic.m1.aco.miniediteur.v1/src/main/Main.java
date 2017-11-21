@@ -1,10 +1,23 @@
 package main;
 
-import command.*;
-import ihm.*;
-import receiver.*;
-import state.*;
 import java.util.Scanner;
+
+import command.Ajouter;
+import command.Coller;
+import command.Copier;
+import command.Couper;
+import command.Delete;
+import command.Inserer;
+import command.Load;
+import command.Save;
+import command.Selectionner;
+import ihm.Ihm;
+import receiver.Moteur;
+import receiver.MoteurImpl;
+import state.Buffer;
+import state.ClipBoard;
+import state.ClipboardImpl;
+import state.Selection;
 
 public class Main {
 

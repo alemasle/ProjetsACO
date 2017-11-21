@@ -2,6 +2,8 @@ package receiver;
 
 import java.util.Stack;
 
+import etats.State;
+
 /**
  * 
  * Classe ManagerImpl implementant Manager

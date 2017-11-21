@@ -2,6 +2,7 @@ package command;
 
 import ihm.Ihm;
 import receiver.Moteur;
+import receiver.MoteurImpl;
 
 /**
  * Concrete Command "Save" implementant l'interface Command

@@ -1,19 +1,17 @@
 package receiverTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Test;
 
 import command.Command;
 import command.Copier;
-
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
 import state.ClipBoard;
 import state.ClipboardImpl;
 import state.Selection;
-
-import org.junit.Test;
 
 /**
  * Fichier Test Copier
