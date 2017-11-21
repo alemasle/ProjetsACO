@@ -50,7 +50,7 @@ public class Copier implements Command {
 		return new CopierMemento();
 	}
 
-	private class CopierMemento implements Memento<CopierMemento> {
+	public class CopierMemento implements Memento<CopierMemento> {
 
 	}
 

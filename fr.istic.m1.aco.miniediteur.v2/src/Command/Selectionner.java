@@ -81,7 +81,7 @@ public class Selectionner implements Command {
 		return new SelectionnerMemento();
 	}
 
-	private class SelectionnerMemento implements Memento<SelectionnerMemento> {
+	public class SelectionnerMemento implements Memento<SelectionnerMemento> {
 
 		int deb;
 		int fin;

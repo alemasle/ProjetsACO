@@ -77,7 +77,7 @@ public class Ajouter implements Command {
 		return new AjouterMemento();
 	}
 
-	private class AjouterMemento implements Memento<AjouterMemento> {
+	public class AjouterMemento implements Memento<AjouterMemento> {
 
 		String texte;
 

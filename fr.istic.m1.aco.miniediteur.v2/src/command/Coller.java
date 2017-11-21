@@ -55,7 +55,7 @@ public class Coller implements Command {
 		return new CollerMemento();
 	}
 
-	private class CollerMemento implements Memento<CollerMemento> {
+	public class CollerMemento implements Memento<CollerMemento> {
 
 	}
 

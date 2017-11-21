@@ -55,7 +55,7 @@ public class Delete implements Command {
 		return new DeleteMemento();
 	}
 
-	private class DeleteMemento implements Memento<DeleteMemento> {
+	public class DeleteMemento implements Memento<DeleteMemento> {
 
 	}
 

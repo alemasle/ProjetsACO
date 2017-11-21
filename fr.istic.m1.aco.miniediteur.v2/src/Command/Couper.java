@@ -54,7 +54,7 @@ public class Couper implements Command {
 		return new CouperMemento();
 	}
 
-	private class CouperMemento implements Memento<CouperMemento> {
+	public class CouperMemento implements Memento<CouperMemento> {
 
 	}
 

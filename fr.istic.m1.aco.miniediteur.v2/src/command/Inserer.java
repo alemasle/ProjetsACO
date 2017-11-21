@@ -75,7 +75,7 @@ public class Inserer implements Command {
 		return new InsererMemento();
 	}
 
-	private class InsererMemento implements Memento<InsererMemento> {
+	public class InsererMemento implements Memento<InsererMemento> {
 
 		private String texte;
 
