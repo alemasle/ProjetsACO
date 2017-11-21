@@ -65,14 +65,11 @@ public class Jselectionner {
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-
-		int deb = 0;
-		int fin = 10;
 		
 		selectionner.execute();
 
 		assertTrue(selection.getDebut() <= selection.getFin());
-		assertFalse(selection.getDebut() >= selection.getFin());
+		assertFalse(selection.getDebut() > selection.getFin());
 	}
 
 	@Test
@@ -108,12 +105,10 @@ public class Jselectionner {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 
-		int deb = 10;
-		int fin = 0;
 
 		selectionner.execute();
 
-		assertFalse(selection.getDebut() >= selection.getFin());
+		assertFalse(selection.getDebut() > selection.getFin());
 		assertTrue(selection.getDebut() <= selection.getFin());
 	}
 
@@ -150,15 +145,11 @@ public class Jselectionner {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 	
-		int deb = 5;
-		int fin = 5;
-		
 		
 		selectionner.execute();
 
-		assertTrue(selection.getDebut() <= selection.getFin());
 		assertTrue(selection.getDebut() == selection.getFin());
-		assertTrue(selection.getDebut() >= selection.getFin());
+	
 	}
 
 	@Test
@@ -194,12 +185,11 @@ public class Jselectionner {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 
-		int deb = 5, fin = 2;
-	
-		
 		selectionner.execute();
 
-		assertNotEquals(selection.getDebut(), selection.getFin());
+		if(selection.getDebut() > buffer.getBuffer().length()) {
+			assertNotEquals(selection.getDebut(), selection.getFin());
+		}
 	}
 	
 }

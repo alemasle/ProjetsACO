@@ -65,15 +65,15 @@ public class Jinserer {
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-
+		String str = new String ("insere");
 		StringBuffer stringBuffer = new StringBuffer("abcdef");
 
 		buffer.setBuffer(stringBuffer);
 
 		selection.setDebut(6);
 		selection.setFin(6);
-		inserer.execute();
-
+		moteur.inserer(str);
+		
 		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
@@ -154,9 +154,9 @@ public class Jinserer {
 		buffer.setBuffer(stringBuffer);
 
 		selection.setDebut(6);
+		selection.setFin(11);
+		moteur.ajouter(str);
 		
-		inserer.execute();
-
 		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
@@ -199,10 +199,58 @@ public class Jinserer {
 		buffer.setBuffer(stringBuffer);
 
 		selection.setDebut(3);
+		selection.setFin(3);
 		
-		inserer.execute();
+		moteur.ajouter(str);
 
 		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
+
+	} 
+	
+
+	@Test
+	public void testInserer5() {
+
+		String str = new String("abcdef");
+		StringBuffer stringBuffer = new StringBuffer("insere");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+
+		
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		
+		Ihm ihm = null;
+		
+		Coller coller = new Coller(moteur);
+		Copier copier = new Copier(moteur);
+		Couper couper = new Couper(moteur);
+		Inserer inserer = new Inserer(moteur, ihm);
+		Selectionner selectionner = new Selectionner(moteur, ihm);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm);
+		Delete delete = new Delete(moteur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner input = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, input, save, ajouter, delete,
+				load);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+
+		buffer.setBuffer(stringBuffer);
+
+		selection.setDebut(3);
+		selection.setFin(6);
+		
+		moteur.ajouter(str);
+
+		assertTrue(("insabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	} 
 }
