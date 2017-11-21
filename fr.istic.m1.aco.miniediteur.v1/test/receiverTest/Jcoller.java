@@ -26,31 +26,6 @@ public class Jcoller {
 
 	
 	
-	@Test
-	public void testColler() {
-		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-
-		Command coller = new Coller(moteur);
-
-		assertTrue(true);
-		assertFalse(false);
-	}
-
-	@Test
-	public void testExecute() {
-		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		
-
-		Command coller = new Coller(moteur);
-
-	}
-	
 	/**
 	 * Coller la chaine=abcdef et le stringBuffer=ABCDEFGH (concat�nation donne abcdefABCDEFGH )
 	 * test en assertTrue
