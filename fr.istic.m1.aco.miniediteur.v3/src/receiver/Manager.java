@@ -20,4 +20,8 @@ public interface Manager {
 
 	State getStateCourant();
 
+	boolean getPlay();
+
+	void setPlay(boolean play);
+
 }

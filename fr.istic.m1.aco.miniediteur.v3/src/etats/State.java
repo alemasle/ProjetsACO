@@ -7,6 +7,7 @@ import command.Command;
 import memento.Memento;
 import receiver.Manager;
 import state.Buffer;
+import state.ClipBoard;
 import state.Selection;
 
 /**
@@ -33,6 +34,11 @@ public class State {
 	 * Le manager pour sauvegarder un State
 	 */
 	private Manager manager;
+
+	/**
+	 * Le clipboard a sauvegarder a l'etat courant
+	 */
+	private ClipBoard clip;
 
 	/**
 	 * Liste des commandes a sauvegarder dans le State courant liees aux mementos
@@ -64,21 +70,7 @@ public class State {
 		if (lcmd.size() < 5) {
 			lcmd.add(cmd);
 		} else {
-			State newState = new State(manager);
-			Buffer b = new Buffer();
-			b = buf;
-			List<Command> lc = new ArrayList<Command>();
-			lc = lcmd;
-			List<Memento<?>> lm = new ArrayList<Memento<?>>();
-			lm = lmem;
-			newState.setBuf(b);
-			newState.setLcmd(lc);
-			newState.setLmem(lm);
-			newState.setSelection(selection);
-			manager.setStateCourant(newState);
-			lcmd = new ArrayList<Command>();
-			lmem = new ArrayList<Memento<?>>();
-			System.out.println("New state saved");
+			saveState();
 		}
 	}
 
@@ -92,22 +84,26 @@ public class State {
 		if (lmem.size() < 5) {
 			lmem.add(mem);
 		} else {
-			State newState = new State(manager);
-			Buffer b = new Buffer();
-			b = buf;
-			List<Command> lc = new ArrayList<Command>();
-			lc = lcmd;
-			List<Memento<?>> lm = new ArrayList<Memento<?>>();
-			lm = lmem;
-			newState.setBuf(b);
-			newState.setLcmd(lc);
-			newState.setLmem(lm);
-			newState.setSelection(selection);
-			manager.setStateCourant(newState);
-			lcmd = new ArrayList<Command>();
-			lmem = new ArrayList<Memento<?>>();
-			System.out.println("New state saved");
+			saveState();
 		}
+	}
+
+	private void saveState() {
+		State newState = new State(manager);
+		Buffer b = new Buffer();
+		b = buf;
+		List<Command> lc = new ArrayList<Command>();
+		lc = lcmd;
+		List<Memento<?>> lm = new ArrayList<Memento<?>>();
+		lm = lmem;
+		newState.setBuf(b);
+		newState.setLcmd(lc);
+		newState.setLmem(lm);
+		newState.setSelection(selection);
+		manager.setStateCourant(newState);
+		lcmd = new ArrayList<Command>();
+		lmem = new ArrayList<Memento<?>>();
+		System.out.println("New state saved");
 	}
 
 	////////////////////////////////////////////////////////
@@ -144,6 +140,22 @@ public class State {
 
 	public void setSelection(Selection selection) {
 		this.selection = selection;
+	}
+
+	public Manager getManager() {
+		return manager;
+	}
+
+	public void setManager(Manager manager) {
+		this.manager = manager;
+	}
+
+	public ClipBoard getClip() {
+		return clip;
+	}
+
+	public void setClip(ClipBoard clip) {
+		this.clip = clip;
 	}
 
 }

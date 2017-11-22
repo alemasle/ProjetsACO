@@ -57,7 +57,7 @@ public class Ajouter implements Command {
 	 */
 	public void execute() {
 		String str = "";
-		if (enregistreur.getPlay()) {
+		if (enregistreur.getPlay() || state.getManager().getPlay()) {
 			str = memento.getTexte();
 			moteur.ajouter(str);
 		} else {

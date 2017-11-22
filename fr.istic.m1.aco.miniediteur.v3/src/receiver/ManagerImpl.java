@@ -1,11 +1,9 @@
 package receiver;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 import command.Command;
 import etats.State;
-import memento.Memento;
 
 /**
  * 
@@ -62,9 +60,7 @@ public class ManagerImpl implements Manager {
 	private void rejouer(boolean b) {
 
 		State sold = new State(this);
-		sold.setBuf(moteur.getBuffer());
-		sold.setLcmd(new ArrayList<Command>());
-		sold.setLmem(new ArrayList<Memento<?>>());
+		sold = stateCourant;
 
 		State st = null;
 
@@ -80,7 +76,7 @@ public class ManagerImpl implements Manager {
 			Command cmdCurrent = null;
 			setPlay(true);
 
-			for (int i = 0; i < st.getLcmd().size(); i++) {
+			for (int i = 0; i < st.getLcmd().size() - 1; i++) {
 				cmdCurrent = st.getLcmd().get(i);
 				cmdCurrent.setMemento(st.getLmem().get(i));
 				cmdCurrent.execute();
@@ -90,7 +86,7 @@ public class ManagerImpl implements Manager {
 		}
 
 		moteur.setBuffer(st.getBuf());
-		int len = st.getBuf().getBuffer().length() - 1;
+		int len = st.getBuf().getBuffer().length();
 		moteur.getSelect().setDebut(len);
 		moteur.getSelect().setFin(len);
 	}
@@ -103,7 +99,7 @@ public class ManagerImpl implements Manager {
 		this.moteur = moteur;
 	}
 
-	public boolean isPlay() {
+	public boolean getPlay() {
 		return play;
 	}
 
