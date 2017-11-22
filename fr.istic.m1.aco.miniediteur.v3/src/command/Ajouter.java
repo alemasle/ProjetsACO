@@ -70,8 +70,11 @@ public class Ajouter implements Command {
 				enregistreur.addCommand(this);
 			}
 		}
-		state.addMemento(getMemento());
+		AjouterMemento m = getMemento();
+		m.setTexte(str);
+		state.addMemento(m);
 		state.addCmd(this);
+		state.setSelection(moteur.getSelect());
 	}
 
 	public void setIhm(Ihm ihm) {

@@ -65,10 +65,16 @@ public class State {
 			lcmd.add(cmd);
 		} else {
 			State newState = new State(manager);
-			newState.setBuf(buf);
-			newState.setLcmd(new ArrayList<Command>());
-			newState.setLmem(new ArrayList<Memento<?>>());
-			newState.setSelection(new Selection());
+			Buffer b = new Buffer();
+			b = buf;
+			List<Command> lc = new ArrayList<Command>();
+			lc = lcmd;
+			List<Memento<?>> lm = new ArrayList<Memento<?>>();
+			lm = lmem;
+			newState.setBuf(b);
+			newState.setLcmd(lc);
+			newState.setLmem(lm);
+			newState.setSelection(selection);
 			manager.setStateCourant(newState);
 			lcmd = new ArrayList<Command>();
 			lmem = new ArrayList<Memento<?>>();
@@ -87,10 +93,16 @@ public class State {
 			lmem.add(mem);
 		} else {
 			State newState = new State(manager);
-			newState.setBuf(buf);
-			newState.setLcmd(new ArrayList<Command>());
-			newState.setLmem(new ArrayList<Memento<?>>());
-			newState.setSelection(new Selection());
+			Buffer b = new Buffer();
+			b = buf;
+			List<Command> lc = new ArrayList<Command>();
+			lc = lcmd;
+			List<Memento<?>> lm = new ArrayList<Memento<?>>();
+			lm = lmem;
+			newState.setBuf(b);
+			newState.setLcmd(lc);
+			newState.setLmem(lm);
+			newState.setSelection(selection);
 			manager.setStateCourant(newState);
 			lcmd = new ArrayList<Command>();
 			lmem = new ArrayList<Memento<?>>();

@@ -90,7 +90,7 @@ public class ManagerImpl implements Manager {
 		}
 
 		moteur.setBuffer(st.getBuf());
-		int len = st.getBuf().getBuffer().length();
+		int len = st.getBuf().getBuffer().length() - 1;
 		moteur.getSelect().setDebut(len);
 		moteur.getSelect().setFin(len);
 	}
