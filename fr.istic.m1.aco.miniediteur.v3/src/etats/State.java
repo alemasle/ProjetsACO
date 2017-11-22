@@ -64,7 +64,12 @@ public class State {
 		if (lcmd.size() < 5) {
 			lcmd.add(cmd);
 		} else {
-			manager.setStateCourant(this);
+			State newState = new State(manager);
+			newState.setBuf(buf);
+			newState.setLcmd(new ArrayList<Command>());
+			newState.setLmem(new ArrayList<Memento<?>>());
+			newState.setSelection(new Selection());
+			manager.setStateCourant(newState);
 			lcmd = new ArrayList<Command>();
 			lmem = new ArrayList<Memento<?>>();
 			System.out.println("New state saved");
@@ -81,7 +86,12 @@ public class State {
 		if (lmem.size() < 5) {
 			lmem.add(mem);
 		} else {
-			manager.setStateCourant(this);
+			State newState = new State(manager);
+			newState.setBuf(buf);
+			newState.setLcmd(new ArrayList<Command>());
+			newState.setLmem(new ArrayList<Memento<?>>());
+			newState.setSelection(new Selection());
+			manager.setStateCourant(newState);
 			lcmd = new ArrayList<Command>();
 			lmem = new ArrayList<Memento<?>>();
 			System.out.println("New state saved");
