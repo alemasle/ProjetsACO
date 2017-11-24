@@ -212,7 +212,7 @@ public class Ihm {
 	public void executeCommand() {
 		Boolean quit = false;
 
-		clearScreen();
+		System.out.println("");
 		System.out.println("_____________________________________");
 		System.out.println("--------- Mini Text Editor ----------");
 		System.out.println("_____________________________________");
@@ -374,7 +374,8 @@ public class Ihm {
 				System.out.println(printBuffer());
 				System.out.println("");
 				defaire.execute();
-				clearScreen();
+				System.out.println("");
+				// clearScreen();
 				break;
 
 			case 'y': // Return to the previous state, redo action

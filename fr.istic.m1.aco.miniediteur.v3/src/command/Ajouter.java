@@ -71,11 +71,13 @@ public class Ajouter implements Command {
 				enregistreur.addCommand(this);
 			}
 		}
-		State st = manager.getStateCourant();
-		m.setTexte(str);
-		st.getLmem().add(m);
-		st.getLcmd().add(this);
-		manager.saveState();
+		if (!manager.getPlay()) {
+			State st = manager.getStateCourant();
+			m.setTexte(str);
+			st.getLmem().add(m);
+			st.getLcmd().add(this);
+			manager.saveState();
+		}
 	}
 
 	public void setIhm(Ihm ihm) {

@@ -36,38 +36,50 @@ public class ManagerImpl implements Manager {
 	 * defait la derniere action
 	 */
 	public void defaire() {
-		List<Command> lcmd = stateCourant.getLcmd();
+		List<Command> lcmd = new ArrayList<Command>();
 		Command cmd = null;
 
 		State ns = new State(stateCourant.getMoteur());
 		ns.setLcmd(stateCourant.getLcmd());
 		ns.setLmem(stateCourant.getLmem());
 		refaireStack.push(ns);
+		lcmd = ns.getLcmd();
 
 		if (lcmd.size() == 0) {
+			System.out.println("IF");
 			if (!defaireStack.isEmpty()) {
 				stateCourant = defaireStack.pop();
 				State nst = new State(stateCourant.getMoteur());
+				nst.setLcmd(stateCourant.getLcmd());
+				nst.setLmem(stateCourant.getLmem());
 				lcmd = nst.getLcmd();
 				moteur = nst.getMoteur();
-				for (int i = 0; i < 5; i++) {
+				System.out.println("lcmd size IF: " + lcmd.size());
+				for (int i = 0; i < lcmd.size(); i++) {
 					setPlay(true);
 					cmd = lcmd.get(i);
-					cmd.setMoteur(moteur);
-					cmd.setMemento(stateCourant.getLmem().get(i));
+					cmd.setMemento(nst.getLmem().get(i));
 					cmd.execute();
 					setPlay(false);
 				}
 			}
 		} else {
+			// stateCourant.getLcmd().remove(stateCourant.getLcmd().size() - 1);
+			// stateCourant.getLmem().remove(stateCourant.getLmem().size() - 1);
+			System.out.println("ELSE");
 			State nst = new State(stateCourant.getMoteur());
+			System.out.println("Buffer state current " + nst.getMoteur().getBuffer().getBuffer().toString());
+
+			nst.setLcmd(stateCourant.getLcmd());
+			nst.setLmem(stateCourant.getLmem());
 			lcmd = nst.getLcmd();
 			moteur = nst.getMoteur();
+			System.out.println("lcmd size ELSE: " + lcmd.size() + " elements");
+
 			for (int i = 0; i < lcmd.size() - 1; i++) {
 				setPlay(true);
 				cmd = lcmd.get(i);
-				cmd.setMoteur(moteur);
-				cmd.setMemento(stateCourant.getLmem().get(i));
+				cmd.setMemento(nst.getLmem().get(i));
 				cmd.execute();
 				setPlay(false);
 			}
@@ -90,6 +102,8 @@ public class ManagerImpl implements Manager {
 			stateCourant = refaireStack.pop();
 
 			State nst = new State(stateCourant.getMoteur());
+			nst.setLcmd(stateCourant.getLcmd());
+			nst.setLmem(stateCourant.getLmem());
 			lcmd = nst.getLcmd();
 			moteur = nst.getMoteur();
 
@@ -97,7 +111,7 @@ public class ManagerImpl implements Manager {
 				setPlay(true);
 				cmd = lcmd.get(i);
 				cmd.setMoteur(moteur);
-				cmd.setMemento(stateCourant.getLmem().get(i));
+				cmd.setMemento(nst.getLmem().get(i));
 				cmd.execute();
 				setPlay(false);
 			}
@@ -112,6 +126,8 @@ public class ManagerImpl implements Manager {
 		List<Command> lcmd = stateCourant.getLcmd();
 		if (lcmd.size() == 5) {
 			State oldSt = new State(stateCourant.getMoteur());
+			oldSt.setLcmd(stateCourant.getLcmd());
+			oldSt.setLmem(stateCourant.getLmem());
 			defaireStack.push(oldSt);
 
 			State ns = new State(stateCourant.getMoteur());

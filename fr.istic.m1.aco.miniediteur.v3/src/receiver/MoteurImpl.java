@@ -93,15 +93,17 @@ public class MoteurImpl implements Moteur {
 	 * selection currently
 	 */
 	public void delete() {
-		int deb = select.getDebut();
-		int fin = select.getFin();
+		if (buffer.getBuffer().length() > 0) {
+			int deb = select.getDebut();
+			int fin = select.getFin();
 
-		if (deb == fin && deb > 0) {
-			buffer.getBuffer().delete(deb - 1, deb);
-			select.setDebut(deb - 1);
-			select.setFin(deb - 1);
-		} else {
-			removeSelect();
+			if (deb == fin && deb > 0) {
+				buffer.getBuffer().delete(deb - 1, deb);
+				select.setDebut(deb - 1);
+				select.setFin(deb - 1);
+			} else {
+				removeSelect();
+			}
 		}
 	}
 

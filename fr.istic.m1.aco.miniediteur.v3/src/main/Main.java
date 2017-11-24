@@ -17,7 +17,6 @@ import command.Rejouer;
 import command.Save;
 import command.Selectionner;
 import command.Stopper;
-import etats.State;
 import ihm.Ihm;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
