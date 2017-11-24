@@ -76,7 +76,8 @@ public class Ajouter implements Command {
 	public AjouterMemento getMemento() {
 		return new AjouterMemento();
 	}
-
+	
+	//TODO a ajouter pour UML
 	public class AjouterMemento implements Memento<AjouterMemento> {
 
 		String texte;
