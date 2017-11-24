@@ -41,18 +41,17 @@ public class Main {
 		Moteur moteur = new MoteurImpl(buffer, clip, selection);
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Manager manager = new ManagerImpl(moteur);
-		State state = new State(manager);
 
-		Coller coller = new Coller(moteur, enregistreur, state);
-		Copier copier = new Copier(moteur, enregistreur, state);
-		Couper couper = new Couper(moteur, enregistreur, state);
-		Inserer inserer = new Inserer(moteur, ihm, enregistreur, state);
-		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur, state);
+		Coller coller = new Coller(moteur, enregistreur, manager);
+		Copier copier = new Copier(moteur, enregistreur, manager);
+		Couper couper = new Couper(moteur, enregistreur, manager);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur, manager);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur, manager);
 		Save save = new Save(moteur, ihm);
-		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur, state);
-		Delete delete = new Delete(moteur, enregistreur, state);
+		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur, manager);
+		Delete delete = new Delete(moteur, enregistreur, manager);
 		Load load = new Load(moteur, ihm);
-		NewLine newLine = new NewLine(moteur, enregistreur, state);
+		NewLine newLine = new NewLine(moteur, enregistreur, manager);
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);

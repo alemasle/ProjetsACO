@@ -4,6 +4,7 @@ import etats.State;
 import ihm.Ihm;
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Manager;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -31,7 +32,7 @@ public class Ajouter implements Command {
 
 	private AjouterMemento memento;
 
-	private State state;
+	private Manager manager;
 
 	/**
 	 * Constructeur de la classe Inserer
@@ -39,11 +40,11 @@ public class Ajouter implements Command {
 	 * @param moteur
 	 * @param str
 	 */
-	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur, State state) {
+	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.ihm = ihm;
 		this.enregistreur = enregistreur;
-		this.state = state;
+		this.manager = manager;
 	}
 
 	// Operations
@@ -57,24 +58,24 @@ public class Ajouter implements Command {
 	 */
 	public void execute() {
 		String str = "";
-		if (enregistreur.getPlay() || state.getManager().getPlay()) {
+		AjouterMemento m = getMemento();
+		if (enregistreur.getPlay() || manager.getPlay()) {
 			str = memento.getTexte();
 			moteur.ajouter(str);
 		} else {
 			str = ihm.getText();
 			moteur.ajouter(str);
 			if (enregistreur.getRecord()) {
-				AjouterMemento m = getMemento();
 				m.setTexte(str);
 				enregistreur.addMemento(m);
 				enregistreur.addCommand(this);
 			}
 		}
-		AjouterMemento m = getMemento();
+		State st = manager.getStateCourant();
 		m.setTexte(str);
-		state.addMemento(m);
-		state.addCmd(this);
-		state.setSelection(moteur.getSelect());
+		st.getLmem().add(m);
+		st.getLcmd().add(this);
+		manager.saveState();
 	}
 
 	public void setIhm(Ihm ihm) {
@@ -103,6 +104,16 @@ public class Ajouter implements Command {
 	@Override
 	public void setMemento(Memento<?> mem) {
 		this.memento = (AjouterMemento) mem;
+	}
+
+	@Override
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

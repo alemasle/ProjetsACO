@@ -16,6 +16,8 @@ public interface Manager {
 
 	void refaire();
 
+	void saveState();
+
 	void setStateCourant(State s);
 
 	State getStateCourant();

@@ -3,6 +3,7 @@ package command;
 import etats.State;
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Manager;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -24,7 +25,7 @@ public class Coller implements Command {
 
 	private CollerMemento memento;
 
-	private State state;
+	private Manager manager;
 
 	/**
 	 * Constructeur de la classe Copier
@@ -33,10 +34,10 @@ public class Coller implements Command {
 	 * @param enregistreur
 	 * @param state
 	 */
-	public Coller(Moteur moteur, Enregistreur enregistreur, State state) {
+	public Coller(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
-		this.state = state;
+		this.manager = manager;
 	}
 
 	/**
@@ -47,12 +48,15 @@ public class Coller implements Command {
 	 */
 	public void execute() {
 		moteur.coller();
+		CollerMemento m = getMemento();
 		if (enregistreur.getRecord()) {
-			enregistreur.addMemento(getMemento());
+			enregistreur.addMemento(m);
 			enregistreur.addCommand(this);
 		}
-		state.addMemento(getMemento());
-		state.addCmd(this);
+		State st = manager.getStateCourant();
+		st.getLmem().add(m);
+		st.getLcmd().add(this);
+		manager.saveState();
 	}
 
 	@Override
@@ -77,12 +81,14 @@ public class Coller implements Command {
 		this.memento = memento;
 	}
 
-	public State getState() {
-		return state;
+	@Override
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

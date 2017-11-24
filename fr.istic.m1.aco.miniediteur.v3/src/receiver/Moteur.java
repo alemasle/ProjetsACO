@@ -1,6 +1,7 @@
 package receiver;
 
 import state.Buffer;
+import state.ClipBoard;
 import state.Selection;
 
 /**
@@ -36,6 +37,10 @@ public interface Moteur {
 	public Selection getSelect();
 
 	public void setSelect(Selection select);
+
+	public ClipBoard getClip();
+
+	public void setClip(ClipBoard clip);
 
 	public void newLine();
 }

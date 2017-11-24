@@ -4,6 +4,7 @@ import etats.State;
 import ihm.Ihm;
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Manager;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -32,13 +33,13 @@ public class Selectionner implements Command {
 
 	private SelectionnerMemento memento;
 
-	private State state;
+	private Manager manager;
 
-	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur, State state) {
+	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.ihm = ihm;
 		this.enregistreur = enregistreur;
-		this.state = state;
+		this.manager = manager;
 	}
 
 	// Operations
@@ -53,7 +54,8 @@ public class Selectionner implements Command {
 	 * 
 	 */
 	public void execute() {
-		if (enregistreur.getPlay()) {
+		SelectionnerMemento m = getMemento();
+		if (enregistreur.getPlay() || manager.getPlay()) {
 			deb = memento.getDeb();
 			fin = memento.getFin();
 			moteur.selectionner(deb, fin);
@@ -67,15 +69,16 @@ public class Selectionner implements Command {
 			}
 			moteur.selectionner(deb, fin);
 			if (enregistreur.getRecord()) {
-				SelectionnerMemento m = getMemento();
 				m.setDeb(deb);
 				m.setFin(fin);
 				enregistreur.addMemento(m);
 				enregistreur.addCommand(this);
 			}
 		}
-		state.addMemento(getMemento());
-		state.addCmd(this);
+		State st = manager.getStateCourant();
+		st.getLmem().add(m);
+		st.getLcmd().add(this);
+		manager.saveState();
 	}
 
 	public void setIhm(Ihm ihm) {
@@ -113,6 +116,16 @@ public class Selectionner implements Command {
 	@Override
 	public void setMemento(Memento<?> mem) {
 		this.memento = (SelectionnerMemento) mem;
+	}
+
+	@Override
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

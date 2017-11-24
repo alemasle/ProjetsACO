@@ -5,10 +5,7 @@ import java.util.List;
 
 import command.Command;
 import memento.Memento;
-import receiver.Manager;
-import state.Buffer;
-import state.ClipBoard;
-import state.Selection;
+import receiver.Moteur;
 
 /**
  * 
@@ -20,102 +17,22 @@ import state.Selection;
  */
 public class State {
 
-	/**
-	 * Buffer a sauvegarder dans le State courant.
-	 */
-	private Buffer buf;
+	private Moteur moteur;
 
-	/**
-	 * Selection a sauvegarder dans le State courant.
-	 */
-	private Selection selection;
-
-	/**
-	 * Le manager pour sauvegarder un State
-	 */
-	private Manager manager;
-
-	/**
-	 * Le clipboard a sauvegarder a l'etat courant
-	 */
-	private ClipBoard clip;
-
-	/**
-	 * Liste des commandes a sauvegarder dans le State courant liees aux mementos
-	 */
 	private List<Command> lcmd = new ArrayList<Command>();
 
-	/**
-	 * Liste des mementos a sauvegarder dans le State courant lies aux commandes
-	 * enregistree.
-	 */
 	private List<Memento<?>> lmem = new ArrayList<Memento<?>>();
 
-	/**
-	 * Constructeur de State
-	 * 
-	 * @param manager
-	 */
-	public State(Manager manager) {
-		this.manager = manager;
+	public State(Moteur moteur) {
+		this.setMoteur(moteur);
 	}
 
-	/**
-	 * Permet d'ajouter cmd dans la liste des commandes lcmd
-	 * 
-	 * @param cmd
-	 *            la commande a ajouter
-	 */
-	public void addCmd(Command cmd) {
-		if (lcmd.size() < 5) {
-			lcmd.add(cmd);
-		} else {
-			saveState();
-		}
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
-	/**
-	 * Permet d'ajouter mem dans la liste des mementos lmem
-	 * 
-	 * @param mem
-	 *            le memento a ajouter
-	 */
-	public void addMemento(Memento<?> mem) {
-		if (lmem.size() < 5) {
-			lmem.add(mem);
-		} else {
-			saveState();
-		}
-	}
-
-	private void saveState() {
-		State newState = new State(manager);
-		Buffer b = new Buffer();
-		b = buf;
-		List<Command> lc = new ArrayList<Command>();
-		lc = lcmd;
-		List<Memento<?>> lm = new ArrayList<Memento<?>>();
-		lm = lmem;
-		newState.setBuf(b);
-		newState.setLcmd(lc);
-		newState.setLmem(lm);
-		newState.setSelection(selection);
-		manager.setStateCourant(newState);
-		lcmd = new ArrayList<Command>();
-		lmem = new ArrayList<Memento<?>>();
-		System.out.println("New state saved");
-	}
-
-	////////////////////////////////////////////////////////
-
-	// Getter et Setter de tous les attributs de la classe State
-
-	public Buffer getBuf() {
-		return buf;
-	}
-
-	public void setBuf(Buffer buf) {
-		this.buf = buf;
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
 	}
 
 	public List<Command> getLcmd() {
@@ -132,30 +49,6 @@ public class State {
 
 	public void setLmem(List<Memento<?>> lmem) {
 		this.lmem = lmem;
-	}
-
-	public Selection getSelection() {
-		return selection;
-	}
-
-	public void setSelection(Selection selection) {
-		this.selection = selection;
-	}
-
-	public Manager getManager() {
-		return manager;
-	}
-
-	public void setManager(Manager manager) {
-		this.manager = manager;
-	}
-
-	public ClipBoard getClip() {
-		return clip;
-	}
-
-	public void setClip(ClipBoard clip) {
-		this.clip = clip;
 	}
 
 }

@@ -3,6 +3,7 @@ package command;
 import etats.State;
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Manager;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -25,17 +26,17 @@ public class Delete implements Command {
 
 	private DeleteMemento memento;
 
-	private State state;
+	private Manager manager;
 
 	/**
 	 * Constructeur de la classe Delete
 	 *
 	 * @param moteur
 	 */
-	public Delete(Moteur moteur, Enregistreur enregistreur, State state) {
+	public Delete(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
-		this.state = state;
+		this.manager = manager;
 	}
 
 	// Operations
@@ -47,13 +48,16 @@ public class Delete implements Command {
 	 * @see MoteurImpl
 	 */
 	public void execute() {
+		DeleteMemento m = getMemento();
 		moteur.delete();
 		if (enregistreur.getRecord()) {
-			enregistreur.addMemento(getMemento());
+			enregistreur.addMemento(m);
 			enregistreur.addCommand(this);
 		}
-		state.addMemento(getMemento());
-		state.addCmd(this);
+		State st = manager.getStateCourant();
+		st.getLmem().add(m);
+		st.getLcmd().add(this);
+		manager.saveState();
 	}
 
 	@Override
@@ -76,6 +80,16 @@ public class Delete implements Command {
 
 	public void setDeleteMemento(DeleteMemento memento) {
 		this.memento = memento;
+	}
+
+	@Override
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 }

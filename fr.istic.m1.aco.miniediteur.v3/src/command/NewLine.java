@@ -3,6 +3,7 @@ package command;
 import etats.State;
 import memento.Memento;
 import receiver.Enregistreur;
+import receiver.Manager;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 
@@ -25,12 +26,12 @@ public class NewLine implements Command {
 
 	private NewLineMemento memento;
 
-	private State state;
+	private Manager manager;
 
-	public NewLine(Moteur moteur, Enregistreur enregistreur, State state) {
+	public NewLine(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
-		this.state = state;
+		this.manager = manager;
 	}
 	// Operations
 
@@ -43,12 +44,15 @@ public class NewLine implements Command {
 	 */
 	public void execute() {
 		moteur.newLine();
+		NewLineMemento m = getMemento();
 		if (enregistreur.getRecord()) {
-			enregistreur.addMemento(getMemento());
+			enregistreur.addMemento(m);
 			enregistreur.addCommand(this);
 		}
-		state.addMemento(getMemento());
-		state.addCmd(this);
+		State st = manager.getStateCourant();
+		st.getLmem().add(m);
+		st.getLcmd().add(this);
+		manager.saveState();
 	}
 
 	@Override
@@ -71,5 +75,15 @@ public class NewLine implements Command {
 
 	public void setNewLineMemento(NewLineMemento memento) {
 		this.memento = memento;
+	}
+
+	@Override
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	@Override
+	public Moteur getMoteur() {
+		return moteur;
 	}
 }

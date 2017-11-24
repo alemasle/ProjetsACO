@@ -1,6 +1,7 @@
 package command;
 
 import memento.Memento;
+import receiver.Moteur;
 
 /**
  * Interface Command implementant CommandGeneral, l'interface des classes ayant
@@ -17,5 +18,9 @@ public interface Command extends CommandGeneral {
 	Memento<?> getMemento();
 
 	void setMemento(Memento<?> mem);
+
+	void setMoteur(Moteur moteur);
+
+	Moteur getMoteur();
 
 }

@@ -1,9 +1,12 @@
 package receiver;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import command.Command;
 import etats.State;
+import memento.Memento;
 
 /**
  * 
@@ -18,7 +21,7 @@ public class ManagerImpl implements Manager {
 	private Stack<State> defaireStack = new Stack<State>();
 	private Stack<State> refaireStack = new Stack<State>();
 
-	private State stateCourant = new State(this);
+	private State stateCourant;
 
 	private Moteur moteur;
 
@@ -26,70 +29,101 @@ public class ManagerImpl implements Manager {
 
 	public ManagerImpl(Moteur moteur) {
 		this.moteur = moteur;
+		this.stateCourant = new State(moteur);
 	}
 
 	/**
-	 * Appelle rejouer en mode defaire
+	 * defait la derniere action
 	 */
 	public void defaire() {
-		if (!defaireStack.isEmpty()) {
-			rejouer(true);
-			System.out.println("UNDO");
+		List<Command> lcmd = stateCourant.getLcmd();
+		Command cmd = null;
+
+		State ns = new State(stateCourant.getMoteur());
+		ns.setLcmd(stateCourant.getLcmd());
+		ns.setLmem(stateCourant.getLmem());
+		refaireStack.push(ns);
+
+		if (lcmd.size() == 0) {
+			if (!defaireStack.isEmpty()) {
+				stateCourant = defaireStack.pop();
+				State nst = new State(stateCourant.getMoteur());
+				lcmd = nst.getLcmd();
+				moteur = nst.getMoteur();
+				for (int i = 0; i < 5; i++) {
+					setPlay(true);
+					cmd = lcmd.get(i);
+					cmd.setMoteur(moteur);
+					cmd.setMemento(stateCourant.getLmem().get(i));
+					cmd.execute();
+					setPlay(false);
+				}
+			}
+		} else {
+			State nst = new State(stateCourant.getMoteur());
+			lcmd = nst.getLcmd();
+			moteur = nst.getMoteur();
+			for (int i = 0; i < lcmd.size() - 1; i++) {
+				setPlay(true);
+				cmd = lcmd.get(i);
+				cmd.setMoteur(moteur);
+				cmd.setMemento(stateCourant.getLmem().get(i));
+				cmd.execute();
+				setPlay(false);
+			}
 		}
 	}
 
 	/**
-	 * Appelle rejouer en mode refaire
+	 * Refait la derniere action defaite
 	 */
 	public void refaire() {
+		List<Command> lcmd = stateCourant.getLcmd();
+		Command cmd = null;
+
 		if (!refaireStack.isEmpty()) {
-			rejouer(false);
-			System.out.println("REDO");
+			State ns = new State(stateCourant.getMoteur());
+			ns.setLcmd(stateCourant.getLcmd());
+			ns.setLmem(stateCourant.getLmem());
+			defaireStack.push(ns);
+
+			stateCourant = refaireStack.pop();
+
+			State nst = new State(stateCourant.getMoteur());
+			lcmd = nst.getLcmd();
+			moteur = nst.getMoteur();
+
+			for (int i = 0; i < lcmd.size(); i++) {
+				setPlay(true);
+				cmd = lcmd.get(i);
+				cmd.setMoteur(moteur);
+				cmd.setMemento(stateCourant.getLmem().get(i));
+				cmd.execute();
+				setPlay(false);
+			}
 		}
 	}
 
 	/**
-	 * 
-	 * Permet de repasser a un State a refaire ou a defaire
-	 * 
-	 * @param st
-	 *            le State a recuperer
-	 * @param b
-	 *            true si on defait, false si on refait
+	 * Sauvegarde l'etat courant dans la pile Defaire si il y'a 5 commandes
+	 * enregistree
 	 */
-	private void rejouer(boolean b) {
+	public void saveState() {
+		List<Command> lcmd = stateCourant.getLcmd();
+		if (lcmd.size() == 5) {
+			State oldSt = new State(stateCourant.getMoteur());
+			defaireStack.push(oldSt);
 
-		State sold = new State(this);
-		sold = stateCourant;
-
-		State st = null;
-
-		if (b) {
-			defaireStack.push(sold);
-			st = defaireStack.pop();
-		} else {
-			refaireStack.push(sold);
-			st = refaireStack.pop();
+			State ns = new State(stateCourant.getMoteur());
+			ns.setLcmd(new ArrayList<Command>());
+			ns.setLmem(new ArrayList<Memento<?>>());
+			ns.setMoteur(moteur);
+			stateCourant = ns;
+			System.out.println("Save state");
 		}
-
-		if (!st.getLcmd().isEmpty()) {
-			Command cmdCurrent = null;
-			setPlay(true);
-
-			for (int i = 0; i < st.getLcmd().size() - 1; i++) {
-				cmdCurrent = st.getLcmd().get(i);
-				cmdCurrent.setMemento(st.getLmem().get(i));
-				cmdCurrent.execute();
-			}
-
-			setPlay(false);
-		}
-
-		moteur.setBuffer(st.getBuf());
-		int len = st.getBuf().getBuffer().length();
-		moteur.getSelect().setDebut(len);
-		moteur.getSelect().setFin(len);
 	}
+
+	///////////////// Getter/Setter attributs /////////////////////
 
 	public Moteur getMoteur() {
 		return moteur;
@@ -111,9 +145,24 @@ public class ManagerImpl implements Manager {
 		return stateCourant;
 	}
 
-	public void setStateCourant(State state) {
-		defaireStack.push(stateCourant);
-		this.stateCourant = state;
-		moteur.setBuffer(state.getBuf());
+	public void setStateCourant(State s) {
+		this.stateCourant = s;
 	}
+
+	public Stack<State> getRefaireStack() {
+		return refaireStack;
+	}
+
+	public void setRefaireStack(Stack<State> refaireStack) {
+		this.refaireStack = refaireStack;
+	}
+
+	public Stack<State> getDefaireStack() {
+		return defaireStack;
+	}
+
+	public void setDefaireStack(Stack<State> defaireStack) {
+		this.defaireStack = defaireStack;
+	}
+
 }
