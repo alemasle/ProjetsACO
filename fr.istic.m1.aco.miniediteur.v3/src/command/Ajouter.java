@@ -74,8 +74,8 @@ public class Ajouter implements Command {
 		if (!manager.getPlay()) {
 			State st = manager.getStateCourant();
 			m.setTexte(str);
-			st.getLmem().add(m);
-			st.getLcmd().add(this);
+			st.addMem(m);
+			st.addCmd(this);
 			manager.saveState();
 		}
 	}

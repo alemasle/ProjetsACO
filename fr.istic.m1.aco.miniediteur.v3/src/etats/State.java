@@ -31,6 +31,17 @@ public class State {
 		return moteur;
 	}
 
+	public void addCmd(Command c) {
+		Command tmp = c.clone();
+		// c.setMoteur(moteur);
+		lcmd.add(tmp);
+	}
+
+	public void addMem(Memento<?> m) {
+		Memento<?> mem = m.clone();
+		lmem.add(mem);
+	}
+
 	public void setMoteur(Moteur moteur) {
 		this.moteur = moteur;
 	}
