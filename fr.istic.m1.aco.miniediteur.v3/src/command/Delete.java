@@ -67,6 +67,10 @@ public class Delete implements Command {
 
 	private class DeleteMemento implements Memento<DeleteMemento> {
 
+		@Override
+		public DeleteMemento clone() {
+			return new DeleteMemento();
+		}
 	}
 
 	@Override
@@ -90,6 +94,12 @@ public class Delete implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Delete clone() {
+		Delete a = new Delete(moteur.clone(), enregistreur, manager);
+		return a;
 	}
 
 }

@@ -23,4 +23,6 @@ public interface Command extends CommandGeneral {
 
 	Moteur getMoteur();
 
+	Command clone();
+
 }

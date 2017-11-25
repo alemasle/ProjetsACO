@@ -11,4 +11,6 @@ public interface ClipBoard {
 
 	public void setClip(String clip);
 
+	public ClipBoard clone();
+
 }

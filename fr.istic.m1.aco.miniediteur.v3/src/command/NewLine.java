@@ -62,6 +62,10 @@ public class NewLine implements Command {
 
 	private class NewLineMemento implements Memento<NewLineMemento> {
 
+		@Override
+		public NewLineMemento clone() {
+			return new NewLineMemento();
+		}
 	}
 
 	@Override
@@ -85,5 +89,11 @@ public class NewLine implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public NewLine clone() {
+		NewLine a = new NewLine(moteur.clone(), enregistreur, manager);
+		return a;
 	}
 }

@@ -264,4 +264,10 @@ public class MoteurImpl implements Moteur {
 
 	}
 
+	@Override
+	public Moteur clone() {
+		Moteur mot = new MoteurImpl(buffer.clone(), clip.clone(), select.clone());
+		return mot;
+	}
+
 }

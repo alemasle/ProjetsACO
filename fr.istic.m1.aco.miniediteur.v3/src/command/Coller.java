@@ -66,6 +66,11 @@ public class Coller implements Command {
 
 	private class CollerMemento implements Memento<CollerMemento> {
 
+		@Override
+		public CollerMemento clone() {
+			return new CollerMemento();
+		}
+
 	}
 
 	@Override
@@ -89,6 +94,12 @@ public class Coller implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Coller clone() {
+		Coller a = new Coller(moteur.clone(), enregistreur, manager);
+		return a;
 	}
 
 }

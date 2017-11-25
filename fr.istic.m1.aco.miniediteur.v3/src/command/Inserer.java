@@ -96,6 +96,13 @@ public class Inserer implements Command {
 			this.texte = texte;
 		}
 
+		@Override
+		public InsererMemento clone() {
+			InsererMemento m = new InsererMemento();
+			m.setTexte(texte);
+			return m;
+		}
+
 	}
 
 	@Override
@@ -111,6 +118,12 @@ public class Inserer implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Inserer clone() {
+		Inserer a = new Inserer(moteur.clone(), ihm, enregistreur, manager);
+		return a;
 	}
 
 }

@@ -62,6 +62,10 @@ public class Copier implements Command {
 
 	private class CopierMemento implements Memento<CopierMemento> {
 
+		@Override
+		public CopierMemento clone() {
+			return new CopierMemento();
+		}
 	}
 
 	@Override
@@ -85,5 +89,11 @@ public class Copier implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Copier clone() {
+		Copier a = new Copier(moteur.clone(), enregistreur, manager);
+		return a;
 	}
 }

@@ -24,7 +24,7 @@ public class State {
 	private List<Memento<?>> lmem = new ArrayList<Memento<?>>();
 
 	public State(Moteur moteur) {
-		this.setMoteur(moteur);
+		this.moteur = moteur;
 	}
 
 	public Moteur getMoteur() {
@@ -49,6 +49,22 @@ public class State {
 
 	public void setLmem(List<Memento<?>> lmem) {
 		this.lmem = lmem;
+	}
+
+	public State clone() {
+
+		List<Command> clcmd = new ArrayList<>();
+		List<Memento<?>> clmem = new ArrayList<>();
+
+		for (int i = 0; i < lcmd.size(); i++) {
+			clcmd.add(lcmd.get(i).clone());
+			clmem.add(lmem.get(i).clone());
+		}
+
+		State s = new State(moteur.clone());
+		s.setLcmd(clcmd);
+		s.setLmem(clmem);
+		return s;
 	}
 
 }

@@ -66,6 +66,11 @@ public class Couper implements Command {
 
 	private class CouperMemento implements Memento<CouperMemento> {
 
+		@Override
+		public CouperMemento clone() {
+			return new CouperMemento();
+		}
+
 	}
 
 	@Override
@@ -89,6 +94,12 @@ public class Couper implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Coller clone() {
+		Coller a = new Coller(moteur.clone(), enregistreur, manager);
+		return a;
 	}
 
 }

@@ -111,6 +111,14 @@ public class Selectionner implements Command {
 			this.fin = fin;
 		}
 
+		@Override
+		public SelectionnerMemento clone() {
+			SelectionnerMemento m = new SelectionnerMemento();
+			m.setDeb(deb);
+			m.setFin(fin);
+			return m;
+		}
+
 	}
 
 	@Override
@@ -126,6 +134,12 @@ public class Selectionner implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Selectionner clone() {
+		Selectionner a = new Selectionner(moteur.clone(), ihm, enregistreur, manager);
+		return a;
 	}
 
 }

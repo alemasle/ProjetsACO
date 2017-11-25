@@ -39,4 +39,9 @@ public class Selection {
 		this.fin = fin;
 	}
 
+	public Selection clone() {
+		Selection s = new Selection();
+		return s;
+	}
+
 }

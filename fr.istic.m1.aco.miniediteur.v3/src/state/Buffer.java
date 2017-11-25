@@ -15,4 +15,8 @@ public class Buffer {
 		this.buffer = buffer;
 	}
 
+	public Buffer clone() {
+		Buffer b = new Buffer();
+		return b;
+	}
 }

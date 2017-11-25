@@ -7,4 +7,6 @@ package memento;
  */
 public interface Memento<T> {
 
+	Memento<T> clone();
+
 }

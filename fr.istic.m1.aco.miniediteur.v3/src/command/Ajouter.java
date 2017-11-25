@@ -91,7 +91,7 @@ public class Ajouter implements Command {
 
 	private class AjouterMemento implements Memento<AjouterMemento> {
 
-		String texte;
+		private String texte;
 
 		public String getTexte() {
 			return texte;
@@ -99,6 +99,13 @@ public class Ajouter implements Command {
 
 		public void setTexte(String texte) {
 			this.texte = texte;
+		}
+
+		@Override
+		public AjouterMemento clone() {
+			AjouterMemento m = new AjouterMemento();
+			m.setTexte(texte);
+			return m;
 		}
 
 	}
@@ -116,6 +123,12 @@ public class Ajouter implements Command {
 	@Override
 	public Moteur getMoteur() {
 		return moteur;
+	}
+
+	@Override
+	public Ajouter clone() {
+		Ajouter a = new Ajouter(moteur.clone(), ihm, enregistreur, manager);
+		return a;
 	}
 
 }

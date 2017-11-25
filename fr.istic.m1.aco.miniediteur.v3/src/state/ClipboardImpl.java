@@ -35,4 +35,10 @@ public class ClipboardImpl implements ClipBoard {
 		this.clip = clip;
 	}
 
+	@Override
+	public ClipBoard clone() {
+		ClipBoard c = new ClipboardImpl();
+		return c;
+	}
+
 }
