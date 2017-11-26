@@ -58,6 +58,7 @@ public class Coller implements Command {
 			st.addMem(m);
 			st.addCmd(this);
 			manager.saveState();
+			manager.emptyRedo();
 		}
 	}
 
@@ -77,14 +78,14 @@ public class Coller implements Command {
 
 	@Override
 	public void setMemento(Memento<?> mem) {
-		this.setColerMemento((CollerMemento) mem);
+		this.setCollerMemento((CollerMemento) mem);
 	}
 
 	public CollerMemento getCollerMemento() {
 		return memento;
 	}
 
-	public void setColerMemento(CollerMemento memento) {
+	public void setCollerMemento(CollerMemento memento) {
 		this.memento = memento;
 	}
 

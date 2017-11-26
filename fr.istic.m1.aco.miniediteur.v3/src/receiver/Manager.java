@@ -30,4 +30,6 @@ public interface Manager {
 
 	void setMoteur(Moteur moteur);
 
+	void emptyRedo();
+
 }

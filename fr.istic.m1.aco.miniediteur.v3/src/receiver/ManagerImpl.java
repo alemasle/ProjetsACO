@@ -73,31 +73,10 @@ public class ManagerImpl implements Manager {
 	 */
 	public void refaire() {
 		List<Command> lcmd = stateCourant.getLcmd();
+		List<Memento<?>> lmem = stateCourant.getLmem();
 		Command cmd = null;
-
-		if (!refaireStack.isEmpty()) {
-			State ns = new State(stateCourant.getMoteur().clone());
-			ns.setLcmd(stateCourant.getLcmd());
-			ns.setLmem(stateCourant.getLmem());
-			defaireStack.push(ns);
-
-			stateCourant = refaireStack.pop();
-
-			State nst = new State(stateCourant.getMoteur().clone());
-			nst.setLcmd(stateCourant.getLcmd());
-			nst.setLmem(stateCourant.getLmem());
-			lcmd = nst.getLcmd();
-			moteur = nst.getMoteur();
-
-			for (int i = 0; i < lcmd.size(); i++) {
-				setPlay(true);
-				cmd = lcmd.get(i);
-				cmd.setMoteur(moteur);
-				cmd.setMemento(nst.getLmem().get(i));
-				cmd.execute();
-				setPlay(false);
-			}
-		}
+		
+		
 	}
 
 	/**
@@ -115,6 +94,15 @@ public class ManagerImpl implements Manager {
 			ns.setLmem(new ArrayList<Memento<?>>());
 			stateCourant = ns;
 			System.out.println("Save state");
+		}
+	}
+
+	/**
+	 * Vide la pile "refaire" si on execute une nouvelle commande
+	 */
+	public void emptyRedo() {
+		if (!refaireStack.isEmpty()) {
+			refaireStack = new Stack<State>();
 		}
 	}
 

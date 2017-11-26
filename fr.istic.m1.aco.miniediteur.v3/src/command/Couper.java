@@ -58,6 +58,7 @@ public class Couper implements Command {
 			st.addMem(m);
 			st.addCmd(this);
 			manager.saveState();
+			manager.emptyRedo();
 		}
 	}
 

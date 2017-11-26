@@ -75,6 +75,7 @@ public class Inserer implements Command {
 			st.addMem(m);
 			st.addCmd(this);
 			manager.saveState();
+			manager.emptyRedo();
 		}
 	}
 
