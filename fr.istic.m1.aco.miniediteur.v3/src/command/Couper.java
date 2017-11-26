@@ -53,10 +53,12 @@ public class Couper implements Command {
 			enregistreur.addMemento(m);
 			enregistreur.addCommand(this);
 		}
-		State st = manager.getStateCourant();
-		st.getLmem().add(m);
-		st.getLcmd().add(this);
-		manager.saveState();
+		if (!manager.getPlay()) {
+			State st = manager.getStateCourant();
+			st.addMem(m);
+			st.addCmd(this);
+			manager.saveState();
+		}
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class ManagerImpl implements Manager {
 	}
 
 	/**
-	 * Revient a l'etat precedent la derniere action.
+	 * Revient a l'etat precedent la derniere commande.
 	 */
 	public void defaire() {
 
@@ -62,9 +62,7 @@ public class ManagerImpl implements Manager {
 			stateCourant.getLmem().remove(lmem.size() - 1);
 
 			setPlay(true);
-
 			moteur.defaire(stateCourant.clone());
-
 			setPlay(false);
 
 		}
