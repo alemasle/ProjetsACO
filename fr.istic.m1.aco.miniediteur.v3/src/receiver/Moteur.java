@@ -3,6 +3,7 @@ package receiver;
 import state.Buffer;
 import state.ClipBoard;
 import state.Selection;
+import state.State;
 
 /**
  * Interface Moteur comprenant les fonctions du mini editeur.
@@ -43,6 +44,8 @@ public interface Moteur {
 	public void setClip(ClipBoard clip);
 
 	public void newLine();
+	
+	public void defaire(State s);
 
 	public Moteur clone();
 }

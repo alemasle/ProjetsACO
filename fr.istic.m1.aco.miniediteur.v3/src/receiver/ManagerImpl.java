@@ -117,7 +117,7 @@ public class ManagerImpl implements Manager {
 	// moteur.getBuffer().getBuffer().toString() + "\"");
 	// }
 	// }
-	
+
 	public void defaire() {
 
 		List<Command> lcmd = stateCourant.getLcmd();
@@ -174,21 +174,14 @@ public class ManagerImpl implements Manager {
 			System.out.println(
 					"stateCourant buffer: \"" + stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
 
-			moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
-			moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
+			setPlay(true);
 
-			System.out.println("moteur modified: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+			moteur.defaire(stateCourant.clone());
 
-			for (int i = 0; i < lcmd.size(); i++) {
-				setPlay(true);
-				cmd = lcmd.get(i);
-				cmd.setMemento(lmem.get(i));
-				cmd.execute();
-				System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
-				setPlay(false);
-			}
+			setPlay(false);
 
-			System.out.println("moteur APRES buffer: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+			System.out.println("moteur manager fin buffer: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+
 		}
 	}
 

@@ -273,22 +273,32 @@ public class MoteurImpl implements Moteur {
 	 */
 	public void defaire(State stM) {
 
-		setBuffer(stM.getMoteur().getBuffer());
-		setSelect(stM.getMoteur().getSelect());
+		String buf = stM.getMoteur().getBuffer().getBuffer().toString();
+
+		StringBuffer res = new StringBuffer(buf);
+
+		System.out.println("buf= \"" + buf + "\"");
+
+		buffer.setBuffer(res);
+		select.setDebut(stM.getMoteur().getSelect().getDebut());
+		select.setFin(stM.getMoteur().getSelect().getFin());
+
+		System.out.println("moteur apres buff = \"" + getBuffer().getBuffer().toString() + "\"");
+		System.out.println("stM buff = \"" + stM.getMoteur().getBuffer().getBuffer().toString() + "\"");
 
 		List<Command> lcmd = stM.getLcmd();
 		List<Memento<?>> lmem = stM.getLmem();
 		Command cmd = null;
 
 		for (int i = 0; i < lcmd.size(); i++) {
-			setPlay(true);
 			cmd = lcmd.get(i);
 			cmd.setMemento(lmem.get(i));
+			cmd.setMoteur(this);
 			cmd.execute();
 			System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
-			setPlay(false);
 		}
 
+		System.out.println("Moteur actuel: \"" + buffer.getBuffer().toString() + "\"");
 	}
 
 	/**
