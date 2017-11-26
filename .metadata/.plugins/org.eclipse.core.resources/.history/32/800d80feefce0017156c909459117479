@@ -1,0 +1,25 @@
+package command;
+
+import memento.Memento;
+
+public class Defaire implements Command {
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Memento<?> getMemento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMemento(Memento<?> mem) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

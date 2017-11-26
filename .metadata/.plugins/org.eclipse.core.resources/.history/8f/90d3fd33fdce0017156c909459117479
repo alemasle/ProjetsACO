@@ -1,0 +1,14 @@
+package command;
+
+import receiver.ManagerImpl;
+
+public class Refaire implements CommandGeneral {
+
+	Manager manager = new ManagerImpl(moteur);
+
+	@Override
+	public void execute() {
+		manager.refaire();
+	}
+
+}

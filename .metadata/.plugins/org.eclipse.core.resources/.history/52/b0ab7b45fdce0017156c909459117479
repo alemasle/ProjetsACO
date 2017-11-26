@@ -1,0 +1,18 @@
+package command;
+
+import receiver.ManagerImpl;
+
+public class Refaire implements CommandGeneral {
+
+	Manager manager;
+
+	public Refaire(ManagerImpl manager) {
+		this.manager = manager;
+	}
+
+	@Override
+	public void execute() {
+		manager.refaire();
+	}
+
+}

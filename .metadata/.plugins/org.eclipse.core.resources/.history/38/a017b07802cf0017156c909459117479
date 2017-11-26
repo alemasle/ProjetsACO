@@ -1,0 +1,79 @@
+package command;
+
+import memento.Memento;
+import receiver.Enregistreur;
+import receiver.Moteur;
+import receiver.MoteurImpl;
+
+/**
+ * Concrete Command "Couper" implementant l'interface Command
+ *
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ */
+public class Couper implements Command {
+
+	/**
+	 * Nouvelle instance de l'interface Moteur declarant la methode couper
+	 *
+	 * @see Moteur
+	 */
+	private Moteur moteur;
+
+	private Enregistreur enregistreur;
+
+	private CouperMemento memento;
+
+	private State state;
+
+	/**
+	 * Constructeur de la classe Couper
+	 *
+	 * @param moteur
+	 */
+	public Couper(Moteur moteur, Enregistreur enregistreur, State state) {
+		this.moteur = moteur;
+		this.enregistreur = enregistreur;
+		this.state = state;
+	}
+
+	// Operations
+
+	/**
+	 * Appel de la mise en oeuvre de la fonction "couper" dans l'implementation
+	 * Moteur.
+	 *
+	 * @see MoteurImpl
+	 */
+	public void execute() {
+		moteur.couper();
+		if (enregistreur.getRecord()) {
+			enregistreur.addMemento(getMemento());
+			enregistreur.addCommand(this);
+		}
+		state.addMemento(getMemento());
+		state.addCmd(this);
+	}
+
+	@Override
+	public CouperMemento getMemento() {
+		return new CouperMemento();
+	}
+
+	private class CouperMemento implements Memento<CouperMemento> {
+
+	}
+
+	@Override
+	public void setMemento(Memento<?> mem) {
+		this.setCouperMemento((CouperMemento) mem);
+	}
+
+	public CouperMemento getCouperMemento() {
+		return memento;
+	}
+
+	public void setCouperMemento(CouperMemento memento) {
+		this.memento = memento;
+	}
+
+}

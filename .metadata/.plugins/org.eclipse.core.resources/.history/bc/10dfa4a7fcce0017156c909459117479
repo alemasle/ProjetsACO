@@ -1,0 +1,123 @@
+package receiver;
+
+import java.util.ArrayList;
+import java.util.Stack;
+
+import command.Command;
+import etats.State;
+import memento.Memento;
+
+/**
+ * 
+ * Classe ManagerImpl implementant Manager
+ * 
+ * @since v3
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ *
+ */
+public class ManagerImpl implements Manager {
+
+	private Stack<State> defaireStack = new Stack<State>();
+	private Stack<State> refaireStack = new Stack<State>();
+
+	private Moteur moteur;
+
+	private boolean play = false;
+
+	public ManagerImpl(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	private void defaire() {
+		if (!defaireStack.isEmpty()) {
+
+			State sold = new State();
+			sold.setBuf(moteur.getBuffer());
+			sold.setLcmd(new ArrayList<Command>());
+			sold.setLmem(new ArrayList<Memento<?>>());
+
+			refaireStack.push(sold);
+			State st = defaireStack.pop();
+
+			if (!st.getLcmd().isEmpty()) {
+				rejouer(true);
+			}
+
+			moteur.setBuffer(st.getBuf());
+			moteur.selectionner(st.getSelection().getDebut(), st.getSelection().getFin());
+		}
+	}
+
+	private void refaire() {
+		if (!refaireStack.isEmpty()) {
+
+			State sold = new State();
+			sold.setBuf(moteur.getBuffer());
+			sold.setLcmd(new ArrayList<Command>());
+			sold.setLmem(new ArrayList<Memento<?>>());
+
+			defaireStack.push(sold);
+			State st = refaireStack.pop();
+
+			if (!st.getLcmd().isEmpty()) {
+				rejouer(false);
+			}
+
+			moteur.setBuffer(st.getBuf());
+			moteur.selectionner(st.getSelection().getDebut(), st.getSelection().getFin());
+		}
+	}
+
+	/**
+	 * 
+	 * @param st
+	 *            le State a recuperer
+	 * @param b
+	 *            true si on defait, false si on refait
+	 */
+	private void rejouer(boolean b) {
+
+		State sold = new State();
+		sold.setBuf(moteur.getBuffer());
+		sold.setLcmd(new ArrayList<Command>());
+		sold.setLmem(new ArrayList<Memento<?>>());
+
+		State st = null;
+
+		if (b) {
+			defaireStack.push(sold);
+			st = defaireStack.pop();
+		} else {
+			refaireStack.push(sold);
+			st = refaireStack.pop();
+		}
+
+		Command cmdCurrent = null;
+		setPlay(true);
+
+		for (int i = 0; i < st.getLcmd().size(); i++) {
+			cmdCurrent = st.getLcmd().get(i);
+			cmdCurrent.setMemento(st.getLmem().get(i));
+			cmdCurrent.execute();
+		}
+
+		setPlay(false);
+	}
+
+	public Moteur getMoteur() {
+		return moteur;
+	}
+
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+
+	public boolean isPlay() {
+		return play;
+	}
+
+	public void setPlay(boolean play) {
+		this.play = play;
+	}
+
+}
