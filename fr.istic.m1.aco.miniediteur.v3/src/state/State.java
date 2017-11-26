@@ -32,14 +32,10 @@ public class State {
 	}
 
 	public void addCmd(Command c) {
-		// Command tmp = c.clone();
-		// c.setMoteur(moteur);
-		// lcmd.add(tmp);
 		lcmd.add(c);
 	}
 
 	public void addMem(Memento<?> m) {
-		// Memento<?> mem = m.clone();
 		lmem.add(m);
 	}
 

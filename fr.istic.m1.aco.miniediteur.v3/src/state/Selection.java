@@ -41,6 +41,8 @@ public class Selection {
 
 	public Selection clone() {
 		Selection s = new Selection();
+		s.setDebut(debut);
+		s.setFin(fin);
 		return s;
 	}
 
