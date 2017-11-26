@@ -33,7 +33,7 @@ public class ManagerImpl implements Manager {
 	}
 
 	/**
-	 * Revient a l'etat precedent la derniere commande.
+	 * Revient a l'etat precedent la derniere commande si il y'en a un.
 	 */
 	public void defaire() {
 
@@ -69,7 +69,7 @@ public class ManagerImpl implements Manager {
 	}
 
 	/**
-	 * Refait la derniere action defaite
+	 * Refait la derniere action defaite si il y'en a une.
 	 */
 	public void refaire() {
 		if (!refaireStack.isEmpty()) {
