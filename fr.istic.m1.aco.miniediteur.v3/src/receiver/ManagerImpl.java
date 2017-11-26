@@ -122,9 +122,6 @@ public class ManagerImpl implements Manager {
 
 		List<Command> lcmd = stateCourant.getLcmd();
 		List<Memento<?>> lmem = stateCourant.getLmem();
-		Command cmd = null;
-
-		System.out.println("Moteur init: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
 		if (lcmd.size() == 0) {
 			if (!defaireStack.isEmpty()) {
@@ -136,29 +133,26 @@ public class ManagerImpl implements Manager {
 
 				System.out.println("stateCourant avant pop: \""
 						+ stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
+
 				stateCourant = defaireStack.pop();
 
-				lcmd = stateCourant.getLcmd();
-				lmem = stateCourant.getLmem();
+				stateCourant.getLcmd().remove(stateCourant.getLcmd().size() - 1);
+				stateCourant.getLmem().remove(stateCourant.getLmem().size() - 1);
 
-				System.out.println(
-						"stateCourant buffer: \"" + stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
+				System.out.println("stateCourant buffer IF: \""
+						+ stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
 
-				moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
-				moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
+				State tmp = stateCourant.clone();
 
-				System.out.println("Buffer moteur: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+				System.out.println("lcmd size: " + tmp.getLcmd().size());
 
-				for (int i = 0; i < lcmd.size() - 1; i++) {
-					setPlay(true);
-					cmd = lcmd.get(i);
-					cmd.setMemento(lmem.get(i));
-					cmd.execute();
-					System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
-					setPlay(false);
-				}
+				setPlay(true);
 
-				System.out.println("moteur APRES buffer: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+				moteur.defaire(tmp);
+
+				setPlay(false);
+
+				System.out.println("moteur APRES buffer IF: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
 			}
 		}
@@ -171,8 +165,8 @@ public class ManagerImpl implements Manager {
 			stateCourant.getLcmd().remove(lcmd.size() - 1);
 			stateCourant.getLmem().remove(lmem.size() - 1);
 
-			System.out.println(
-					"stateCourant buffer: \"" + stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
+			System.out.println("stateCourant buffer ELSE: \""
+					+ stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
 
 			setPlay(true);
 
@@ -180,7 +174,7 @@ public class ManagerImpl implements Manager {
 
 			setPlay(false);
 
-			System.out.println("moteur manager fin buffer: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+			System.out.println("moteur APRES buffer ELSE: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
 		}
 	}
