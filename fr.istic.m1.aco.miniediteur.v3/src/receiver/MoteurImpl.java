@@ -4,10 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.List;
 
+import command.Command;
+import memento.Memento;
 import state.Buffer;
 import state.ClipBoard;
 import state.Selection;
+import state.State;
 
 /**
  * Class MoteurImpl comprennant la mise en oeuvre des chacunes des fonctions
@@ -261,9 +265,37 @@ public class MoteurImpl implements Moteur {
 		int pos = select.getDebut();
 		buffer.getBuffer().insert(pos, "\n");
 		selectionner(pos + 1, pos + 1);
+	}
+
+	/**
+	 * 
+	 * @param stM
+	 */
+	public void defaire(State stM) {
+
+		setBuffer(stM.getMoteur().getBuffer());
+		setSelect(stM.getMoteur().getSelect());
+
+		List<Command> lcmd = stM.getLcmd();
+		List<Memento<?>> lmem = stM.getLmem();
+		Command cmd = null;
+
+		for (int i = 0; i < lcmd.size(); i++) {
+			setPlay(true);
+			cmd = lcmd.get(i);
+			cmd.setMemento(lmem.get(i));
+			cmd.execute();
+			System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
+			setPlay(false);
+		}
 
 	}
 
+	/**
+	 * Permet de cloner le moteur actuel
+	 * 
+	 * @since v3
+	 */
 	@Override
 	public Moteur clone() {
 		Moteur mot = new MoteurImpl(buffer.clone(), clip.clone(), select.clone());

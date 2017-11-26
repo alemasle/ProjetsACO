@@ -35,6 +35,89 @@ public class ManagerImpl implements Manager {
 	/**
 	 * defait la derniere action
 	 */
+	// public void defaire() {
+	//
+	// List<Command> lcmd = stateCourant.getLcmd();
+	// List<Memento<?>> lmem = stateCourant.getLmem();
+	// Command cmd = null;
+	//
+	// System.out.println("Moteur init: \"" +
+	// moteur.getBuffer().getBuffer().toString() + "\"");
+	//
+	// if (lcmd.size() == 0) {
+	// if (!defaireStack.isEmpty()) {
+	//
+	// State ns = stateCourant.clone();
+	// refaireStack.push(ns);
+	//
+	// System.out.println("IF");
+	//
+	// System.out.println("stateCourant avant pop: \""
+	// + stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
+	// stateCourant = defaireStack.pop();
+	//
+	// lcmd = stateCourant.getLcmd();
+	// lmem = stateCourant.getLmem();
+	//
+	// System.out.println(
+	// "stateCourant buffer: \"" +
+	// stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
+	//
+	// moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
+	// moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
+	//
+	// System.out.println("Buffer moteur: \"" +
+	// moteur.getBuffer().getBuffer().toString() + "\"");
+	//
+	// for (int i = 0; i < lcmd.size() - 1; i++) {
+	// setPlay(true);
+	// cmd = lcmd.get(i);
+	// cmd.setMemento(lmem.get(i));
+	// cmd.execute();
+	// System.out.println("cmd-moteur = " +
+	// cmd.getMoteur().getBuffer().getBuffer().toString());
+	// setPlay(false);
+	// }
+	//
+	// System.out.println("moteur APRES buffer: \"" +
+	// moteur.getBuffer().getBuffer().toString() + "\"");
+	//
+	// }
+	// }
+	//
+	// else {
+	//
+	// State ns = stateCourant.clone();
+	// refaireStack.push(ns);
+	//
+	// stateCourant.getLcmd().remove(lcmd.size() - 1);
+	// stateCourant.getLmem().remove(lmem.size() - 1);
+	//
+	// System.out.println(
+	// "stateCourant buffer: \"" +
+	// stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
+	//
+	// moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
+	// moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
+	//
+	// System.out.println("moteur modified: \"" +
+	// moteur.getBuffer().getBuffer().toString() + "\"");
+	//
+	// for (int i = 0; i < lcmd.size(); i++) {
+	// setPlay(true);
+	// cmd = lcmd.get(i);
+	// cmd.setMemento(lmem.get(i));
+	// cmd.execute();
+	// System.out.println("cmd-moteur = " +
+	// cmd.getMoteur().getBuffer().getBuffer().toString());
+	// setPlay(false);
+	// }
+	//
+	// System.out.println("moteur APRES buffer: \"" +
+	// moteur.getBuffer().getBuffer().toString() + "\"");
+	// }
+	// }
+	
 	public void defaire() {
 
 		List<Command> lcmd = stateCourant.getLcmd();
@@ -51,25 +134,31 @@ public class ManagerImpl implements Manager {
 
 				System.out.println("IF");
 
+				System.out.println("stateCourant avant pop: \""
+						+ stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
 				stateCourant = defaireStack.pop();
 
-				State nst = stateCourant.clone();
+				lcmd = stateCourant.getLcmd();
+				lmem = stateCourant.getLmem();
 
 				System.out.println(
-						"Buffer state current: \"" + nst.getMoteur().getBuffer().getBuffer().toString() + "\"");
-				System.out.println("Buffer moteur: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
+						"stateCourant buffer: \"" + stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
 
-				lcmd = nst.getLcmd();
-				moteur = nst.getMoteur();
-				System.out.println("lcmd size IF: " + lcmd.size() + " commandes");
+				moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
+				moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
+
+				System.out.println("Buffer moteur: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
 				for (int i = 0; i < lcmd.size() - 1; i++) {
 					setPlay(true);
 					cmd = lcmd.get(i);
-					cmd.setMemento(nst.getLmem().get(i));
+					cmd.setMemento(lmem.get(i));
 					cmd.execute();
+					System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
 					setPlay(false);
 				}
+
+				System.out.println("moteur APRES buffer: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
 			}
 		}
@@ -87,7 +176,6 @@ public class ManagerImpl implements Manager {
 
 			moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
 			moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
-			moteur.setClip(stateCourant.getMoteur().getClip().clone());
 
 			System.out.println("moteur modified: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
