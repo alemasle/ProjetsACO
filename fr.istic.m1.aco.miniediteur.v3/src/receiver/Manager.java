@@ -1,6 +1,6 @@
 package receiver;
 
-import etats.State;
+import state.State;
 
 /**
  * 
@@ -25,5 +25,9 @@ public interface Manager {
 	boolean getPlay();
 
 	void setPlay(boolean play);
+
+	Moteur getMoteur();
+
+	void setMoteur(Moteur moteur);
 
 }

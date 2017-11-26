@@ -4,9 +4,6 @@ public class Buffer {
 
 	private StringBuffer buffer = new StringBuffer("");
 
-	public Buffer() {
-	}
-
 	public StringBuffer getBuffer() {
 		return buffer;
 	}
@@ -17,6 +14,7 @@ public class Buffer {
 
 	public Buffer clone() {
 		Buffer b = new Buffer();
+		b.setBuffer(new StringBuffer(buffer.toString()));
 		return b;
 	}
 }

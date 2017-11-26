@@ -1,12 +1,12 @@
 package command;
 
-import etats.State;
 import ihm.Ihm;
 import memento.Memento;
 import receiver.Enregistreur;
 import receiver.Manager;
 import receiver.Moteur;
 import receiver.MoteurImpl;
+import state.State;
 
 /**
  * Concrete Command "Selectionner" implementant l'interface Command

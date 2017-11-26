@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Stack;
 
 import command.Command;
-import etats.State;
 import memento.Memento;
+import state.State;
 
 /**
  * 
@@ -36,30 +36,33 @@ public class ManagerImpl implements Manager {
 	 * defait la derniere action
 	 */
 	public void defaire() {
+
 		List<Command> lcmd = stateCourant.getLcmd();
 		List<Memento<?>> lmem = stateCourant.getLmem();
 		Command cmd = null;
 
-		State ns = stateCourant.clone();
-		refaireStack.push(ns);
-
-		System.out.println("Lcmd size: " + lcmd.size() + " elements");
 		System.out.println("Moteur init: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
 		if (lcmd.size() == 0) {
-			System.out.println("IF");
 			if (!defaireStack.isEmpty()) {
+
+				State ns = stateCourant.clone();
+				refaireStack.push(ns);
+
+				System.out.println("IF");
+
 				stateCourant = defaireStack.pop();
-				State nst = new State(stateCourant.getMoteur().clone());
+
+				State nst = stateCourant.clone();
+
 				System.out.println(
 						"Buffer state current: \"" + nst.getMoteur().getBuffer().getBuffer().toString() + "\"");
 				System.out.println("Buffer moteur: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
-				nst.setLcmd(stateCourant.getLcmd());
-				nst.setLmem(stateCourant.getLmem());
 				lcmd = nst.getLcmd();
 				moteur = nst.getMoteur();
 				System.out.println("lcmd size IF: " + lcmd.size() + " commandes");
+
 				for (int i = 0; i < lcmd.size() - 1; i++) {
 					setPlay(true);
 					cmd = lcmd.get(i);
@@ -67,19 +70,24 @@ public class ManagerImpl implements Manager {
 					cmd.execute();
 					setPlay(false);
 				}
+
 			}
-		} else {
+		}
+
+		else {
+
+			State ns = stateCourant.clone();
+			refaireStack.push(ns);
 
 			stateCourant.getLcmd().remove(lcmd.size() - 1);
 			stateCourant.getLmem().remove(lmem.size() - 1);
 
-			System.out.println("Lcmd size -1: " + lcmd.size() + " elements");
-			System.out.println("moteur buffer: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 			System.out.println(
 					"stateCourant buffer: \"" + stateCourant.getMoteur().getBuffer().getBuffer().toString() + "\"");
 
-			moteur.setBuffer(stateCourant.getMoteur().getBuffer());
-			moteur.setSelect(stateCourant.getMoteur().getSelect());
+			moteur.setBuffer(stateCourant.getMoteur().getBuffer().clone());
+			moteur.setSelect(stateCourant.getMoteur().getSelect().clone());
+			moteur.setClip(stateCourant.getMoteur().getClip().clone());
 
 			System.out.println("moteur modified: \"" + moteur.getBuffer().getBuffer().toString() + "\"");
 
@@ -88,7 +96,7 @@ public class ManagerImpl implements Manager {
 				cmd = lcmd.get(i);
 				cmd.setMemento(lmem.get(i));
 				cmd.execute();
-				System.out.println("cmd2: moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
+				System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
 				setPlay(false);
 			}
 

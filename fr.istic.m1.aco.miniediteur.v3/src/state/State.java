@@ -1,4 +1,4 @@
-package etats;
+package state;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +32,15 @@ public class State {
 	}
 
 	public void addCmd(Command c) {
-		Command tmp = c.clone();
+		// Command tmp = c.clone();
 		// c.setMoteur(moteur);
-		lcmd.add(tmp);
+		// lcmd.add(tmp);
+		lcmd.add(c);
 	}
 
 	public void addMem(Memento<?> m) {
-		Memento<?> mem = m.clone();
-		lmem.add(mem);
+		// Memento<?> mem = m.clone();
+		lmem.add(m);
 	}
 
 	public void setMoteur(Moteur moteur) {
