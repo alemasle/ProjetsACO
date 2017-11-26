@@ -269,15 +269,16 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * 
+	 * Permet de recreer l'etat donne en parametre, utilisee pour defaire ou refaire
+	 * une commande et retourner a un etat precedent
+	 * 
 	 * @param stM
 	 */
-	public void defaire(State stM) {
+	public void recreer(State stM) {
 
 		String buf = stM.getMoteur().getBuffer().getBuffer().toString();
 
 		StringBuffer res = new StringBuffer(buf);
-
-		System.out.println("buf= \"" + buf + "\"");
 
 		buffer.setBuffer(res);
 		select.setDebut(stM.getMoteur().getSelect().getDebut());

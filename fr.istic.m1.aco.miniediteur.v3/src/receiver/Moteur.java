@@ -44,8 +44,8 @@ public interface Moteur {
 	public void setClip(ClipBoard clip);
 
 	public void newLine();
-	
-	public void defaire(State s);
+
+	public void recreer(State s);
 
 	public Moteur clone();
 }

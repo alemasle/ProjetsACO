@@ -51,7 +51,7 @@ public class ManagerImpl implements Manager {
 				stateCourant.getLmem().remove(stateCourant.getLmem().size() - 1);
 
 				setPlay(true);
-				moteur.defaire(stateCourant.clone());
+				moteur.recreer(stateCourant.clone());
 				setPlay(false);
 			}
 		} else {
@@ -62,7 +62,7 @@ public class ManagerImpl implements Manager {
 			stateCourant.getLmem().remove(lmem.size() - 1);
 
 			setPlay(true);
-			moteur.defaire(stateCourant.clone());
+			moteur.recreer(stateCourant.clone());
 			setPlay(false);
 
 		}
@@ -72,11 +72,16 @@ public class ManagerImpl implements Manager {
 	 * Refait la derniere action defaite
 	 */
 	public void refaire() {
-		List<Command> lcmd = stateCourant.getLcmd();
-		List<Memento<?>> lmem = stateCourant.getLmem();
-		Command cmd = null;
-		
-		
+		if (!refaireStack.isEmpty()) {
+			if (stateCourant.getLcmd().size() == 5) {
+				defaireStack.push(stateCourant.clone());
+			}
+			stateCourant = refaireStack.pop();
+
+			setPlay(true);
+			moteur.recreer(stateCourant);
+			setPlay(false);
+		}
 	}
 
 	/**
