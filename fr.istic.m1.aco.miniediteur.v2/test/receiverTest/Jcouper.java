@@ -4,7 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import command.Coller;
 import command.Command;
+import command.CommandGeneral;
+import command.Copier;
 import command.Couper;
 import command.Couper.CouperMemento;
 import memento.Memento;
@@ -43,7 +46,6 @@ public class Jcouper {
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
 		selection.setDebut(3);
 		selection.setFin(3);
 		Command couper = new Couper(moteur, enregistreur);
@@ -86,21 +88,32 @@ public class Jcouper {
 	}
 
 	@Test
-	public void testGetMementon() {
+	public void testGetMemento() {
 		StringBuffer stringBuffer = new StringBuffer("couper");
 		Buffer buffer = new Buffer();
-		
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
-		Command couper = new Couper(moteur, enregistreur);
+		CommandGeneral couper = new Couper(moteur, enregistreur);
+		CommandGeneral coller = new Coller(moteur, enregistreur);
+		
+		buffer.setBuffer(stringBuffer);
+		selection.setDebut(0);
+		selection.setFin(2);
+		
 
-		CouperMemento memento = (CouperMemento)couper.getMemento();
-
-		assertTrue(memento instanceof Couper.CouperMemento);
-
+		enregistreur.demarrer();
+		couper.execute();
+		selection.setDebut(3);
+		selection.setFin(3);
+		coller.execute();
+		
+		enregistreur.stopper();
+		
+		assertTrue(("").compareTo(pressePapier.getClip()) == 0);
+		assertTrue("percou".compareTo(buffer.getBuffer().toString()) == 0);
 	}
 
 	/**
