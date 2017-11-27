@@ -81,7 +81,7 @@ public class Jinserer {
 		
 		selection.setDebut(6);
 		selection.setFin(6);
-		System.out.println("Entrer le mot insere : \n");
+		System.out.println("Entrez le mot insere : \n");
 		inserer.execute();
 		
 		enregistreur.stopper();
@@ -129,7 +129,7 @@ public class Jinserer {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 		
-		
+		System.out.println("Veuillez entrer un texte.");
 		inserer.execute();
 		assertNotNull("La chaine n'est pas vide", str);
 	}
