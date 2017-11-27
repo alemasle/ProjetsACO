@@ -5,10 +5,6 @@ public class Selection {
 	private int debut = 0;
 	private int fin = 0;
 
-	public Selection() {
-
-	}
-
 	/**
 	 * @return le debut
 	 */
@@ -18,14 +14,18 @@ public class Selection {
 
 	/**
 	 * @param debut
-	 *            le debut à définir
+	 *            le debut a definir
 	 */
 	public void setDebut(int debut) {
-		this.debut = debut;
+		if (debut < 0) {
+			this.debut = 0;
+		} else {
+			this.debut = debut;
+		}
 	}
 
 	/**
-	 * @return le fin
+	 * @return la fin
 	 */
 	public int getFin() {
 		return fin;
@@ -33,12 +33,22 @@ public class Selection {
 
 	/**
 	 * @param fin
-	 *            le fin à définir
+	 *            le fin a definir
 	 */
 	public void setFin(int fin) {
-		this.fin = fin;
+		if (fin < 0) {
+			this.fin = 0;
+		} else {
+			this.fin = fin;
+		}
 	}
 
+	/**
+	 * 
+	 * Permet de cloner la classe selection courant.
+	 * 
+	 * 
+	 */
 	public Selection clone() {
 		Selection s = new Selection();
 		s.setDebut(debut);

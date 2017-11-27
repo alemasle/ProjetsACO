@@ -58,6 +58,11 @@ public class Selectionner implements Command {
 		if (enregistreur.getPlay() || manager.getPlay()) {
 			deb = memento.getDeb();
 			fin = memento.getFin();
+			if (deb > fin) {
+				int tmp = fin;
+				fin = deb;
+				deb = tmp;
+			}
 			moteur.selectionner(deb, fin);
 		} else {
 			deb = ihm.getDebut();
@@ -95,7 +100,7 @@ public class Selectionner implements Command {
 		return new SelectionnerMemento();
 	}
 
-	private class SelectionnerMemento implements Memento<SelectionnerMemento> {
+	public class SelectionnerMemento implements Memento<SelectionnerMemento> {
 
 		int deb;
 		int fin;

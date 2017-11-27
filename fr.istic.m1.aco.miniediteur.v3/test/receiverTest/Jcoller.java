@@ -10,6 +10,8 @@ import command.Command;
 import command.Rejouer;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
+import receiver.Manager;
+import receiver.ManagerImpl;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -34,7 +36,8 @@ public class Jcoller {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Command coller = new Coller(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Command coller = new Coller(moteur, enregistreur, manager);
 		CollerMemento memento = (CollerMemento) coller.getMemento();
 
 		enregistreur.demarrer();
@@ -62,7 +65,8 @@ public class Jcoller {
 		selection.setDebut(3);
 		selection.setFin(28);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Command coller = new Coller(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Command coller = new Coller(moteur, enregistreur, manager);
 
 		enregistreur.demarrer();
 
@@ -94,7 +98,8 @@ public class Jcoller {
 		selection.setDebut(0);
 		selection.setFin(2);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Command coller = new Coller(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Command coller = new Coller(moteur, enregistreur, manager);
 
 		enregistreur.demarrer();
 
@@ -125,7 +130,8 @@ public class Jcoller {
 		selection.setDebut(8);
 		selection.setFin(28);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Command coller = new Coller(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Command coller = new Coller(moteur, enregistreur, manager);
 
 		enregistreur.demarrer();
 
