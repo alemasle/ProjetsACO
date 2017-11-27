@@ -31,6 +31,12 @@ import state.Selection;
 
 public class Jselectionner {
 
+	/**
+	 * 
+	 * Genere 10000 selections differentes aleatoirement et test si les bornes sont
+	 * conformes aux attentes
+	 * 
+	 */
 	@Test
 	public void testExecute1() {
 
