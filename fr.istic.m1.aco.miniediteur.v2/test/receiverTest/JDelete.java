@@ -91,7 +91,6 @@ public class JDelete {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Rejouer rejouer = new Rejouer(enregistreur);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 		Delete delete = new Delete( moteur, enregistreur);
 		
@@ -101,10 +100,11 @@ public class JDelete {
 		selection.setDebut(4);
 		selection.setFin(7);
 		delete.execute();
+		selection.setDebut(4);
+		selection.setFin(7);
+		delete.execute();
 		enregistreur.stopper();
 
-		rejouer.execute();
-	
 		assertTrue(("deleTE").compareTo(buffer.getBuffer().toString()) == 0);
 	}
 	
