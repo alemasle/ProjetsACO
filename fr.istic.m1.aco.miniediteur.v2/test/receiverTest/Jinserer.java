@@ -76,12 +76,17 @@ public class Jinserer {
 		StringBuffer stringBuffer = new StringBuffer("abcdef");
 
 		buffer.setBuffer(stringBuffer);
-
+		
+		enregistreur.demarrer();
+		
 		selection.setDebut(6);
 		selection.setFin(6);
 		moteur.inserer(str);
-
-		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString()) == 0);
+		
+		enregistreur.stopper();
+		enregistreur.rejouer();
+		
+		assertTrue(("abcdefinsereinsere").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
