@@ -87,8 +87,9 @@ public class Jinserer {
 
 	@Test
 	public void testInserer2() {
+		
 		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
+		
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -114,6 +115,13 @@ public class Jinserer {
 		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
 				selection, scanner,save, ajouter, delete, load,
 				demarrer, stopper, rejouer);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+
 		inserer.execute();
 		assertNotNull("La chaine n'est pas vide", str);
 	}
@@ -123,6 +131,7 @@ public class Jinserer {
 
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
+		
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -149,11 +158,17 @@ public class Jinserer {
 				selection, scanner,save, ajouter, delete, load,
 				demarrer, stopper, rejouer);
 
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+
 		buffer.setBuffer(stringBuffer);
-		
+
 		selection.setDebut(6);
-		
-		inserer.execute();
+		selection.setFin(11);
+		moteur.ajouter(str);
 
 		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
@@ -164,6 +179,7 @@ public class Jinserer {
 
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
+		
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -190,13 +206,69 @@ public class Jinserer {
 				selection, scanner,save, ajouter, delete, load,
 				demarrer, stopper, rejouer);
 
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+
 		buffer.setBuffer(stringBuffer);
-	
+
 		selection.setDebut(3);
-	
-		inserer.execute();
+		selection.setFin(3);
+
+		moteur.ajouter(str);
 
 		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
+
+	}
+
+	@Test
+	public void testInserer5() {
+
+		String str = new String("abcdef");
+		StringBuffer stringBuffer = new StringBuffer("insere");
+		
+		Buffer buffer = new Buffer();
+		ClipBoard clip = new ClipboardImpl();
+		Selection selection = new Selection();
+		Ihm ihm = null;
+
+		Moteur moteur = new MoteurImpl(buffer, clip, selection);
+		Enregistreur enregistreur = new EnregistrerImpl();
+		Demarrer demarrer = new Demarrer(enregistreur);
+		Stopper stopper = new Stopper(enregistreur);
+		Rejouer rejouer = new Rejouer(enregistreur);
+		Coller coller = new Coller(moteur,enregistreur);
+		Copier copier = new Copier(moteur,enregistreur);
+		Couper couper = new Couper(moteur,enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm,enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm,enregistreur);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
+		Delete delete = new Delete(moteur,enregistreur);
+		Load load = new Load(moteur, ihm);
+
+		Scanner scanner = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
+				selection, scanner,save, ajouter, delete, load,
+				demarrer, stopper, rejouer);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+
+		buffer.setBuffer(stringBuffer);
+
+		selection.setDebut(3);
+		selection.setFin(6);
+
+		moteur.ajouter(str);
+
+		assertTrue(("insabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
