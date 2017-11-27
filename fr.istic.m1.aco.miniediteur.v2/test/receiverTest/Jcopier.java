@@ -64,7 +64,6 @@ public class Jcopier {
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
 		selection.setDebut(0);
 		selection.setFin(6);
 		Command copier = new Copier(moteur, enregistreur);
