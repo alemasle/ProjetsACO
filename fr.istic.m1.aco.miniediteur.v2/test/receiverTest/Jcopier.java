@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import command.Coller;
 import command.Command;
+import command.CommandGeneral;
 import command.Copier;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
@@ -107,8 +108,8 @@ public class Jcopier {
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
-		Command copier = new Copier(moteur, enregistreur);
-		Command coller = new Coller(moteur, enregistreur);
+		CommandGeneral copier = new Copier(moteur, enregistreur);
+		CommandGeneral coller = new Coller(moteur, enregistreur);
 
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(0);
@@ -118,18 +119,16 @@ public class Jcopier {
 		coller.execute();
 		coller.execute();
 
-		selection.setDebut(2);
-		selection.setFin(3);
-
 		enregistreur.demarrer();
 		selection.setDebut(0);
 		selection.setFin(6);
 		copier.execute();
+		selection.setDebut(6);
+		selection.setFin(6);
+		coller.execute();
 		enregistreur.stopper();
-
 		enregistreur.rejouer();
 
-		System.out.println(pressePapier.getClip());
 		assertTrue("abcdef".compareTo(pressePapier.getClip()) == 0);
 
 	}
