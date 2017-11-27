@@ -100,17 +100,19 @@ public class Jcouper {
 		CommandGeneral coller = new Coller(moteur, enregistreur);
 		
 		buffer.setBuffer(stringBuffer);
-		selection.setDebut(0);
-		selection.setFin(2);
+		
 		
 
 		enregistreur.demarrer();
+		selection.setDebut(0);
+		selection.setFin(3);
 		couper.execute();
 		selection.setDebut(3);
 		selection.setFin(3);
 		coller.execute();
 		
 		enregistreur.stopper();
+		
 		
 		assertTrue(("cou").compareTo(pressePapier.getClip()) == 0);
 		assertTrue("percou".compareTo(buffer.getBuffer().toString()) == 0);
