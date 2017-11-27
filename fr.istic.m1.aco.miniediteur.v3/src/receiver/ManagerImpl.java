@@ -39,6 +39,7 @@ public class ManagerImpl implements Manager {
 
 		List<Command> lcmd = stateCourant.getLcmd();
 		List<Memento<?>> lmem = stateCourant.getLmem();
+		System.out.println(defaireStack.size() + " size defaire, cmd size: " + stateCourant.getLcmd().size());
 
 		if (lcmd.size() == 0) {
 			if (!defaireStack.isEmpty()) {
@@ -73,6 +74,7 @@ public class ManagerImpl implements Manager {
 	 */
 	public void refaire() {
 		if (!refaireStack.isEmpty()) {
+			System.out.println(refaireStack.size() + " size refaire, cmd size: " + stateCourant.getLcmd().size());
 			if (stateCourant.getLcmd().size() == 5) {
 				defaireStack.push(stateCourant.clone());
 			}
@@ -86,7 +88,10 @@ public class ManagerImpl implements Manager {
 
 	/**
 	 * Sauvegarde l'etat courant dans la pile Defaire si il y'a 5 commandes
-	 * enregistree
+	 * enregistree.
+	 * 
+	 * 
+	 * Supprime l'etat le plus ancien si il y'a plus de 30 etats enregistres
 	 */
 	public void saveState() {
 		List<Command> lcmd = stateCourant.getLcmd();
@@ -98,7 +103,17 @@ public class ManagerImpl implements Manager {
 			ns.setLcmd(new ArrayList<Command>());
 			ns.setLmem(new ArrayList<Memento<?>>());
 			stateCourant = ns;
-			System.out.println("Save state");
+
+			if (defaireStack.size() > 30) {
+				Stack<State> tmp = new Stack<State>();
+				while (defaireStack.size() > 1) {
+					tmp.push(defaireStack.pop());
+				}
+				while (!tmp.isEmpty()) {
+					defaireStack.push(tmp.pop());
+				}
+			}
+			System.out.println("Save State.");
 		}
 	}
 

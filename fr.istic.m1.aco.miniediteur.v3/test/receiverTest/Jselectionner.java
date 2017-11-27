@@ -78,8 +78,8 @@ public class Jselectionner {
 
 		for (int i = 0; i < 10000; i++) {
 			rn = new Random();
-			deb = rn.nextInt(1000) + 0;
-			fin = rn.nextInt(1000) + 0;
+			deb = rn.nextInt(1000) - 500;
+			fin = rn.nextInt(1000) - 500;
 
 			selmem = (SelectionnerMemento) select.getMemento();
 			selmem.setDeb(deb);

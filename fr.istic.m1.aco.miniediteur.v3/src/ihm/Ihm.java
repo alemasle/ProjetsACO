@@ -375,7 +375,7 @@ public class Ihm {
 				System.out.println("");
 				defaire.execute();
 				System.out.println("");
-				// clearScreen();
+				clearScreen();
 				break;
 
 			case 'y': // Return to the previous state, redo action

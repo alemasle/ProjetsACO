@@ -45,8 +45,29 @@ public class MoteurImpl implements Moteur {
 	 *            la fin de la selection
 	 */
 	public void selectionner(int debut, int fin) {
-		select.setDebut(debut);
-		select.setFin(fin);
+		int deb = debut;
+		int fi = fin;
+
+		int len = buffer.getBuffer().length();
+
+		if (deb > len) {
+			deb = len;
+		}
+
+		if (fi > len) {
+			fi = len;
+		}
+
+		if (deb < 0) {
+			deb = 0;
+		}
+
+		if (fi < 0) {
+			fi = 0;
+		}
+
+		select.setDebut(deb);
+		select.setFin(fi);
 	}
 
 	/**
@@ -284,9 +305,6 @@ public class MoteurImpl implements Moteur {
 		select.setDebut(stM.getMoteur().getSelect().getDebut());
 		select.setFin(stM.getMoteur().getSelect().getFin());
 
-		System.out.println("moteur apres buff = \"" + getBuffer().getBuffer().toString() + "\"");
-		System.out.println("stM buff = \"" + stM.getMoteur().getBuffer().getBuffer().toString() + "\"");
-
 		List<Command> lcmd = stM.getLcmd();
 		List<Memento<?>> lmem = stM.getLmem();
 		Command cmd = null;
@@ -296,10 +314,8 @@ public class MoteurImpl implements Moteur {
 			cmd.setMemento(lmem.get(i));
 			cmd.setMoteur(this);
 			cmd.execute();
-			System.out.println("cmd-moteur = " + cmd.getMoteur().getBuffer().getBuffer().toString());
 		}
 
-		System.out.println("Moteur actuel: \"" + buffer.getBuffer().toString() + "\"");
 	}
 
 	/**
