@@ -98,10 +98,8 @@ public class Jcouper {
 
 		CommandGeneral couper = new Couper(moteur, enregistreur);
 		CommandGeneral coller = new Coller(moteur, enregistreur);
-		
+
 		buffer.setBuffer(stringBuffer);
-		
-		
 
 		enregistreur.demarrer();
 		selection.setDebut(0);
@@ -110,10 +108,9 @@ public class Jcouper {
 		selection.setDebut(3);
 		selection.setFin(3);
 		coller.execute();
-		
+
 		enregistreur.stopper();
-		
-		
+
 		assertTrue(("cou").compareTo(pressePapier.getClip()) == 0);
 		assertTrue("percou".compareTo(buffer.getBuffer().toString()) == 0);
 	}
