@@ -1,7 +1,5 @@
 package receiverTest;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
@@ -31,6 +29,12 @@ import state.Selection;
 
 public class Jselectionner {
 
+	/**
+	 * 
+	 * Genere 10000 selections differentes aleatoirement et test si les bornes sont
+	 * conformes aux attentes
+	 * 
+	 */
 	@Test
 	public void testExecute1() {
 
@@ -66,10 +70,10 @@ public class Jselectionner {
 		int fin = 0;
 		Random rn = null;
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10000; i++) {
 			rn = new Random();
-			deb = rn.nextInt(100) + 0;
-			fin = rn.nextInt(100) + 0;
+			deb = rn.nextInt(1000) + 0;
+			fin = rn.nextInt(1000) + 0;
 
 			selmem = (SelectionnerMemento) select.getMemento();
 			selmem.setDeb(deb);
@@ -79,102 +83,15 @@ public class Jselectionner {
 			select.execute();
 			enregistreur.setPlay(false);
 
-			System.out.println("deb: " + selection.getDebut() + " fin: " + selection.getFin());
-			assertTrue(selection.getDebut() <= selection.getFin());
+			int debut = selection.getDebut();
+			int fi = selection.getFin();
+			int len = buffer.getBuffer().length();
+
+			System.out.println("deb:" + deb + " fin:" + fin + " len:" + len);
+			assertTrue(debut <= fi);
+			assertTrue(debut >= 0 && debut <= len);
+			assertTrue(fi >= 0 && fi <= len);
 		}
-	}
-
-	@Test
-	public void testExecute2() {
-		Buffer buffer = new Buffer();
-		ClipBoard clip = new ClipboardImpl();
-		Selection selection = new Selection();
-		Ihm ihm = null;
-		Moteur moteur = new MoteurImpl(buffer, clip, selection);
-		Enregistreur enregistreur = new EnregistrerImpl();
-		Demarrer demarrer = new Demarrer(enregistreur);
-		Stopper stopper = new Stopper(enregistreur);
-		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur, enregistreur);
-		Copier copier = new Copier(moteur, enregistreur);
-		Couper couper = new Couper(moteur, enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
-		Save save = new Save(moteur, ihm);
-		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur, enregistreur);
-		Load load = new Load(moteur, ihm);
-		Scanner scanner = new Scanner(System.in);
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
-				load, demarrer, stopper, rejouer);
-
-		Command select = new Selectionner(moteur, ihm, enregistreur);
-		select.execute();
-
-		assertFalse(selection.getDebut() >= selection.getFin());
-		assertTrue(selection.getDebut() <= selection.getFin());
-	}
-
-	@Test
-	public void testExecute3() {
-		Buffer buffer = new Buffer();
-		ClipBoard clip = new ClipboardImpl();
-		Selection selection = new Selection();
-		Ihm ihm = null;
-		Moteur moteur = new MoteurImpl(buffer, clip, selection);
-		Enregistreur enregistreur = new EnregistrerImpl();
-		Demarrer demarrer = new Demarrer(enregistreur);
-		Stopper stopper = new Stopper(enregistreur);
-		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur, enregistreur);
-		Copier copier = new Copier(moteur, enregistreur);
-		Couper couper = new Couper(moteur, enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
-		Save save = new Save(moteur, ihm);
-		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur, enregistreur);
-		Load load = new Load(moteur, ihm);
-		Scanner scanner = new Scanner(System.in);
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
-				load, demarrer, stopper, rejouer);
-
-		Command select = new Selectionner(moteur, ihm, enregistreur);
-		select.execute();
-
-		assertTrue(selection.getDebut() <= selection.getFin());
-		assertTrue(selection.getDebut() == selection.getFin());
-		assertTrue(selection.getDebut() >= selection.getFin());
-	}
-
-	@Test
-	public void testGetValues() {
-		Buffer buffer = new Buffer();
-		ClipBoard clip = new ClipboardImpl();
-		Selection selection = new Selection();
-		Ihm ihm = null;
-		Moteur moteur = new MoteurImpl(buffer, clip, selection);
-		Enregistreur enregistreur = new EnregistrerImpl();
-		Demarrer demarrer = new Demarrer(enregistreur);
-		Stopper stopper = new Stopper(enregistreur);
-		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur, enregistreur);
-		Copier copier = new Copier(moteur, enregistreur);
-		Couper couper = new Couper(moteur, enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
-		Save save = new Save(moteur, ihm);
-		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur, enregistreur);
-		Load load = new Load(moteur, ihm);
-		Scanner scanner = new Scanner(System.in);
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
-				load, demarrer, stopper, rejouer);
-
-		Command select = new Selectionner(moteur, ihm, enregistreur);
-		select.execute();
-
-		assertNotEquals(selection.getDebut(), selection.getFin());
 	}
 
 }

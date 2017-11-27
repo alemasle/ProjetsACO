@@ -41,8 +41,29 @@ public class MoteurImpl implements Moteur {
 	 *            la fin de la selection
 	 */
 	public void selectionner(int debut, int fin) {
-		select.setDebut(debut);
-		select.setFin(fin);
+		int deb = debut;
+		int fi = fin;
+
+		int len = buffer.getBuffer().length();
+
+		if (deb > len) {
+			deb = len;
+		}
+
+		if (fi > len) {
+			fi = len;
+		}
+
+		if (deb < 0) {
+			deb = 0;
+		}
+
+		if (fi < 0) {
+			fi = 0;
+		}
+
+		select.setDebut(deb);
+		select.setFin(fi);
 	}
 
 	/**
