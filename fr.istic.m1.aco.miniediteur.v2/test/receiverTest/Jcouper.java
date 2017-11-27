@@ -112,7 +112,7 @@ public class Jcouper {
 		
 		enregistreur.stopper();
 		
-		assertTrue(("").compareTo(pressePapier.getClip()) == 0);
+		assertTrue(("cou").compareTo(pressePapier.getClip()) == 0);
 		assertTrue("percou".compareTo(buffer.getBuffer().toString()) == 0);
 	}
 

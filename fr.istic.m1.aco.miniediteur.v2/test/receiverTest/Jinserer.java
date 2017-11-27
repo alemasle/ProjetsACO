@@ -81,6 +81,7 @@ public class Jinserer {
 		
 		selection.setDebut(6);
 		selection.setFin(6);
+		System.out.println("Entrer le mot insere : \n");
 		inserer.execute();
 		
 		enregistreur.stopper();
@@ -121,7 +122,7 @@ public class Jinserer {
 				selection, scanner,save, ajouter, delete, load,
 				demarrer, stopper, rejouer);
 
-		System.out.println("Entrer le mot insere : \n");
+	
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
 		save.setIhm(ihm);
