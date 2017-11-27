@@ -8,6 +8,8 @@ import command.Delete;
 import command.Rejouer;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
+import receiver.Manager;
+import receiver.ManagerImpl;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -27,7 +29,8 @@ public class JDelete {
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Rejouer rejouer = new Rejouer(enregistreur);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Delete delete = new Delete(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Delete delete = new Delete(moteur, enregistreur,manager);
 
 		buffer.setBuffer(stringBuffer);
 
@@ -55,7 +58,8 @@ public class JDelete {
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Rejouer rejouer = new Rejouer(enregistreur);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Delete delete = new Delete(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Delete delete = new Delete(moteur, enregistreur,manager);
 
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(0);
@@ -86,7 +90,8 @@ public class JDelete {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Delete delete = new Delete(moteur, enregistreur);
+		Manager manager = new ManagerImpl(moteur);
+		Delete delete = new Delete(moteur, enregistreur,manager);
 
 		buffer.setBuffer(stringBuffer);
 
