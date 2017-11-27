@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import command.Coller;
-import command.Command;
 import command.Delete;
 import command.Rejouer;
 import receiver.EnregistrerImpl;
@@ -21,8 +19,6 @@ public class JDelete {
 
 	@Test
 	public void testJDelete1() {
-		
-		
 
 		StringBuffer stringBuffer = new StringBuffer("delete");
 		Buffer buffer = new Buffer();
@@ -31,18 +27,17 @@ public class JDelete {
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Rejouer rejouer = new Rejouer(enregistreur);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Delete delete = new Delete( moteur, enregistreur);
-		
-		
+		Delete delete = new Delete(moteur, enregistreur);
+
 		buffer.setBuffer(stringBuffer);
-		
+
 		selection.setDebut(6);
 		selection.setFin(6);
-	
+
 		enregistreur.demarrer();
 		delete.execute();
 		enregistreur.stopper();
-		
+
 		selection.setDebut(2);
 		selection.setFin(3);
 
@@ -50,7 +45,6 @@ public class JDelete {
 		assertTrue(("deet").compareTo(buffer.getBuffer().toString()) == 0);
 	}
 
-	
 	@Test
 	public void testJDelete2() {
 
@@ -61,15 +55,15 @@ public class JDelete {
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Rejouer rejouer = new Rejouer(enregistreur);
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Delete delete = new Delete( moteur, enregistreur);
-		
+		Delete delete = new Delete(moteur, enregistreur);
+
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(0);
 		selection.setFin(2);
-		
+
 		selection.setDebut(6);
 		selection.setFin(6);
-		
+
 		enregistreur.demarrer();
 
 		delete.execute();
@@ -82,30 +76,28 @@ public class JDelete {
 
 		assertTrue(("de").compareTo(buffer.getBuffer().toString()) == 0);
 	}
-	
+
 	@Test
 	public void testJDelete3() {
-		
+
 		StringBuffer stringBuffer = new StringBuffer("deleteDELETE");
 		Buffer buffer = new Buffer();
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
-		Delete delete = new Delete( moteur, enregistreur);
-		
+		Delete delete = new Delete(moteur, enregistreur);
+
 		buffer.setBuffer(stringBuffer);
 
-		enregistreur.demarrer();
 		selection.setDebut(4);
 		selection.setFin(7);
 		delete.execute();
 		selection.setDebut(4);
 		selection.setFin(7);
 		delete.execute();
-		enregistreur.stopper();
 
 		assertTrue(("deleTE").compareTo(buffer.getBuffer().toString()) == 0);
 	}
-	
+
 }
