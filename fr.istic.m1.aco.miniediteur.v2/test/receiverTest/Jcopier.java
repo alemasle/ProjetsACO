@@ -4,12 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import command.Ajouter;
 import command.Coller;
 import command.Command;
 import command.Copier;
-import command.Copier.CopierMemento;
-import memento.Memento;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
 import receiver.Moteur;
