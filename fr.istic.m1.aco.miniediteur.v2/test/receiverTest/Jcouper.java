@@ -40,7 +40,7 @@ public class Jcouper {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
 		enregistreur.stopper();
@@ -66,7 +66,7 @@ public class Jcouper {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
 		enregistreur.stopper();
@@ -89,14 +89,15 @@ public class Jcouper {
 	public void testGetMementon() {
 		StringBuffer stringBuffer = new StringBuffer("couper");
 		Buffer buffer = new Buffer();
+		
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		Command couper = new Couper(moteur, enregistreur);
 
-		Memento<CouperMemento> memento = couper.getMemento();
+		CouperMemento memento = (CouperMemento)couper.getMemento();
 
 		assertTrue(memento instanceof Couper.CouperMemento);
 
@@ -115,7 +116,7 @@ public class Jcouper {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
 		enregistreur.stopper();
