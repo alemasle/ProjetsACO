@@ -33,7 +33,8 @@ public class JBuffer {
 
 		buffer.setBuffer(stringBuffer);
 
-		assertFalse((buffer.toString().compareTo("ninja")) == 0);
+		assertFalse((buffer.getBuffer().toString().compareTo("ninja")) == 0);
+		assertTrue((buffer.getBuffer().toString().compareTo("ninjaLennon")) == 0);
 
 	}
 
@@ -46,6 +47,8 @@ public class JBuffer {
 
 		assertFalse((buffer.getBuffer().toString()
 				.compareTo("123 456      abcd    5485ret :!::: erer )()-_./__ ninja")) == 0);
+		assertTrue(buffer.getBuffer().toString()
+				.compareTo("123 456      BobLennon    5485ret :!::: erer )()-_./__ ninja") == 0);
 	}
 
 }

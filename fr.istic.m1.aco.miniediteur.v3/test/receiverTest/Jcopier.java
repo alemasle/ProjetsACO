@@ -4,9 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import command.Coller;
 import command.Command;
+import command.CommandGeneral;
 import command.Copier;
-import memento.Memento;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
 import receiver.Moteur;
@@ -37,10 +38,9 @@ public class Jcopier {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
 		selection.setDebut(3);
 		selection.setFin(3);
 		Command copier = new Copier(moteur, enregistreur);
@@ -62,40 +62,15 @@ public class Jcopier {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
 		selection.setDebut(0);
 		selection.setFin(6);
 		Command copier = new Copier(moteur, enregistreur);
 		copier.execute();
 
 		assertTrue(("copier").compareTo(pressePapier.getClip()) == 0);
-
-	}
-
-	@Test
-	public void testSetMemento() {
-		// pas d'action
-
-	}
-
-	// TODO à revoir
-	@Test
-	public void testGetMemento() {
-		StringBuffer stringBuffer = new StringBuffer("copier");
-		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
-		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
-
-		Command copier = new Copier(moteur, enregistreur);
-
-		Memento<CopierMemento> memento = copier.getMemento();
-
-		assertTrue(memento instanceof Copier.CopierMemento);
 
 	}
 
@@ -111,16 +86,50 @@ public class Jcopier {
 		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
-		Moteur moteur = new MoteurImpl(pressePapier, selection, buffer);
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
 
 		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
+
 		selection.setDebut(4);
 		selection.setFin(6);
 		Command copier = new Copier(moteur, enregistreur);
 		copier.execute();
 
 		assertTrue(("er").compareTo(pressePapier.getClip()) == 0);
+
+	}
+
+	@Test
+	public void testGetMemento() {
+		StringBuffer stringBuffer = new StringBuffer("abcdef");
+		Buffer buffer = new Buffer();
+		Selection selection = new Selection();
+		ClipBoard pressePapier = new ClipboardImpl();
+		Enregistreur enregistreur = new EnregistrerImpl();
+		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+
+		CommandGeneral copier = new Copier(moteur, enregistreur);
+		CommandGeneral coller = new Coller(moteur, enregistreur);
+
+		buffer.setBuffer(stringBuffer);
+		selection.setDebut(0);
+		selection.setFin(6);
+
+		copier.execute();
+		coller.execute();
+		coller.execute();
+
+		enregistreur.demarrer();
+		selection.setDebut(0);
+		selection.setFin(6);
+		copier.execute();
+		selection.setDebut(6);
+		selection.setFin(6);
+		coller.execute();
+		enregistreur.stopper();
+		enregistreur.rejouer();
+
+		assertTrue("abcdef".compareTo(pressePapier.getClip()) == 0);
 
 	}
 
