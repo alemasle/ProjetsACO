@@ -87,7 +87,6 @@ public class Jselectionner {
 			int fi = selection.getFin();
 			int len = buffer.getBuffer().length();
 
-			System.out.println("deb:" + deb + " fin:" + fin + " len:" + len);
 			assertTrue(debut <= fi);
 			assertTrue(debut >= 0 && debut <= len);
 			assertTrue(fi >= 0 && fi <= len);

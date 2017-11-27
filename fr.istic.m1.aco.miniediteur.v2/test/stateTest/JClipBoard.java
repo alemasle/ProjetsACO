@@ -30,18 +30,18 @@ public class JClipBoard {
 	public void testClipboardImpl2() {
 		ClipBoard pressePapier = new ClipboardImpl();
 
-		pressePapier.setClip("pressePaper");
+		pressePapier.setClip("clipboard");
 
-		assertTrue((pressePapier.getClip().compareTo("pressePaper")) == 0);
+		assertTrue((pressePapier.getClip().compareTo("clipboard")) == 0);
 	}
 
 	@Test
 	public void testClipboardImpl3() {
 		ClipBoard pressePapier = new ClipboardImpl();
 
-		pressePapier.setClip("pressePapeterie");
+		pressePapier.setClip("clipboard");
 
-		assertFalse((pressePapier.getClip().compareTo("pressePap")) == 0);
+		assertFalse((pressePapier.getClip().compareTo("clipbourde")) == 0);
 	}
 
 }

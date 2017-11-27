@@ -51,51 +51,49 @@ public class Jinserer {
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur,enregistreur);
-		Copier copier = new Copier(moteur,enregistreur);
-		Couper couper = new Couper(moteur,enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm,enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm,enregistreur);
+		Coller coller = new Coller(moteur, enregistreur);
+		Copier copier = new Copier(moteur, enregistreur);
+		Couper couper = new Couper(moteur, enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
 		Save save = new Save(moteur, ihm);
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur,enregistreur);
+		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
 
 		Scanner scanner = new Scanner(System.in);
 
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
-				selection, scanner,save, ajouter, delete, load,
-				demarrer, stopper, rejouer);
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-		String str = new String("insere");
 		StringBuffer stringBuffer = new StringBuffer("abcdef");
 
 		buffer.setBuffer(stringBuffer);
-		
+
 		enregistreur.demarrer();
-		
+
 		selection.setDebut(6);
 		selection.setFin(6);
 		System.out.println("Entrez le mot insere : \n");
 		inserer.execute();
-		
+
 		enregistreur.stopper();
 		enregistreur.rejouer();
-		
+
 		assertTrue(("abcdefinsereinsere").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
 	@Test
 	public void testInserer2() {
-		
+
 		String str = " ";
-		
+
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -106,29 +104,27 @@ public class Jinserer {
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur,enregistreur);
-		Copier copier = new Copier(moteur,enregistreur);
-		Couper couper = new Couper(moteur,enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm,enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm,enregistreur);
+		Coller coller = new Coller(moteur, enregistreur);
+		Copier copier = new Copier(moteur, enregistreur);
+		Couper couper = new Couper(moteur, enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
 		Save save = new Save(moteur, ihm);
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur,enregistreur);
+		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
 
 		Scanner scanner = new Scanner(System.in);
 
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
-				selection, scanner,save, ajouter, delete, load,
-				demarrer, stopper, rejouer);
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer);
 
-	
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-		
+
 		System.out.println("Veuillez entrer un texte.");
 		inserer.execute();
 		assertNotNull("La chaine n'est pas vide", str);
@@ -139,7 +135,7 @@ public class Jinserer {
 
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
-		
+
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -150,21 +146,20 @@ public class Jinserer {
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur,enregistreur);
-		Copier copier = new Copier(moteur,enregistreur);
-		Couper couper = new Couper(moteur,enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm,enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm,enregistreur);
+		Coller coller = new Coller(moteur, enregistreur);
+		Copier copier = new Copier(moteur, enregistreur);
+		Couper couper = new Couper(moteur, enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
 		Save save = new Save(moteur, ihm);
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur,enregistreur);
+		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
 
 		Scanner scanner = new Scanner(System.in);
 
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
-				selection, scanner,save, ajouter, delete, load,
-				demarrer, stopper, rejouer);
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
@@ -187,7 +182,7 @@ public class Jinserer {
 
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
-		
+
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -198,21 +193,20 @@ public class Jinserer {
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur,enregistreur);
-		Copier copier = new Copier(moteur,enregistreur);
-		Couper couper = new Couper(moteur,enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm,enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm,enregistreur);
+		Coller coller = new Coller(moteur, enregistreur);
+		Copier copier = new Copier(moteur, enregistreur);
+		Couper couper = new Couper(moteur, enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
 		Save save = new Save(moteur, ihm);
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur,enregistreur);
+		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
 
 		Scanner scanner = new Scanner(System.in);
 
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
-				selection, scanner,save, ajouter, delete, load,
-				demarrer, stopper, rejouer);
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
@@ -236,7 +230,7 @@ public class Jinserer {
 
 		String str = new String("abcdef");
 		StringBuffer stringBuffer = new StringBuffer("insere");
-		
+
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -247,21 +241,20 @@ public class Jinserer {
 		Demarrer demarrer = new Demarrer(enregistreur);
 		Stopper stopper = new Stopper(enregistreur);
 		Rejouer rejouer = new Rejouer(enregistreur);
-		Coller coller = new Coller(moteur,enregistreur);
-		Copier copier = new Copier(moteur,enregistreur);
-		Couper couper = new Couper(moteur,enregistreur);
-		Inserer inserer = new Inserer(moteur, ihm,enregistreur);
-		Selectionner selectionner = new Selectionner(moteur, ihm,enregistreur);
+		Coller coller = new Coller(moteur, enregistreur);
+		Copier copier = new Copier(moteur, enregistreur);
+		Couper couper = new Couper(moteur, enregistreur);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur);
 		Save save = new Save(moteur, ihm);
 		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur);
-		Delete delete = new Delete(moteur,enregistreur);
+		Delete delete = new Delete(moteur, enregistreur);
 		Load load = new Load(moteur, ihm);
 
 		Scanner scanner = new Scanner(System.in);
 
-		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer,
-				selection, scanner,save, ajouter, delete, load,
-				demarrer, stopper, rejouer);
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer);
 
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
