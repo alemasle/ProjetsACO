@@ -10,6 +10,8 @@ import command.CommandGeneral;
 import command.Copier;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
+import receiver.Manager;
+import receiver.ManagerImpl;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -39,11 +41,12 @@ public class Jcopier {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(3);
 		selection.setFin(3);
-		Command copier = new Copier(moteur, enregistreur);
+		Command copier = new Copier(moteur, enregistreur,manager);
 		copier.execute();
 
 		assertTrue(("").compareTo(pressePapier.getClip()) == 0);
@@ -63,11 +66,12 @@ public class Jcopier {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(0);
 		selection.setFin(6);
-		Command copier = new Copier(moteur, enregistreur);
+		Command copier = new Copier(moteur, enregistreur, manager);
 		copier.execute();
 
 		assertTrue(("copier").compareTo(pressePapier.getClip()) == 0);
@@ -87,12 +91,13 @@ public class Jcopier {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
 		buffer.setBuffer(stringBuffer);
 
 		selection.setDebut(4);
 		selection.setFin(6);
-		Command copier = new Copier(moteur, enregistreur);
+		Command copier = new Copier(moteur, enregistreur, manager);
 		copier.execute();
 
 		assertTrue(("er").compareTo(pressePapier.getClip()) == 0);
@@ -107,9 +112,10 @@ public class Jcopier {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
-		CommandGeneral copier = new Copier(moteur, enregistreur);
-		CommandGeneral coller = new Coller(moteur, enregistreur);
+		CommandGeneral copier = new Copier(moteur, enregistreur, manager);
+		CommandGeneral coller = new Coller(moteur, enregistreur, manager);
 
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(0);

@@ -10,6 +10,8 @@ import command.CommandGeneral;
 import command.Couper;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
+import receiver.Manager;
+import receiver.ManagerImpl;
 import receiver.Moteur;
 import receiver.MoteurImpl;
 import state.Buffer;
@@ -41,11 +43,12 @@ public class Jcouper {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
 		buffer.setBuffer(stringBuffer);
 		selection.setDebut(3);
 		selection.setFin(3);
-		Command couper = new Couper(moteur, enregistreur);
+		Command couper = new Couper(moteur, enregistreur, manager);
 		couper.execute();
 
 		assertTrue(("").compareTo(pressePapier.getClip()) == 0);
@@ -66,12 +69,13 @@ public class Jcouper {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
 		buffer.setBuffer(stringBuffer);
 		enregistreur.stopper();
 		selection.setDebut(0);
 		selection.setFin(6);
-		Command couper = new Couper(moteur, enregistreur);
+		Command couper = new Couper(moteur, enregistreur,manager);
 		couper.execute();
 
 		assertTrue(("couper").compareTo(pressePapier.getClip()) == 0);
@@ -92,9 +96,10 @@ public class Jcouper {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
-		CommandGeneral couper = new Couper(moteur, enregistreur);
-		CommandGeneral coller = new Coller(moteur, enregistreur);
+		CommandGeneral couper = new Couper(moteur, enregistreur,manager);
+		CommandGeneral coller = new Coller(moteur, enregistreur, manager);
 
 		buffer.setBuffer(stringBuffer);
 
@@ -126,12 +131,13 @@ public class Jcouper {
 		ClipBoard pressePapier = new ClipboardImpl();
 		Enregistreur enregistreur = new EnregistrerImpl();
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Manager manager = new ManagerImpl(moteur);
 
 		buffer.setBuffer(stringBuffer);
 		enregistreur.stopper();
 		selection.setDebut(2);
 		selection.setFin(5);
-		Command couper = new Couper(moteur, enregistreur);
+		Command couper = new Couper(moteur, enregistreur, manager);
 		couper.execute();
 
 		assertTrue(("upe").compareTo(pressePapier.getClip()) == 0);
