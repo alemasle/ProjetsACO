@@ -52,6 +52,11 @@ public class Selectionner implements Command {
 		if (enregistreur.getPlay()) {
 			deb = memento.getDeb();
 			fin = memento.getFin();
+			if (deb > fin) {
+				int tmp = fin;
+				fin = deb;
+				deb = tmp;
+			}
 			moteur.selectionner(deb, fin);
 		} else {
 			deb = ihm.getDebut();
