@@ -81,7 +81,7 @@ public class Jinserer {
 		
 		selection.setDebut(6);
 		selection.setFin(6);
-		moteur.inserer(str);
+		inserer.execute();
 		
 		enregistreur.stopper();
 		enregistreur.rejouer();
@@ -93,7 +93,7 @@ public class Jinserer {
 	@Test
 	public void testInserer2() {
 		
-		String str = new String("abcdef");
+		String str = " ";
 		
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
@@ -121,12 +121,14 @@ public class Jinserer {
 				selection, scanner,save, ajouter, delete, load,
 				demarrer, stopper, rejouer);
 
+		System.out.println("Entrer le mot insere : \n");
 		inserer.setIhm(ihm);
 		selectionner.setIhm(ihm);
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-
+		
+		
 		inserer.execute();
 		assertNotNull("La chaine n'est pas vide", str);
 	}
