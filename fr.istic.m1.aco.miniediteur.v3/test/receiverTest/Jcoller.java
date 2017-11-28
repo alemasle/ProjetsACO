@@ -78,8 +78,9 @@ public class Jcoller {
 		selection.setFin(0);
 
 		rejouer.execute();
+		manager.defaire();
 
-		assertTrue(("ABCabcABC").compareTo(buffer.getBuffer().toString()) == 0);
+		assertTrue(("abcABC").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
@@ -110,6 +111,8 @@ public class Jcoller {
 		rejouer.execute();
 		rejouer.execute();
 		rejouer.execute();
+		manager.defaire();
+		manager.refaire();
 
 		assertTrue(("ABCABCABCABC").compareTo(buffer.getBuffer().toString()) == 0);
 
@@ -138,13 +141,15 @@ public class Jcoller {
 		coller.execute();
 
 		enregistreur.stopper();
-
+		manager.refaire();
 		selection.setDebut(4);
 		selection.setFin(5);
-
+		
 		rejouer.execute();
+		manager.defaire();
+		
 
-		assertTrue(("papaABCapaABC").compareTo(buffer.getBuffer().toString()) == 0);
+		assertTrue(("papapapaABC").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
