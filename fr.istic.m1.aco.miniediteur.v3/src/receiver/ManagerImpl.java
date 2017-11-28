@@ -71,8 +71,8 @@ public class ManagerImpl implements Manager {
 			setPlay(true);
 			moteur.recreer(stateCourant.clone());
 			setPlay(false);
+			System.out.println(defaireStack.size() + " size defaire, cmd size: " + stateCourant.getLcmd().size());
 		}
-		System.out.println("Stack defaire size: " + defaireStack.size());
 		System.out.println("Stack refaire size: " + refaireStack.size());
 	}
 

@@ -78,7 +78,7 @@ public class Coller implements Command {
 
 	@Override
 	public void setMemento(Memento<?> mem) {
-		this.setCollerMemento((CollerMemento) mem);
+		this.memento = (CollerMemento) mem;
 	}
 
 	public CollerMemento getCollerMemento() {

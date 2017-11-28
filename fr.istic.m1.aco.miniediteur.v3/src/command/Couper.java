@@ -100,8 +100,8 @@ public class Couper implements Command {
 	}
 
 	@Override
-	public Coller clone() {
-		Coller a = new Coller(moteur.clone(), enregistreur, manager);
+	public Couper clone() {
+		Couper a = new Couper(moteur.clone(), enregistreur, manager);
 		return a;
 	}
 
