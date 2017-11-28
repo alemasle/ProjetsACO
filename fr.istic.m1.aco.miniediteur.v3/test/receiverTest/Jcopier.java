@@ -92,7 +92,7 @@ public class Jcopier {
 	 * en assertTrue que "er" est bien dans le presse papier
 	 *
 	 */
-	//TODO
+	
 	@Test
 	public void testCopie3() {
 		StringBuffer stringBuffer = new StringBuffer("copier");
@@ -112,10 +112,11 @@ public class Jcopier {
 		selection.setFin(6);
 		copier.execute();
 		enregistreur.stopper();
-		rejouer.execute();
+		
 		manager.defaire();
 		manager.defaire();
 		manager.refaire();
+		manager.defaire();
 
 		assertTrue(("er").compareTo(pressePapier.getClip()) == 0);
 

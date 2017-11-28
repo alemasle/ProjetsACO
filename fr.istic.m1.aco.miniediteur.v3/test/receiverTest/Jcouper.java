@@ -2,12 +2,28 @@ package receiverTest;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Scanner;
+
 import org.junit.Test;
 
+import command.Ajouter;
 import command.Coller;
 import command.Command;
 import command.CommandGeneral;
+import command.Copier;
 import command.Couper;
+import command.Defaire;
+import command.Delete;
+import command.Demarrer;
+import command.Inserer;
+import command.Load;
+import command.NewLine;
+import command.Refaire;
+import command.Rejouer;
+import command.Save;
+import command.Selectionner;
+import command.Stopper;
+import ihm.Ihm;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
 import receiver.Manager;
@@ -34,23 +50,53 @@ public class Jcouper {
 	 *
 	 */
 
-	// TODO
+	
 	@Test
 	public void testCouper() {
-		StringBuffer stringBuffer = new StringBuffer("couper");
 		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+		Selection selection = new Selection();
+		Ihm ihm = null;
+
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Enregistreur enregistreur = new EnregistrerImpl();
 		Manager manager = new ManagerImpl(moteur);
 
-		buffer.setBuffer(stringBuffer);
+		Coller coller = new Coller(moteur, enregistreur, manager);
+		Copier copier = new Copier(moteur, enregistreur, manager);
+		Couper couper = new Couper(moteur, enregistreur, manager);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur, manager);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur, manager);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur, manager);
+		Delete delete = new Delete(moteur, enregistreur, manager);
+		Load load = new Load(moteur, ihm);
+		NewLine newLine = new NewLine(moteur, enregistreur, manager);
+		Demarrer demarrer = new Demarrer(enregistreur);
+		Stopper stopper = new Stopper(enregistreur);
+		Rejouer rejouer = new Rejouer(enregistreur);
+		Defaire defaire = new Defaire(manager);
+		Refaire refaire = new Refaire(manager);
+
+		Scanner scanner = new Scanner(System.in);
+	
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer, newLine, defaire, refaire);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+		
+		System.out.println("Entrer le mot: couper ");
+		ajouter.execute();
 		selection.setDebut(3);
 		selection.setFin(3);
-		Command couper = new Couper(moteur, enregistreur, manager);
+		
 		couper.execute();
-
+		manager.defaire();
 		assertTrue(("").compareTo(pressePapier.getClip()) == 0);
 		assertTrue(("couper").compareTo(buffer.getBuffer().toString()) == 0);
 	}
@@ -63,30 +109,59 @@ public class Jcouper {
 	 */
 	@Test
 	public void testCouper2() {
-		StringBuffer stringBuffer = new StringBuffer("couper");
+	
 		Buffer buffer = new Buffer();
-		Selection selection = new Selection();
 		ClipBoard pressePapier = new ClipboardImpl();
-		Enregistreur enregistreur = new EnregistrerImpl();
+		Selection selection = new Selection();
+		Ihm ihm = null;
+
 		Moteur moteur = new MoteurImpl(buffer, pressePapier, selection);
+		Enregistreur enregistreur = new EnregistrerImpl();
 		Manager manager = new ManagerImpl(moteur);
 
-		buffer.setBuffer(stringBuffer);
-		enregistreur.stopper();
+		Coller coller = new Coller(moteur, enregistreur, manager);
+		Copier copier = new Copier(moteur, enregistreur, manager);
+		Couper couper = new Couper(moteur, enregistreur, manager);
+		Inserer inserer = new Inserer(moteur, ihm, enregistreur, manager);
+		Selectionner selectionner = new Selectionner(moteur, ihm, enregistreur, manager);
+		Save save = new Save(moteur, ihm);
+		Ajouter ajouter = new Ajouter(moteur, ihm, enregistreur, manager);
+		Delete delete = new Delete(moteur, enregistreur, manager);
+		Load load = new Load(moteur, ihm);
+		NewLine newLine = new NewLine(moteur, enregistreur, manager);
+		Demarrer demarrer = new Demarrer(enregistreur);
+		Stopper stopper = new Stopper(enregistreur);
+		Rejouer rejouer = new Rejouer(enregistreur);
+		Defaire defaire = new Defaire(manager);
+		Refaire refaire = new Refaire(manager);
+
+		Scanner scanner = new Scanner(System.in);
+
+		ihm = new Ihm(copier, coller, couper, inserer, selectionner, buffer, selection, scanner, save, ajouter, delete,
+				load, demarrer, stopper, rejouer, newLine, defaire, refaire);
+
+		inserer.setIhm(ihm);
+		selectionner.setIhm(ihm);
+		save.setIhm(ihm);
+		ajouter.setIhm(ihm);
+		load.setIhm(ihm);
+		
+
+		System.out.println("Entrer le mot: couper ");
+		ajouter.execute();
 		selection.setDebut(0);
 		selection.setFin(6);
-		Command couper = new Couper(moteur, enregistreur,manager);
+		
 		couper.execute();
-
+		manager.defaire();
+		
+		
 		assertTrue(("couper").compareTo(pressePapier.getClip()) == 0);
-		assertTrue(("").compareTo(buffer.getBuffer().toString()) == 0);
+		
+		assertTrue(("couper").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
-	@Test
-	public void testSetMemento() {
-		// pas d'action
-	}
 
 	@Test
 	public void testGetMemento() {

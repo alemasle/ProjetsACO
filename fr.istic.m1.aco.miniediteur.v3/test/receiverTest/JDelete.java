@@ -45,6 +45,11 @@ public class JDelete {
 		selection.setFin(3);
 
 		rejouer.execute();
+		System.out.println(buffer.getBuffer().toString());
+		manager.defaire();
+		manager.refaire();
+		
+		System.out.println(buffer.getBuffer().toString());
 		assertTrue(("deet").compareTo(buffer.getBuffer().toString()) == 0);
 	}
 
