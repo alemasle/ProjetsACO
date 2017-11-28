@@ -80,21 +80,22 @@ public class Jinserer {
 		save.setIhm(ihm);
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
-		StringBuffer stringBuffer = new StringBuffer("abcdef");
 
-		buffer.setBuffer(stringBuffer);
-
+		System.out.println("Test1: Entrez le mot abcdef :\n");
+		ajouter.execute();
 		enregistreur.demarrer();
-
+		
 		selection.setDebut(6);
 		selection.setFin(6);
-		System.out.println("Entrez le mot insere : \n");
+		System.out.println("Test1: Entrez le mot insere : \n");
 		inserer.execute();
 
 		enregistreur.stopper();
 		enregistreur.rejouer();
-
-		assertTrue(("abcdefinsereinsere").compareTo(buffer.getBuffer().toString()) == 0);
+		System.out.println(buffer.getBuffer().toString());
+		manager.defaire();
+		System.out.println(buffer.getBuffer().toString());
+		assertTrue(("abcdefinsere").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
 
@@ -138,17 +139,17 @@ public class Jinserer {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 
-		System.out.println("Veuillez entrer un texte.");
+		System.out.println("Test2: Veuillez entrer un texte: \n");
 		inserer.execute();
+		manager.defaire();
+		manager.refaire();
 		assertNotNull("La chaine n'est pas vide", str);
 	}
 
 	@Test
 	public void testInserer3() {
 
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
-
+		
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -184,12 +185,19 @@ public class Jinserer {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 
-		buffer.setBuffer(stringBuffer);
-
+		System.out.println("Test3: Entrez le mot insere :\n");
+		ajouter.execute();
 		selection.setDebut(6);
 		selection.setFin(11);
-		moteur.ajouter(str);
-
+		System.out.println("Entrer abcdef: \n");
+		ajouter.execute();
+		System.out.println("Entrer abcdef: \n");
+		ajouter.execute();
+		
+		manager.defaire();
+		manager.defaire();
+		manager.refaire();
+		
 		assertTrue(("insereabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
@@ -197,9 +205,6 @@ public class Jinserer {
 	@Test
 	public void testInserer4() {
 
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
-
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -235,13 +240,20 @@ public class Jinserer {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 
-		buffer.setBuffer(stringBuffer);
-
+		System.out.println("Test4: Entrez le mot insere :\n");
+		ajouter.execute();
+		manager.refaire();
+		manager.refaire();
+		manager.defaire();
+		manager.refaire();
 		selection.setDebut(3);
 		selection.setFin(3);
-
-		moteur.ajouter(str);
-
+		System.out.println("Test4: Entrez le mot abcdef :\n");
+		enregistreur.demarrer();
+		ajouter.execute();
+		enregistreur.stopper();
+		
+		System.out.println(buffer.getBuffer().toString());
 		assertTrue(("insabcdefere").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
@@ -249,9 +261,6 @@ public class Jinserer {
 	@Test
 	public void testInserer5() {
 
-		String str = new String("abcdef");
-		StringBuffer stringBuffer = new StringBuffer("insere");
-
 		Buffer buffer = new Buffer();
 		ClipBoard clip = new ClipboardImpl();
 		Selection selection = new Selection();
@@ -287,13 +296,17 @@ public class Jinserer {
 		ajouter.setIhm(ihm);
 		load.setIhm(ihm);
 
-		buffer.setBuffer(stringBuffer);
-
+		System.out.println("Test5: Entrez le mot insere :\n");
+		ajouter.execute();
+		manager.defaire();
+		manager.defaire();
+		manager.refaire();
 		selection.setDebut(3);
 		selection.setFin(6);
-
-		moteur.ajouter(str);
-
+		System.out.println("Test5: Entrez le mot abcdef :\n");
+		ajouter.execute();
+		
+		
 		assertTrue(("insabcdef").compareTo(buffer.getBuffer().toString()) == 0);
 
 	}
