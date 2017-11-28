@@ -8,7 +8,6 @@ import command.Coller;
 import command.Command;
 import command.CommandGeneral;
 import command.Copier;
-import command.Rejouer;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;
 import receiver.Manager;

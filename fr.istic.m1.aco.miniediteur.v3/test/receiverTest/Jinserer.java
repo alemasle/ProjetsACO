@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import command.Ajouter;
 import command.Coller;
-
 import command.Copier;
 import command.Couper;
 import command.Defaire;

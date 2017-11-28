@@ -7,9 +7,23 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import command.*;
+import command.Ajouter;
+import command.Coller;
+import command.Command;
+import command.Copier;
+import command.Couper;
+import command.Defaire;
+import command.Delete;
+import command.Demarrer;
+import command.Inserer;
+import command.Load;
+import command.NewLine;
+import command.Refaire;
+import command.Rejouer;
+import command.Save;
 import command.Selectionner;
 import command.Selectionner.SelectionnerMemento;
+import command.Stopper;
 import ihm.Ihm;
 import receiver.EnregistrerImpl;
 import receiver.Enregistreur;

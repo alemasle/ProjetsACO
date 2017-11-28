@@ -59,7 +59,6 @@ public class ManagerImpl implements Manager {
 
 				stateCourant.addCmd(lastCmd);
 				stateCourant.addMem(lastMem);
-				System.out.println(defaireStack.size() + " size defaire, cmd size: " + stateCourant.getLcmd().size());
 			}
 		} else {
 
@@ -71,9 +70,7 @@ public class ManagerImpl implements Manager {
 			setPlay(true);
 			moteur.recreer(stateCourant.clone());
 			setPlay(false);
-			System.out.println(defaireStack.size() + " size defaire, cmd size: " + stateCourant.getLcmd().size());
 		}
-		System.out.println("Stack refaire size: " + refaireStack.size());
 	}
 
 	/**
@@ -81,8 +78,6 @@ public class ManagerImpl implements Manager {
 	 */
 	public void refaire() {
 		if (!refaireStack.isEmpty()) {
-			System.out.println(refaireStack.size() + " size refaire");
-			System.out.println(stateCourant.getLcmd().size() + " size lcmd");
 			if (stateCourant.getLcmd().size() == 5) {
 				defaireStack.push(stateCourant.clone());
 			}
@@ -93,9 +88,6 @@ public class ManagerImpl implements Manager {
 			moteur.recreer(stateCourant);
 			setPlay(false);
 		}
-
-		System.out.println("Stack defaire size: " + defaireStack.size());
-		System.out.println("Stack refaire size: " + refaireStack.size());
 	}
 
 	/**
