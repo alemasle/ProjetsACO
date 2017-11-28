@@ -39,7 +39,9 @@ public class ManagerImpl implements Manager {
 
 		List<Command> lcmd = stateCourant.getLcmd();
 		List<Memento<?>> lmem = stateCourant.getLmem();
-		System.out.println(defaireStack.size() + " size defaire, cmd size: " + stateCourant.getLcmd().size());
+
+		Command lastCmd = null;
+		Memento<?> lastMem = null;
 
 		if (lcmd.size() == 0) {
 			if (!defaireStack.isEmpty()) {
@@ -48,12 +50,16 @@ public class ManagerImpl implements Manager {
 
 				stateCourant = defaireStack.pop();
 
-				stateCourant.getLcmd().remove(stateCourant.getLcmd().size() - 1);
-				stateCourant.getLmem().remove(stateCourant.getLmem().size() - 1);
+				lastCmd = stateCourant.getLcmd().remove(stateCourant.getLcmd().size() - 1);
+				lastMem = stateCourant.getLmem().remove(stateCourant.getLmem().size() - 1);
 
 				setPlay(true);
 				moteur.recreer(stateCourant.clone());
 				setPlay(false);
+
+				stateCourant.addCmd(lastCmd);
+				stateCourant.addMem(lastMem);
+				System.out.println(defaireStack.size() + " size defaire, cmd size: " + stateCourant.getLcmd().size());
 			}
 		} else {
 
@@ -65,8 +71,9 @@ public class ManagerImpl implements Manager {
 			setPlay(true);
 			moteur.recreer(stateCourant.clone());
 			setPlay(false);
-
 		}
+		System.out.println("Stack defaire size: " + defaireStack.size());
+		System.out.println("Stack refaire size: " + refaireStack.size());
 	}
 
 	/**
@@ -74,16 +81,21 @@ public class ManagerImpl implements Manager {
 	 */
 	public void refaire() {
 		if (!refaireStack.isEmpty()) {
-			System.out.println(refaireStack.size() + " size refaire, cmd size: " + stateCourant.getLcmd().size());
+			System.out.println(refaireStack.size() + " size refaire");
+			System.out.println(stateCourant.getLcmd().size() + " size lcmd");
 			if (stateCourant.getLcmd().size() == 5) {
 				defaireStack.push(stateCourant.clone());
 			}
+
 			stateCourant = refaireStack.pop();
 
 			setPlay(true);
 			moteur.recreer(stateCourant);
 			setPlay(false);
 		}
+
+		System.out.println("Stack defaire size: " + defaireStack.size());
+		System.out.println("Stack refaire size: " + refaireStack.size());
 	}
 
 	/**
