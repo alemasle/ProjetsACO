@@ -19,6 +19,9 @@ public class Selectionner implements Command {
 	 */
 	private Moteur moteur;
 
+	/**
+	 * Ihm permettant d'obtenir les bornes de la selection
+	 */
 	private Ihm ihm;
 
 	/**

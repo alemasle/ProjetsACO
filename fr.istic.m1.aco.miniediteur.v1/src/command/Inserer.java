@@ -20,7 +20,7 @@ public class Inserer implements Command {
 	private Moteur moteur;
 
 	/**
-	 * Nouvelle String a inserer
+	 * L'ihm permettant d'obtenir la string a inserer
 	 */
 	private Ihm ihm;
 

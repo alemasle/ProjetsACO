@@ -5,7 +5,7 @@ import receiver.Moteur;
 import receiver.MoteurImpl;
 
 /**
- * Concrete Command "Inserer" implementant l'interface Command
+ * Concrete Command "Ajouter" implementant l'interface Command
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
@@ -13,19 +13,19 @@ import receiver.MoteurImpl;
 public class Ajouter implements Command {
 
 	/**
-	 * Nouvelle instance de l'interface Moteur declarant la methode inserer
+	 * Nouvelle instance de l'interface Moteur declarant la methode ajouter
 	 * 
 	 * @see Moteur
 	 */
 	private Moteur moteur;
 
 	/**
-	 * Nouvelle String a inserer
+	 * L'ihm permettant de connaitre la string a ajouter
 	 */
 	private Ihm ihm;
 
 	/**
-	 * Constructeur de la classe Inserer
+	 * Constructeur de la classe Ajouter
 	 * 
 	 * @param moteur
 	 * @param str
@@ -38,7 +38,7 @@ public class Ajouter implements Command {
 	// Operations
 
 	/**
-	 * Appel de la mise en oeuvre de la fonction "inserer" dans l'implementation
+	 * Appel de la mise en oeuvre de la fonction "ajouter" dans l'implementation
 	 * Moteur.
 	 * 
 	 * @see MoteurImpl

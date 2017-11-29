@@ -19,6 +19,9 @@ public class Load implements Command {
 	 */
 	private Moteur moteur;
 
+	/**
+	 * Ihm permettant d'obtenir le nom de fichier a charger
+	 */
 	private Ihm ihm;
 
 	/**

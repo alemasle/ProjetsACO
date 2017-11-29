@@ -18,7 +18,7 @@ public class Selection {
 
 	/**
 	 * @param debut
-	 *            le debut à définir
+	 *            le debut a definir
 	 */
 	public void setDebut(int debut) {
 		this.debut = debut;
@@ -33,7 +33,7 @@ public class Selection {
 
 	/**
 	 * @param fin
-	 *            le fin à définir
+	 *            le fin a definir
 	 */
 	public void setFin(int fin) {
 		this.fin = fin;

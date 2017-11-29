@@ -16,10 +16,19 @@ import state.Selection;
  */
 public class MoteurImpl implements Moteur {
 
+	/**
+	 * Buffer contenant le texte a afficher
+	 */
 	private Buffer buffer;
 
+	/**
+	 * Le presse-papier permettant de sauvegarder.
+	 */
 	private ClipBoard clip;
 
+	/**
+	 * La selection d'un morceau du buffer
+	 */
 	private Selection select;
 
 	public MoteurImpl(Buffer buffer, ClipBoard clip, Selection select) {
@@ -31,9 +40,9 @@ public class MoteurImpl implements Moteur {
 	// Operations
 
 	/**
-	 * Selectionne une partie du texte ayant comme debut le caracters a la
-	 * position debut et selectionnant tous les caracteres jusqu'a la position
-	 * fin. Si debut > fin alors on inverse les positions.
+	 * Selectionne une partie du texte ayant comme debut le caracters a la position
+	 * debut et selectionnant tous les caracteres jusqu'a la position fin. Si debut
+	 * > fin alors on inverse les positions.
 	 *
 	 * @param debut
 	 *            la position initiale
@@ -57,7 +66,8 @@ public class MoteurImpl implements Moteur {
 	}
 
 	/**
-	 * Insere une chaine de caracteres a la position courante.
+	 * Insere une chaine de caracteres a la position courante en ecransant le texte
+	 * situe a la suite.
 	 *
 	 * @param str
 	 *            La chaine de caractere a inserer
@@ -115,8 +125,8 @@ public class MoteurImpl implements Moteur {
 	}
 
 	/**
-	 * Colle le contenu du press-papier a la position actuelle en decalant le
-	 * texte existant apres la position courante.
+	 * Colle le contenu du presse-papier a la position actuelle en decalant le texte
+	 * existant apres la position courante.
 	 */
 	public void coller() {
 		int deb = select.getDebut();
@@ -187,7 +197,7 @@ public class MoteurImpl implements Moteur {
 	}
 
 	/**
-	 * Supprimer l'interieur de la selection actuelle
+	 * Supprime l'interieur de la selection actuelle
 	 */
 	private void removeSelect() {
 		int deb = select.getDebut();
@@ -208,7 +218,7 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * @param select
-	 *            le select à définir
+	 *            le select a� definir
 	 */
 	public void setSelect(Selection select) {
 		this.select = select;
@@ -223,7 +233,7 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * @param clip
-	 *            le clip à définir
+	 *            le clip a definir
 	 */
 	public void setClip(ClipBoard clip) {
 		this.clip = clip;
@@ -238,7 +248,7 @@ public class MoteurImpl implements Moteur {
 
 	/**
 	 * @param buffer
-	 *            le buffer à définir
+	 *            le buffer a�definir
 	 */
 	public void setBuffer(Buffer buffer) {
 		this.buffer = buffer;
