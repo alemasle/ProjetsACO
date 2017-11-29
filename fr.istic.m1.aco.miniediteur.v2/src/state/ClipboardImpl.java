@@ -21,6 +21,7 @@ public class ClipboardImpl implements ClipBoard {
 	 * 
 	 * @return clip le contenu du presse-papier
 	 */
+	@Override
 	public String getClip() {
 		return clip;
 	}
@@ -31,6 +32,7 @@ public class ClipboardImpl implements ClipBoard {
 	 * @param clip
 	 *            le nouveau contenu a mettre dans le presse-papier.
 	 */
+	@Override
 	public void setClip(String clip) {
 		this.clip = clip;
 	}

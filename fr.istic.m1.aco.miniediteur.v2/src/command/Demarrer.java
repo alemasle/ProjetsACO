@@ -4,7 +4,7 @@ import receiver.Enregistreur;
 
 /**
  * 
- * Concrete Command "Demarrer" implementant l'interface Command
+ * Concrete Command "Demarrer" implementant l'interface CommandGeneral
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
@@ -31,6 +31,7 @@ public class Demarrer implements CommandGeneral {
 	/**
 	 * Methode execute appelant la methode demarrer() de l'enregistreur
 	 */
+	@Override
 	public void execute() {
 		enregistreur.demarrer();
 	}

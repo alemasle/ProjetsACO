@@ -24,6 +24,12 @@ public class Copier implements Command {
 
 	private CopierMemento memento;
 
+	/**
+	 * Constructeur de la classe Copier
+	 * 
+	 * @param moteur
+	 * @param enregistreur
+	 */
 	public Copier(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
@@ -37,6 +43,7 @@ public class Copier implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		moteur.copier();
 		if (enregistreur.getRecord()) {
@@ -45,11 +52,20 @@ public class Copier implements Command {
 		}
 	}
 
+	/**
+	 * Creer un nouveau CopierMemento
+	 */
 	@Override
 	public CopierMemento getMemento() {
 		return new CopierMemento();
 	}
 
+	/**
+	 * Classe CopierMemento implementant Memento et ne servant qu'a la classe Copier
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class CopierMemento implements Memento<CopierMemento> {
 
 	}

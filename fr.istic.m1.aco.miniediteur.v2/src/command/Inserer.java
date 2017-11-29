@@ -34,7 +34,8 @@ public class Inserer implements Command {
 	 * Constructeur de la classe Inserer
 	 * 
 	 * @param moteur
-	 * @param str
+	 * @param ihm
+	 * @param enregistreur
 	 */
 	public Inserer(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
@@ -49,6 +50,7 @@ public class Inserer implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String str = "";
 		if (enregistreur.getPlay()) {
@@ -70,13 +72,25 @@ public class Inserer implements Command {
 		this.ihm = ihm;
 	}
 
+	/**
+	 * Cree un nouvea InsererMemento
+	 */
 	@Override
 	public InsererMemento getMemento() {
 		return new InsererMemento();
 	}
 
+	/**
+	 * Classe InsererMemento implementant Memento et ne servant qu'a Inserer
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class InsererMemento implements Memento<InsererMemento> {
 
+		/**
+		 * Le texte a sauvegarder lors d'un enregistrement
+		 */
 		private String texte;
 
 		public String getTexte() {

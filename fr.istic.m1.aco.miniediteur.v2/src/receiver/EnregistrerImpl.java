@@ -26,6 +26,7 @@ public class EnregistrerImpl implements Enregistreur {
 	/**
 	 * Demarre l'enregistrement
 	 */
+	@Override
 	public void demarrer() {
 		setRecord(true);
 		replay = new ArrayList<Memento<?>>();
@@ -35,6 +36,7 @@ public class EnregistrerImpl implements Enregistreur {
 	/**
 	 * Stoppe l'enregistrement en cours
 	 */
+	@Override
 	public void stopper() {
 		setRecord(false);
 	}
@@ -42,6 +44,7 @@ public class EnregistrerImpl implements Enregistreur {
 	/**
 	 * Rejoue les commandes enregistrées dans le macro
 	 */
+	@Override
 	public void rejouer() {
 		Command cmdCurrent = null;
 		setPlay(true);
@@ -61,6 +64,7 @@ public class EnregistrerImpl implements Enregistreur {
 	 * @param m
 	 *            Le memento a ajouter dans la liste
 	 */
+	@Override
 	public void addMemento(Memento<?> m) {
 		replay.add(m);
 	}
@@ -71,6 +75,7 @@ public class EnregistrerImpl implements Enregistreur {
 	 * @param cmd
 	 *            La commande a ajouter dans la liste
 	 */
+	@Override
 	public void addCommand(Command cmd) {
 		lcmd.add(cmd);
 	}
@@ -78,6 +83,7 @@ public class EnregistrerImpl implements Enregistreur {
 	/**
 	 * @return le record
 	 */
+	@Override
 	public boolean getRecord() {
 		return record;
 	}
@@ -90,10 +96,12 @@ public class EnregistrerImpl implements Enregistreur {
 		this.record = record;
 	}
 
+	@Override
 	public boolean getPlay() {
 		return play;
 	}
 
+	@Override
 	public void setPlay(boolean play) {
 		this.play = play;
 	}

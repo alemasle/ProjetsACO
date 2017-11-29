@@ -3,7 +3,7 @@ package command;
 import receiver.Enregistreur;
 
 /**
- * Concrete Command "Stopper" implementant Command
+ * Concrete Command "Stopper" implementant CommandGeneral
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
@@ -29,6 +29,7 @@ public class Stopper implements CommandGeneral {
 	/**
 	 * Appel de la methode stopper de l'enregistreur
 	 */
+	@Override
 	public void execute() {
 		enregistreur.stopper();
 	}

@@ -42,6 +42,7 @@ public class Coller implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		moteur.coller();
 		if (enregistreur.getRecord()) {
@@ -50,11 +51,20 @@ public class Coller implements Command {
 		}
 	}
 
+	/**
+	 * Retourne un nouveau CollerMemento
+	 */
 	@Override
 	public CollerMemento getMemento() {
 		return new CollerMemento();
 	}
 
+	/**
+	 * Classe Coller Memento implementant Memento et ne servant qu'a Coller
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class CollerMemento implements Memento<CollerMemento> {
 
 	}

@@ -2,6 +2,9 @@ package state;
 
 public class Selection {
 
+	/**
+	 * Le debut et la fin de la selection initiale a 0
+	 */
 	private int debut = 0;
 	private int fin = 0;
 
@@ -13,6 +16,8 @@ public class Selection {
 	}
 
 	/**
+	 * Si debut est inferieur a 0 on le force a 0, pareil pour fin
+	 * 
 	 * @param debut
 	 *            le debut a definir
 	 */

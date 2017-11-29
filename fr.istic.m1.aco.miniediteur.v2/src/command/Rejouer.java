@@ -3,7 +3,7 @@ package command;
 import receiver.Enregistreur;
 
 /**
- * Concrete Command Rejouer implementant l'interface Command
+ * Concrete Command Rejouer implementant l'interface CommandGeneral
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  *
@@ -29,6 +29,7 @@ public class Rejouer implements CommandGeneral {
 	/**
 	 * Appel a la methode rejouer de l'enregistreur.
 	 */
+	@Override
 	public void execute() {
 		enregistreur.rejouer();
 

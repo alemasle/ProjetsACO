@@ -5,7 +5,7 @@ import receiver.Moteur;
 import receiver.MoteurImpl;
 
 /**
- * Concrete Command "Load" implementant l'interface Command
+ * Concrete Command "Load" implementant l'interface CommandGeneral
  *
  * @since 1.1
  * @author Alexis LE MASLE et Fanny PRIEUR
@@ -23,8 +23,9 @@ public class Load implements CommandGeneral {
 
 	/**
 	 * Constructeur de la classe Load
-	 *
+	 * 
 	 * @param moteur
+	 * @param ihm
 	 */
 	public Load(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -39,6 +40,7 @@ public class Load implements CommandGeneral {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		String filename = ihm.getFile();
 		try {

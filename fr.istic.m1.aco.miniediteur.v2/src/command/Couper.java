@@ -25,8 +25,9 @@ public class Couper implements Command {
 
 	/**
 	 * Constructeur de la classe Couper
-	 *
+	 * 
 	 * @param moteur
+	 * @param enregistreur
 	 */
 	public Couper(Moteur moteur, Enregistreur enregistreur) {
 		this.moteur = moteur;
@@ -41,6 +42,7 @@ public class Couper implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		moteur.couper();
 		if (enregistreur.getRecord()) {
@@ -49,11 +51,20 @@ public class Couper implements Command {
 		}
 	}
 
+	/**
+	 * Cree un nouveau CouperMemento
+	 */
 	@Override
 	public CouperMemento getMemento() {
 		return new CouperMemento();
 	}
 
+	/**
+	 * Classe CouperMemento implementant Memento et ne servant qu'a la classe Couper
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class CouperMemento implements Memento<CouperMemento> {
 
 	}

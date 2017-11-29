@@ -7,7 +7,7 @@ import receiver.Moteur;
 import receiver.MoteurImpl;
 
 /**
- * Concrete Command "Inserer" implementant l'interface Command
+ * Concrete Command "Ajouter" implementant l'interface Command
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
@@ -15,14 +15,14 @@ import receiver.MoteurImpl;
 public class Ajouter implements Command {
 
 	/**
-	 * Nouvelle instance de l'interface Moteur declarant la methode inserer
+	 * Nouvelle instance de l'interface Moteur declarant la methode ajouter
 	 * 
 	 * @see Moteur
 	 */
 	private Moteur moteur;
 
 	/**
-	 * Nouvelle String a inserer
+	 * Nouvelle String a ajouter
 	 */
 	private Ihm ihm;
 
@@ -31,10 +31,11 @@ public class Ajouter implements Command {
 	private AjouterMemento memento;
 
 	/**
-	 * Constructeur de la classe Inserer
+	 * Constructeur de la classe Ajouter
 	 * 
 	 * @param moteur
-	 * @param str
+	 * @param ihm
+	 * @param enregistreur
 	 */
 	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
@@ -45,12 +46,13 @@ public class Ajouter implements Command {
 	// Operations
 
 	/**
-	 * Appel de la mise en oeuvre de la fonction "inserer" dans l'implementation
+	 * Appel de la mise en oeuvre de la fonction "ajouter" dans l'implementation
 	 * Moteur.
 	 * 
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String str = "";
 		if (enregistreur.getPlay()) {
@@ -72,14 +74,26 @@ public class Ajouter implements Command {
 		this.ihm = ihm;
 	}
 
+	/**
+	 * Creer un nouveau memento
+	 */
 	@Override
 	public AjouterMemento getMemento() {
 		return new AjouterMemento();
 	}
-	
-	//TODO a ajouter pour UML
+
+	/**
+	 * Classe AjouterMemento implementant Memento et ne servant qu'a la classe
+	 * Ajouter
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class AjouterMemento implements Memento<AjouterMemento> {
 
+		/**
+		 * Le texte de ajouter a sauvegarder en cas d'enregistrement
+		 */
 		String texte;
 
 		public String getTexte() {

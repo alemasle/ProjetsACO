@@ -29,8 +29,18 @@ public interface Enregistreur {
 
 	boolean getRecord();
 
+	/**
+	 * Permet d'ajouter un memento a la liste des mementos de l'enregistreur
+	 * 
+	 * @param m
+	 */
 	void addMemento(Memento<?> m);
 
+	/**
+	 * Permet d'ajouter une commande a la liste des commandes de l'enregistreur
+	 * 
+	 * @param cmd
+	 */
 	void addCommand(Command cmd);
 
 	boolean getPlay();

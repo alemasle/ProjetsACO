@@ -5,7 +5,7 @@ import receiver.Moteur;
 import receiver.MoteurImpl;
 
 /**
- * Concrete Command "Save" implementant l'interface Command
+ * Concrete Command "Save" implementant l'interface CommandGeneral
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
@@ -25,8 +25,7 @@ public class Save implements CommandGeneral {
 	 * Constructeur de la classe Save
 	 * 
 	 * @param moteur
-	 * @param deb
-	 * @param fin
+	 * @param ihm
 	 */
 	public Save(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -42,6 +41,7 @@ public class Save implements CommandGeneral {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String filename = ihm.getFile();
 		try {

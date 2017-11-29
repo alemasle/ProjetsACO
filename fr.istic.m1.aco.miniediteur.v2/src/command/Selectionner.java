@@ -31,6 +31,13 @@ public class Selectionner implements Command {
 
 	private SelectionnerMemento memento;
 
+	/**
+	 * Constructeur de la classe Selectionner
+	 * 
+	 * @param moteur
+	 * @param ihm
+	 * @param enregistreur
+	 */
 	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur) {
 		this.moteur = moteur;
 		this.ihm = ihm;
@@ -43,11 +50,12 @@ public class Selectionner implements Command {
 	 * Appel de la mise en oeuvre de la fonction "selectionner" dans
 	 * l'implementation Moteur. Demande les bornes de debut et de fin a
 	 * l'utilsateur. Si la commande est en mode replay alors elle utilise les
-	 * dernieres bornes.
+	 * dernieres bornes. Inverse les bornes si debut est plus grand que fin.
 	 * 
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		if (enregistreur.getPlay()) {
 			deb = memento.getDeb();
@@ -81,13 +89,26 @@ public class Selectionner implements Command {
 		this.ihm = ihm;
 	}
 
+	/**
+	 * Cree un nouveau SelectionnerMemento
+	 */
 	@Override
 	public SelectionnerMemento getMemento() {
 		return new SelectionnerMemento();
 	}
 
+	/**
+	 * Classe SelectionnerMemento implementant Memento et ne servant que
+	 * Selectionner
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class SelectionnerMemento implements Memento<SelectionnerMemento> {
 
+		/**
+		 * Les attributs de debut et de fin a sauvegarder lorsqu'on enregistre
+		 */
 		int deb;
 		int fin;
 
