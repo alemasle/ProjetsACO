@@ -28,11 +28,11 @@ public class Coller implements Command {
 	private Manager manager;
 
 	/**
-	 * Constructeur de la classe Copier
+	 * Constructeur de la classe Coller
 	 * 
 	 * @param moteur
 	 * @param enregistreur
-	 * @param state
+	 * @param manager
 	 */
 	public Coller(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
@@ -46,6 +46,7 @@ public class Coller implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		moteur.coller();
 		CollerMemento m = getMemento();
@@ -62,11 +63,20 @@ public class Coller implements Command {
 		}
 	}
 
+	/**
+	 * Cree un nouveau CollerMemento
+	 */
 	@Override
 	public CollerMemento getMemento() {
 		return new CollerMemento();
 	}
 
+	/**
+	 * Classe CollerMemento implementant Memento et ne servant qu'a Coller
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class CollerMemento implements Memento<CollerMemento> {
 
 		@Override

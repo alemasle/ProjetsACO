@@ -30,8 +30,10 @@ public class Delete implements Command {
 
 	/**
 	 * Constructeur de la classe Delete
-	 *
+	 * 
 	 * @param moteur
+	 * @param enregistreur
+	 * @param manager
 	 */
 	public Delete(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
@@ -47,6 +49,7 @@ public class Delete implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		DeleteMemento m = getMemento();
 		moteur.delete();
@@ -63,11 +66,20 @@ public class Delete implements Command {
 		}
 	}
 
+	/**
+	 * Cree un nouveau DeleteMemento
+	 */
 	@Override
 	public DeleteMemento getMemento() {
 		return new DeleteMemento();
 	}
 
+	/**
+	 * Classe DeleteMemento implementant Memento et ne servant qu'a Delete
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	private class DeleteMemento implements Memento<DeleteMemento> {
 
 		@Override

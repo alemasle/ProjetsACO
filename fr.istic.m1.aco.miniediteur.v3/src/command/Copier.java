@@ -28,6 +28,13 @@ public class Copier implements Command {
 
 	private Manager manager;
 
+	/**
+	 * Constructeur de la classe Copier
+	 * 
+	 * @param moteur
+	 * @param enregistreur
+	 * @param manager
+	 */
 	public Copier(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
@@ -42,6 +49,7 @@ public class Copier implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		moteur.copier();
 		CopierMemento m = getMemento();
@@ -58,11 +66,20 @@ public class Copier implements Command {
 		}
 	}
 
+	/**
+	 * Cree un nouveau CopierMemento
+	 */
 	@Override
 	public CopierMemento getMemento() {
 		return new CopierMemento();
 	}
 
+	/**
+	 * Classe CopierMemento implementant Memento et ne servant qu'a Copier
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	private class CopierMemento implements Memento<CopierMemento> {
 
 		@Override

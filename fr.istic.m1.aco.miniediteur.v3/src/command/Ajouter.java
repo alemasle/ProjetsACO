@@ -9,7 +9,7 @@ import receiver.MoteurImpl;
 import state.State;
 
 /**
- * Concrete Command "Inserer" implementant l'interface Command
+ * Concrete Command "Ajouter" implementant l'interface Command
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
  * 
@@ -17,7 +17,7 @@ import state.State;
 public class Ajouter implements Command {
 
 	/**
-	 * Nouvelle instance de l'interface Moteur declarant la methode inserer
+	 * Nouvelle instance de l'interface Moteur declarant la methode ajouter
 	 * 
 	 * @see Moteur
 	 */
@@ -35,10 +35,12 @@ public class Ajouter implements Command {
 	private Manager manager;
 
 	/**
-	 * Constructeur de la classe Inserer
+	 * Constructeur de la classe Ajouter
 	 * 
 	 * @param moteur
-	 * @param str
+	 * @param ihm
+	 * @param enregistreur
+	 * @param manager
 	 */
 	public Ajouter(Moteur moteur, Ihm ihm, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
@@ -56,6 +58,7 @@ public class Ajouter implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String str = "";
 		AjouterMemento m = getMemento();
@@ -85,13 +88,25 @@ public class Ajouter implements Command {
 		this.ihm = ihm;
 	}
 
+	/**
+	 * Cree un nouveau AjouterMemento
+	 */
 	@Override
 	public AjouterMemento getMemento() {
 		return new AjouterMemento();
 	}
 
+	/**
+	 * Classe AjouterMemento implementant Memento et ne servant qu'a Ajouter
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	private class AjouterMemento implements Memento<AjouterMemento> {
 
+		/**
+		 * Le texte a sauvegarder
+		 */
 		private String texte;
 
 		public String getTexte() {

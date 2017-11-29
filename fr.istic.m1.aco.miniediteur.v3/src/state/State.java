@@ -19,24 +19,42 @@ public class State {
 
 	private Moteur moteur;
 
+	/**
+	 * Liste de commandes a sauvegarder a partir de l'etat courant
+	 */
 	private List<Command> lcmd = new ArrayList<Command>();
 
+	/**
+	 * Liste de mementos associes aux commandes.
+	 */
 	private List<Memento<?>> lmem = new ArrayList<Memento<?>>();
 
 	public State(Moteur moteur) {
 		this.moteur = moteur;
 	}
 
-	public Moteur getMoteur() {
-		return moteur;
-	}
-
+	/**
+	 * Permet d'ajouter une commande dans la liste des commandes de State
+	 * 
+	 * @param c
+	 */
 	public void addCmd(Command c) {
 		lcmd.add(c);
 	}
 
+	/**
+	 * Permet d'ajouter une commande dans la liste des commandes de State.
+	 * 
+	 * @param m
+	 */
 	public void addMem(Memento<?> m) {
 		lmem.add(m);
+	}
+
+	///////// GETTER/SETTER attributs /////////
+
+	public Moteur getMoteur() {
+		return moteur;
 	}
 
 	public void setMoteur(Moteur moteur) {
@@ -59,6 +77,7 @@ public class State {
 		this.lmem = lmem;
 	}
 
+	@Override
 	public State clone() {
 
 		List<Command> clcmd = new ArrayList<>();

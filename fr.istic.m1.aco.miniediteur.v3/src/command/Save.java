@@ -19,14 +19,16 @@ public class Save implements CommandGeneral {
 	 */
 	private Moteur moteur;
 
+	/**
+	 * L'ihm permettant d'obtenir le nom de fichier a sauvegarder
+	 */
 	private Ihm ihm;
 
 	/**
 	 * Constructeur de la classe Save
 	 * 
 	 * @param moteur
-	 * @param deb
-	 * @param fin
+	 * @param ihm
 	 */
 	public Save(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -42,6 +44,7 @@ public class Save implements CommandGeneral {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String filename = ihm.getFile();
 		try {

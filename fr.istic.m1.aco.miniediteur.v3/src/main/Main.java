@@ -29,6 +29,12 @@ import state.ClipBoard;
 import state.ClipboardImpl;
 import state.Selection;
 
+/**
+ * Fonction Main du programme
+ * 
+ * @author Alexis LE MASLE et Fanny PRIEUR
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {

@@ -29,16 +29,15 @@ public class Inserer implements Command {
 
 	private Manager manager;
 
-	/**
-	 * Nouvelle String a inserer
-	 */
 	private Ihm ihm;
 
 	/**
 	 * Constructeur de la classe Inserer
 	 * 
 	 * @param moteur
-	 * @param str
+	 * @param ihm
+	 * @param enregistreur
+	 * @param manager
 	 */
 	public Inserer(Moteur moteur, Ihm ihm, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
@@ -54,6 +53,7 @@ public class Inserer implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String str = "";
 		InsererMemento m = getMemento();
@@ -83,13 +83,25 @@ public class Inserer implements Command {
 		this.ihm = ihm;
 	}
 
+	/**
+	 * Cree un nouveau InsererMemento
+	 */
 	@Override
 	public InsererMemento getMemento() {
 		return new InsererMemento();
 	}
 
+	/**
+	 * Classe InsererMemento implementant Memento et ne servant qu'a Inserer
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	private class InsererMemento implements Memento<InsererMemento> {
 
+		/**
+		 * Le texte a sauvegarder
+		 */
 		private String texte;
 
 		public String getTexte() {

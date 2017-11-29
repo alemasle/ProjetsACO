@@ -29,6 +29,7 @@ public class Rejouer implements CommandGeneral {
 	/**
 	 * Appel a la methode rejouer de l'enregistreur.
 	 */
+	@Override
 	public void execute() {
 		enregistreur.rejouer();
 

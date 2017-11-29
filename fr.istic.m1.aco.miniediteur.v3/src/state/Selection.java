@@ -2,6 +2,9 @@ package state;
 
 public class Selection {
 
+	/**
+	 * Bornes de debut et de fin de la selection initialise a 0
+	 */
 	private int debut = 0;
 	private int fin = 0;
 
@@ -49,6 +52,7 @@ public class Selection {
 	 * 
 	 * 
 	 */
+	@Override
 	public Selection clone() {
 		Selection s = new Selection();
 		s.setDebut(debut);

@@ -31,6 +31,7 @@ public class Demarrer implements CommandGeneral {
 	/**
 	 * Methode execute appelant la methode demarrer() de l'enregistreur
 	 */
+	@Override
 	public void execute() {
 		enregistreur.demarrer();
 	}

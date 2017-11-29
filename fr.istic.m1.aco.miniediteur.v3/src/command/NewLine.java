@@ -11,7 +11,7 @@ import state.State;
  * Concrete Command "NewLine" implementant l'interface Command
  * 
  * @author Alexis LE MASLE et Fanny PRIEUR
- * 
+ * @since v3.1
  */
 public class NewLine implements Command {
 
@@ -28,6 +28,13 @@ public class NewLine implements Command {
 
 	private Manager manager;
 
+	/**
+	 * Constructeur de la classe NewLine
+	 * 
+	 * @param moteur
+	 * @param enregistreur
+	 * @param manager
+	 */
 	public NewLine(Moteur moteur, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.enregistreur = enregistreur;
@@ -42,6 +49,7 @@ public class NewLine implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		moteur.newLine();
 		NewLineMemento m = getMemento();
@@ -58,11 +66,20 @@ public class NewLine implements Command {
 		}
 	}
 
+	/**
+	 * Cree un nouveau NewLineMemento
+	 */
 	@Override
 	public NewLineMemento getMemento() {
 		return new NewLineMemento();
 	}
 
+	/**
+	 * Classe NewLineMemento implementant Memento et ne servant qu'a NewLine
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	private class NewLineMemento implements Memento<NewLineMemento> {
 
 		@Override

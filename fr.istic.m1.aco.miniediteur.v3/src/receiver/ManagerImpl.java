@@ -35,6 +35,7 @@ public class ManagerImpl implements Manager {
 	/**
 	 * Revient a l'etat precedent la derniere commande si il y'en a un.
 	 */
+	@Override
 	public void defaire() {
 
 		List<Command> lcmd = stateCourant.getLcmd();
@@ -68,6 +69,7 @@ public class ManagerImpl implements Manager {
 	/**
 	 * Refait la derniere action defaite si il y'en a une.
 	 */
+	@Override
 	public void refaire() {
 		if (!refaireStack.isEmpty()) {
 			if (stateCourant.getLcmd().size() == 4) {
@@ -89,6 +91,7 @@ public class ManagerImpl implements Manager {
 	 * 
 	 * Supprime l'etat le plus ancien si il y'a plus de 30 etats enregistres
 	 */
+	@Override
 	public void saveState() {
 		List<Command> lcmd = stateCourant.getLcmd();
 		if (lcmd.size() == 5) {
@@ -119,6 +122,7 @@ public class ManagerImpl implements Manager {
 	/**
 	 * Vide la pile "refaire" si on execute une nouvelle commande
 	 */
+	@Override
 	public void emptyRedo() {
 		if (!refaireStack.isEmpty()) {
 			refaireStack = new Stack<State>();
@@ -127,26 +131,32 @@ public class ManagerImpl implements Manager {
 
 	///////////////// Getter/Setter attributs /////////////////////
 
+	@Override
 	public Moteur getMoteur() {
 		return moteur;
 	}
 
+	@Override
 	public void setMoteur(Moteur moteur) {
 		this.moteur = moteur;
 	}
 
+	@Override
 	public boolean getPlay() {
 		return play;
 	}
 
+	@Override
 	public void setPlay(boolean play) {
 		this.play = play;
 	}
 
+	@Override
 	public State getStateCourant() {
 		return stateCourant;
 	}
 
+	@Override
 	public void setStateCourant(State s) {
 		this.stateCourant = s;
 	}

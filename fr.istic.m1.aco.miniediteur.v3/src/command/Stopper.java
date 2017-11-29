@@ -29,6 +29,7 @@ public class Stopper implements CommandGeneral {
 	/**
 	 * Appel de la methode stopper de l'enregistreur
 	 */
+	@Override
 	public void execute() {
 		enregistreur.stopper();
 	}

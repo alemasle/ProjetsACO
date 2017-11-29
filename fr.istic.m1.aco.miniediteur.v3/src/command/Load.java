@@ -19,12 +19,16 @@ public class Load implements CommandGeneral {
 	 */
 	private Moteur moteur;
 
+	/**
+	 * L'ihm permettant d'obtenir le nom de fichier a charger
+	 */
 	private Ihm ihm;
 
 	/**
 	 * Constructeur de la classe Load
-	 *
+	 * 
 	 * @param moteur
+	 * @param ihm
 	 */
 	public Load(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -39,6 +43,7 @@ public class Load implements CommandGeneral {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		String filename = ihm.getFile();
 		try {

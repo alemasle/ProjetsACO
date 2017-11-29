@@ -35,6 +35,14 @@ public class Selectionner implements Command {
 
 	private Manager manager;
 
+	/**
+	 * Constructeur de la classe Selectionner
+	 * 
+	 * @param moteur
+	 * @param ihm
+	 * @param enregistreur
+	 * @param manager
+	 */
 	public Selectionner(Moteur moteur, Ihm ihm, Enregistreur enregistreur, Manager manager) {
 		this.moteur = moteur;
 		this.ihm = ihm;
@@ -53,6 +61,7 @@ public class Selectionner implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		SelectionnerMemento m = getMemento();
 		if (enregistreur.getPlay() || manager.getPlay()) {
@@ -95,13 +104,26 @@ public class Selectionner implements Command {
 		this.ihm = ihm;
 	}
 
+	/**
+	 * Cree un nouveau SelectionnerMemento
+	 */
 	@Override
 	public SelectionnerMemento getMemento() {
 		return new SelectionnerMemento();
 	}
 
+	/**
+	 * Classe SelectionnerMemento implementant Memento et ne servant qu'a
+	 * Selectionner
+	 * 
+	 * @author Alexis LE MASLE et Fanny PRIEUR
+	 *
+	 */
 	public class SelectionnerMemento implements Memento<SelectionnerMemento> {
 
+		/**
+		 * Les postions de debut et fin de selection a sauvegarder
+		 */
 		int deb;
 		int fin;
 
