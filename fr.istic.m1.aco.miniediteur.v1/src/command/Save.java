@@ -25,8 +25,7 @@ public class Save implements Command {
 	 * Constructeur de la classe Save
 	 * 
 	 * @param moteur
-	 * @param deb
-	 * @param fin
+	 * @param ihm
 	 */
 	public Save(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -42,6 +41,7 @@ public class Save implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		String filename = ihm.getFile();
 		try {

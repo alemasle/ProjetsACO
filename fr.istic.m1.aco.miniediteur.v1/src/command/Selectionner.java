@@ -28,8 +28,7 @@ public class Selectionner implements Command {
 	 * Constructeur de la classe Selectionner
 	 * 
 	 * @param moteur
-	 * @param deb
-	 * @param fin
+	 * @param ihm
 	 */
 	public Selectionner(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -45,6 +44,7 @@ public class Selectionner implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		int deb = ihm.getDebut();
 		int fin = ihm.getFin();

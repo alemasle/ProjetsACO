@@ -34,6 +34,7 @@ public class Couper implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		moteur.couper();
 	}

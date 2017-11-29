@@ -30,6 +30,7 @@ public class Copier implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 		moteur.copier();
 	}

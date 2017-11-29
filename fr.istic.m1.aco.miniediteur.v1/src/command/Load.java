@@ -26,8 +26,9 @@ public class Load implements Command {
 
 	/**
 	 * Constructeur de la classe Load
-	 *
+	 * 
 	 * @param moteur
+	 * @param ihm
 	 */
 	public Load(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -42,6 +43,7 @@ public class Load implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		String filename = ihm.getFile();
 		try {

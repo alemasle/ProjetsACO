@@ -33,7 +33,7 @@ public class Inserer implements Command {
 	 * Constructeur de la classe Inserer
 	 * 
 	 * @param moteur
-	 * @param str
+	 * @param ihm
 	 */
 	public Inserer(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -69,6 +69,7 @@ public class Inserer implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 
 		String str = ihm.getText();

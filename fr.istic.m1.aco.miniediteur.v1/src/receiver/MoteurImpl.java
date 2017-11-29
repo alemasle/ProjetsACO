@@ -40,15 +40,16 @@ public class MoteurImpl implements Moteur {
 	// Operations
 
 	/**
-	 * Selectionne une partie du texte ayant comme debut le caracters a la position
+	 * Selectionne une partie du texte ayant comme debut le caractere a la position
 	 * debut et selectionnant tous les caracteres jusqu'a la position fin. Si debut
-	 * > fin alors on inverse les positions.
+	 * est superieur a fin alors on inverse les positions.
 	 *
 	 * @param debut
 	 *            la position initiale
 	 * @param fin
 	 *            la fin de la selection
 	 */
+	@Override
 	public void selectionner(int debut, int fin) {
 		select.setDebut(debut);
 		select.setFin(fin);
@@ -57,6 +58,7 @@ public class MoteurImpl implements Moteur {
 	/**
 	 * Permet de copier la selection.
 	 */
+	@Override
 	public void copier() {
 		int deb = select.getDebut();
 		int fin = select.getFin();
@@ -72,6 +74,7 @@ public class MoteurImpl implements Moteur {
 	 * @param str
 	 *            La chaine de caractere a inserer
 	 */
+	@Override
 	public void inserer(String str) {
 		int deb = select.getDebut();
 
@@ -88,6 +91,7 @@ public class MoteurImpl implements Moteur {
 	 * @param str
 	 *            The String to add
 	 */
+	@Override
 	public void ajouter(String str) {
 		int deb = select.getDebut();
 
@@ -102,6 +106,7 @@ public class MoteurImpl implements Moteur {
 	 * Remove the current selection or the previous character if there is no
 	 * selection currently
 	 */
+	@Override
 	public void delete() {
 		int deb = select.getDebut();
 		int fin = select.getFin();
@@ -119,6 +124,7 @@ public class MoteurImpl implements Moteur {
 	 * Met dans le press-papier la selection courante et efface la selection du
 	 * texte.
 	 */
+	@Override
 	public void couper() {
 		clip.setClip(buffer.getBuffer().substring(select.getDebut(), select.getFin()));
 		removeSelect();
@@ -128,6 +134,7 @@ public class MoteurImpl implements Moteur {
 	 * Colle le contenu du presse-papier a la position actuelle en decalant le texte
 	 * existant apres la position courante.
 	 */
+	@Override
 	public void coller() {
 		int deb = select.getDebut();
 		String paste = clip.getClip();
@@ -146,6 +153,7 @@ public class MoteurImpl implements Moteur {
 	 * 
 	 * @since 1.1
 	 */
+	@Override
 	public void save(String filename) throws Exception {
 		try {
 			File file = new File(filename);
@@ -163,6 +171,7 @@ public class MoteurImpl implements Moteur {
 	 * 
 	 * @since 1.1
 	 */
+	@Override
 	public void load(String filename) throws Exception {
 		try {
 			File file = new File(filename);

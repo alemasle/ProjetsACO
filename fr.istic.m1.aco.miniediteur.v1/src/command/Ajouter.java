@@ -28,7 +28,7 @@ public class Ajouter implements Command {
 	 * Constructeur de la classe Ajouter
 	 * 
 	 * @param moteur
-	 * @param str
+	 * @param ihm
 	 */
 	public Ajouter(Moteur moteur, Ihm ihm) {
 		this.moteur = moteur;
@@ -44,6 +44,7 @@ public class Ajouter implements Command {
 	 * @see MoteurImpl
 	 * 
 	 */
+	@Override
 	public void execute() {
 
 		String str = ihm.getText();

@@ -19,11 +19,8 @@ public class Coller implements Command {
 
 	/**
 	 * Constructeur de la classe Coller
-	 *
+	 * 
 	 * @param moteur
-	 *            le moteur
-	 * @param enregistreur
-	 *            l'enregistreur
 	 */
 	public Coller(Moteur moteur) {
 		this.moteur = moteur;
@@ -35,6 +32,7 @@ public class Coller implements Command {
 	 *
 	 * @see MoteurImpl
 	 */
+	@Override
 	public void execute() {
 		moteur.coller();
 	}
