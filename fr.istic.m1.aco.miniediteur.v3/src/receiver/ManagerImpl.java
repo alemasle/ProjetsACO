@@ -40,9 +40,6 @@ public class ManagerImpl implements Manager {
 		List<Command> lcmd = stateCourant.getLcmd();
 		List<Memento<?>> lmem = stateCourant.getLmem();
 
-		Command lastCmd = null;
-		Memento<?> lastMem = null;
-
 		if (lcmd.size() == 0) {
 			if (!defaireStack.isEmpty()) {
 
@@ -50,15 +47,10 @@ public class ManagerImpl implements Manager {
 
 				stateCourant = defaireStack.pop();
 
-				lastCmd = stateCourant.getLcmd().remove(stateCourant.getLcmd().size() - 1);
-				lastMem = stateCourant.getLmem().remove(stateCourant.getLmem().size() - 1);
-
 				setPlay(true);
 				moteur.recreer(stateCourant.clone());
 				setPlay(false);
 
-				stateCourant.addCmd(lastCmd);
-				stateCourant.addMem(lastMem);
 			}
 		} else {
 
@@ -78,7 +70,7 @@ public class ManagerImpl implements Manager {
 	 */
 	public void refaire() {
 		if (!refaireStack.isEmpty()) {
-			if (stateCourant.getLcmd().size() == 5) {
+			if (stateCourant.getLcmd().size() == 4) {
 				defaireStack.push(stateCourant.clone());
 			}
 
@@ -101,6 +93,9 @@ public class ManagerImpl implements Manager {
 		List<Command> lcmd = stateCourant.getLcmd();
 		if (lcmd.size() == 5) {
 			State oldSt = stateCourant.clone();
+			oldSt.getLcmd().remove(oldSt.getLcmd().size() - 1);
+			oldSt.getLmem().remove(oldSt.getLmem().size() - 1);
+
 			defaireStack.push(oldSt);
 
 			State ns = new State(moteur.clone());
